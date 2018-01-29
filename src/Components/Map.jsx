@@ -27,7 +27,7 @@ class MyMapComponent extends Component {
       withScriptjs,
       withGoogleMap
     )(props => (
-      <GoogleMap defaultZoom={17} defaultCenter={{ lat: -22.814470, lng: -47.044972 }}>
+      <GoogleMap defaultZoom={17} defaultCenter={{ lat: -22.814470, lng: -47.044972 }} mapTypeId='satellite'>
         <Marker position={{ lat: -22.814470, lng: -47.044972 }} 
                 draggable={true}
                 onDragEnd={(e) => this.markerOnDragEnd(e, self)}/>
