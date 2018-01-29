@@ -43,7 +43,10 @@ class Menu extends Component {
       strict: false
     });
 
-    const activeButton = 
+  var activeButton = 0;
+
+  if (match !== null)
+    activeButton = 
       this.buttons.reduce(((pv, cv, i) => {
         if (cv[0].toLowerCase() === match.params.page.toLowerCase())
           return i;
