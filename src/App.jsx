@@ -8,6 +8,7 @@ import {
 
 import './styles/App.css';
 import Menu from './Components/Menu';
+import Map from './Components/Map';
 
 class App extends Component {
   render() {
@@ -30,16 +31,6 @@ class Home extends Component {
     return (
       <div>
         <h1>Home</h1>
-      </div>
-    );
-  }
-}
-
-class Map extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Map</h1>
       </div>
     );
   }
