@@ -7,8 +7,11 @@ import {
 } from 'react-router-dom'
 
 import './styles/App.css';
-import Menu from './Components/Menu';
-import Map from './Components/Map';
+import Menu from './Components/Menu.jsx';
+import Map from './Components/Map.jsx';
+import Cars from './Components/Cars.jsx';
+import About from './Components/About.jsx';
+import Home from './Components/Home.jsx';
 
 class App extends Component {
   render() {
@@ -22,36 +25,6 @@ class App extends Component {
           <Route path="/About" component={About}/>
         </div>
       </Router>
-    );
-  }
-}
-
-class Home extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Home</h1>
-      </div>
-    );
-  }
-}
-
-class Cars extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Cars</h1>
-      </div>
-    );
-  }
-}
-
-class About extends Component {
-  render() {
-    return (
-      <div>
-        <h1>About</h1>
-      </div>
     );
   }
 }
