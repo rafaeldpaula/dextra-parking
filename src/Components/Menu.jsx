@@ -3,7 +3,8 @@ import React, {
 } from 'react';
 
 import {
-  Link
+  Link,
+  matchPath
 } from 'react-router-dom'
 
 import classNames from 'classnames';
@@ -15,10 +16,13 @@ class MenuButton extends Component{
     return (
       <li className="nav-item"
           onClick={this.props.onClick}>
-        <Link className={classNames("nav-link", {
+        <Link 
+          className={classNames("nav-link", {
             active: this.props.active
           })}
-          to={this.props.link}>{this.props.label}</Link>
+          to={"/" + this.props.link}>
+          {this.props.label}
+        </Link>
       </li>
     );
   }
@@ -28,11 +32,25 @@ class Menu extends Component {
   constructor(things) {
     super(things);
     this.buttons =
-    [ ["/", "Home"],
-      ["/Map", "Map"],
-      ["/Cars", "Cars"],
-      ["/About", "About"]];
-    this.state = {activeButton: 0};
+    [ ["", "Home"],
+      ["Map", "Map"],
+      ["Cars", "Cars"],
+      ["About", "About"]];
+
+    const match =  matchPath(window.location.pathname, {
+      path: '/:page',
+      exact: false,
+      strict: false
+    });
+
+    const activeButton = 
+      this.buttons.reduce(((pv, cv, i) => {
+        if (cv[0].toLowerCase() === match.params.page.toLowerCase())
+          return i;
+        return pv;
+      }), 0);
+
+    this.state = {activeButton: activeButton};
   }
 
   handleButtonClick(i) {
