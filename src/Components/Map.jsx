@@ -3,19 +3,19 @@ import {withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps
 import { compose, withProps } from "recompose";
 
 class MyMapComponent extends Component {  
-  
   markerOnDragEnd (e, self) {
     console.log("Toaqui");
     console.log(e.latLng.lat() + "," + e.latLng.lng());
  
+    this.updateLocation(1, e.latLng.lat(), e.latLng.lng());
     self.props.location.lat = e.latLng.lat();
     self.props.location.lng = e.latLng.lng();
   }
+
+  //ISSO AQUI: https://stackoverflow.com/questions/38414139/how-to-call-and-form-a-react-js-function-from-html
   
   render(props) {
-
     var self = this;
-
     var ret = compose(
       withProps({
         googleMapURL:
@@ -33,7 +33,6 @@ class MyMapComponent extends Component {
                 onDragEnd={(e) => this.markerOnDragEnd(e, self)}/>
       </GoogleMap>
     ));
-
     return ret(props);
   }
 } 
