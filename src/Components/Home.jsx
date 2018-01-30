@@ -38,7 +38,9 @@ class Home extends Component {
             Devolver carro
         </button>
 
-        <DevolverModal items={this.state.cars}/>
+        <DevolverModal 
+          items={this.state.cars}
+          onSelection={(car) => console.log("Você selecionou " + car.name)}/>
       </div>
     );
   }
