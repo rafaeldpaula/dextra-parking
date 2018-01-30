@@ -31,7 +31,7 @@ class MyMapComponent extends Component {
           "https://maps.googleapis.com/maps/api/js?key=AIzaSyAzqXIMAGTfkI1FriE3eQ75HsbeuQv1hE8&v=3.exp&libraries=geometry,drawing,places",
         loadingElement: <div style={{ height: `100vh` }} />,
         containerElement: <div style={{ height: `100vh` }} />,
-        mapElement: <div style={{ height: `100%` }} />
+        mapElement: <div style={{ height: `100%` }} />,
       }), 
 
       withScriptjs,
@@ -40,7 +40,7 @@ class MyMapComponent extends Component {
       <GoogleMap  zIndex={-1}
                   defaultZoom={17} 
                   defaultCenter={{ lat: -22.814470, lng: -47.044972 }} 
-                  mapTypeId='satellite'>
+                  defaultOptions={{disableDefaultUI: true}}>
         {
           (() => {
             var hue = this.props.cars.map( (car, i) => {
@@ -71,8 +71,6 @@ class MyMapComponent extends Component {
           console.log(hue);
           return hue;
         })()}
-      
-
       </GoogleMap>
     ));
     return ret(props);
