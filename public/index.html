@@ -43,7 +43,7 @@
       });
 
       function updateLocation(carId, lat, long){
-        yawp('cars/'+carId).patch({location: lat+','+long}).then(
+        yawp('/cars/'+carId).patch({location: lat+','+long}).then(
           function(car){
             console.log(car);
           });

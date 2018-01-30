@@ -7,9 +7,7 @@ class MyMapComponent extends Component {
     console.log("Toaqui");
     console.log(e.latLng.lat() + "," + e.latLng.lng());
  
-    this.updateLocation(1, e.latLng.lat(), e.latLng.lng());
-    self.props.location.lat = e.latLng.lat();
-    self.props.location.lng = e.latLng.lng();
+    window.updateLocation(1, e.latLng.lat(), e.latLng.lng());
   }
 
   //ISSO AQUI: https://stackoverflow.com/questions/38414139/how-to-call-and-form-a-react-js-function-from-html
