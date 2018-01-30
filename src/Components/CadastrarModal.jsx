@@ -26,7 +26,7 @@ class CadastrarModal extends Component {
     handleSubmit(e) {
         alert(this.state.valueName + this.state.valueEmail);
 
-        yawp('/cars').create({name: this.state.valueName, email: this.state.valueEmail+'@dexra-sw.com', location: '-22.812926,-47.045779'}).then(function (car) {
+        yawp('/cars').create({name: this.state.valueName, email: this.state.valueEmail+'@dextra-sw.com', location: '-22.812926,-47.045779'}).then(function (car) {
             console.log('Created: ' + car);
         })
 
