@@ -3,10 +3,9 @@ import React, {
   } from 'react';
 
 import Map from './Map.jsx';
-import {
-  TopFloatingButton, 
-  BottomFloatingButton
-} from './FloatingButton';
+import DevolverModal from './DevolverModal.jsx';
+
+import '../styles/FloatingButton.css';
 
 import yawp from 'yawp';
 
@@ -18,47 +17,25 @@ class Home extends Component {
 
   componentDidMount() {
     yawp('/cars').list(
-      cars => {
-
-        this.setState({cars: cars});
-
-        // cars.forEach(car => {
-          /*console.log('id: ' + car.id);
-          console.log('e-mal: ' + car.email);
-          console.log('name: ' + car.name);
-
-          carLocation = car.location.split(',');
-          console.log('lat: ' + carLocation[0]);
-          console.log('lon: ' + carLocation[1]);*/
-
-          
-        });
-  }
-
-  openDevolverModal() {
-    this.state.cars.forEach(car => {
-      console.log('id: ' + car.id);
-      console.log('e-mal: ' + car.email);
-      console.log('name: ' + car.name);
-
-      var carLocation = car.location.split(',');
-      console.log('lat: ' + carLocation[0]);
-      console.log('lon: ' + carLocation[1]);
-    });
+      cars => this.setState({cars: cars}));
   }
 
   render() {
     return (
       <div>
         <Map/>
-        <TopFloatingButton 
-            className="btn-outline-primary"
-            label="Selectionar carro"
-            onClick={() => null}/>
-        <BottomFloatingButton 
-            className="btn-outline-success"
-            label="Devolver carro"
-            onClick={() => this.openDevolverModal()}/>
+        <button type="button" 
+                className="btn btn-outline-primary floating-button top-floating-button"
+                data-toggle="modal" data-target="#selectionar-modal">
+            Selecionar carro
+        </button>
+        <button type="button" 
+                className="btn btn-outline-success floating-button bottom-floating-button"
+                data-toggle="modal" data-target="#devolver-modal">
+            Devolver carro
+        </button>
+
+        <DevolverModal items={this.state.cars}/>
       </div>
     );
   }

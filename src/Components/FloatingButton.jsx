@@ -2,8 +2,6 @@ import React, {
     Component
 } from 'react';
 
-import '../styles/FloatingButton.css';
-
 function mergeClassNames(props, classes) {
     let {
         className,
