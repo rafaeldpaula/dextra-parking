@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import { compose, withProps } from "recompose";
+import MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithLabel";
 
 class MyMapComponent extends Component {  
   markerOnDragEnd (e, self) {
@@ -10,10 +11,13 @@ class MyMapComponent extends Component {
     window.updateLocation(1, e.latLng.lat(), e.latLng.lng());
   }
 
-  //ISSO AQUI: https://stackoverflow.com/questions/38414139/how-to-call-and-form-a-react-js-function-from-html
+  getName(carId){
+    return window.getCarName(carId);
+  }
   
   render(props) {
     var self = this;
+    
     var ret = compose(
       withProps({
         googleMapURL:
@@ -21,14 +25,19 @@ class MyMapComponent extends Component {
         loadingElement: <div style={{ height: `88.5vh` }} />,
         containerElement: <div style={{ height: `88.5vh` }} />,
         mapElement: <div style={{ height: `100%` }} />
-      }),
+      }), 
+
       withScriptjs,
       withGoogleMap
     )(props => (
       <GoogleMap defaultZoom={17} defaultCenter={{ lat: -22.814470, lng: -47.044972 }} mapTypeId='satellite'>
-        <Marker position={{ lat: -22.814470, lng: -47.044972 }} 
-                draggable={true}
-                onDragEnd={(e) => this.markerOnDragEnd(e, self)}/>
+        <MarkerWithLabel position={{ lat: -22.814470, lng: -47.044972 }} 
+                         draggable={true}
+                         onDragEnd={(e) => this.markerOnDragEnd(e, self)}
+                         labelAnchor={window.getAnchor()}
+                         labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
+          <div><h2>{this.getName(1)}</h2></div>
+        </MarkerWithLabel>
       </GoogleMap>
     ));
     return ret(props);

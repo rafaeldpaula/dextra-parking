@@ -48,6 +48,21 @@
             console.log(car);
           });
       }
+
+      function getCarName(carId){
+        yawp('/cars/'+carId).fetch(
+          function(car){
+            console.log("CAR");
+            var nome = car.name;
+            console.log(nome);
+
+            return nome;
+          });
+      }
+
+      function getAnchor(){
+        return new google.maps.Point(0, 0);
+      }
     </script>
 
   </body>
