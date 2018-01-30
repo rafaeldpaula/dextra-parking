@@ -42,12 +42,27 @@
         console.log(cars);
       });
 
-      function updateLocation(carId, lat, long){
+      function updateLocation(carId, lat, long) {
         yawp('/cars/'+carId).patch({location: lat+','+long}).then(
           function(car){
             console.log(car);
           });
-      }
+      };
+
+      function generateCarList() {
+        yawp('/cars').list(
+          function (cars) {
+            cars.forEach(car => {
+              /*console.log('id: ' + car.id);
+              console.log('e-mal: ' + car.email);
+              console.log('name: ' + car.name);
+
+              carLocation = car.location.split(',');
+              console.log('lat: ' + carLocation[0]);
+              console.log('lon: ' + carLocation[1]);*/
+            });
+        });
+      };
     </script>
 
   </body>
