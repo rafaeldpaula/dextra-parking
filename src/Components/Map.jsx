@@ -1,35 +1,30 @@
 import React, { Component } from 'react';
-import {withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import {withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps"
 import { compose, withProps } from "recompose";
 import MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithLabel";
 import DevolverModal from './DevolverModal';
 
 class MyMapComponent extends Component {  
   markerOnDragEnd (e, self) {
-    console.log("Toaqui");
-    console.log(e.latLng.lat() + "," + e.latLng.lng());
+    //console.log("Toaqui");
+    //console.log(e.latLng.lat() + "," + e.latLng.lng());
  
     window.updateLocation(1, e.latLng.lat(), e.latLng.lng());
   }
 
   getName(cars, carId){
-    console.log(carId);
     var name;
     cars.forEach(car => {
       if (car.id == carId){
         name = car.name;
       }
-      console.log(
-        car.id
-      );
     });
 
     return name;
   }
   
-  render(props) {
+  render(props) {    
     var self = this;
-    
     var ret = compose(
       withProps({
         googleMapURL:
@@ -46,13 +41,38 @@ class MyMapComponent extends Component {
                   defaultZoom={17} 
                   defaultCenter={{ lat: -22.814470, lng: -47.044972 }} 
                   mapTypeId='satellite'>
-        <MarkerWithLabel position={{ lat: -22.814470, lng: -47.044972 }} 
-                         draggable={true}
-                         onDragEnd={(e) => this.markerOnDragEnd(e, self)}
-                         labelAnchor={window.getAnchor()}
-                         labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
-          <div><h2>{this.getName(this.props.cars, '/cars/'+1)}</h2></div>
-        </MarkerWithLabel>
+        {
+          (() => {
+            var hue = this.props.cars.map( (car, i) => {
+
+            var locacione = car.location.split(",");
+
+            // return locacione;
+
+            return (
+              <MarkerWithLabel
+              key={i}
+              position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
+              draggable={true}
+              onDragEnd={(e) => this.markerOnDragEnd(e, self)}
+              labelAnchor={window.getAnchor()}
+              labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
+      <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
+      </MarkerWithLabel>);
+            }
+          )
+          /*<MarkerWithLabel position={{ lat: -22.814470, lng: -47.044972 }} 
+                          draggable={true}
+                          onDragEnd={(e) => this.markerOnDragEnd(e, self)}
+                          labelAnchor={window.getAnchor()}
+                          labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
+            <div><h2>{this.getName(this.props.cars, '/cars/'+1)}</h2></div>
+          </MarkerWithLabel>*/
+          console.log(hue);
+          return hue;
+        })()}
+      
+
       </GoogleMap>
     ));
     return ret(props);
