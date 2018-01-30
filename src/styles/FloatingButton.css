@@ -16,3 +16,7 @@
 .bottom-floating-button {
     bottom: 50px;
   }
+
+.middle-floating-button {
+    bottom: 100px;
+  }
