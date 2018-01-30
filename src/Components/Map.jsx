@@ -3,6 +3,7 @@ import {withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps"
 import { compose, withProps } from "recompose";
 import MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithLabel";
 import DevolverModal from './DevolverModal';
+import { DrawingManager } from 'react-google-maps';
 
 class MyMapComponent extends Component {  
   markerOnDragEnd (e, self) {
@@ -35,10 +36,11 @@ class MyMapComponent extends Component {
       }), 
 
       withScriptjs,
-      withGoogleMap
+      withGoogleMap,
     )(props => (
       <GoogleMap  zIndex={-1}
-                  defaultZoom={17} 
+                  defaultZoom={18}
+                  options={{maxZoom: 25,minZoom: 17}}
                   defaultCenter={{ lat: -22.814470, lng: -47.044972 }} 
                   defaultOptions={{disableDefaultUI: true}}>
         {
@@ -56,21 +58,15 @@ class MyMapComponent extends Component {
                       draggable={false}
                       onDragEnd={(e) => this.markerOnDragEnd(e, self)}
                       labelAnchor={window.getAnchor()}
-                      labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
+                      labelStyle={{backgroundColor: "white", fontSize: "8px", padding: "4px"}}>
                 <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
               </MarkerWithLabel>);
             }
           )
-          /*<MarkerWithLabel position={{ lat: -22.814470, lng: -47.044972 }} 
-                          draggable={true}
-                          onDragEnd={(e) => this.markerOnDragEnd(e, self)}
-                          labelAnchor={window.getAnchor()}
-                          labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
-            <div><h2>{this.getName(this.props.cars, '/cars/'+1)}</h2></div>
-          </MarkerWithLabel>*/
           console.log(hue);
           return hue;
         })()}
+
       </GoogleMap>
     ));
     return ret(props);
