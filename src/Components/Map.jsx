@@ -36,7 +36,7 @@ class MyMapComponent extends Component {
           "https://maps.googleapis.com/maps/api/js?key=AIzaSyAzqXIMAGTfkI1FriE3eQ75HsbeuQv1hE8&v=3.exp&libraries=geometry,drawing,places",
         loadingElement: <div style={{ height: `100vh` }} />,
         containerElement: <div style={{ height: `100vh` }} />,
-        mapElement: <div style={{ height: `100%` }} />
+        mapElement: <div style={{ height: `100%` }} />,
       }), 
 
       withScriptjs,
@@ -45,7 +45,10 @@ class MyMapComponent extends Component {
       <GoogleMap  zIndex={-1}
                   defaultZoom={17} 
                   defaultCenter={{ lat: -22.814470, lng: -47.044972 }} 
-                  mapTypeId='satellite'>
+                  // mapTypeId='satellite'
+                  defaultOptions={{
+                    disableDefaultUI: true
+                  }}>
         <MarkerWithLabel position={{ lat: -22.814470, lng: -47.044972 }} 
                          draggable={true}
                          onDragEnd={(e) => this.markerOnDragEnd(e, self)}
