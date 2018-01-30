@@ -23,7 +23,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Map/>
+        <Map cars={this.state.cars}/>
         <button type="button" 
                 className="btn btn-outline-primary floating-button top-floating-button"
                 data-toggle="modal" data-target="#selectionar-modal">

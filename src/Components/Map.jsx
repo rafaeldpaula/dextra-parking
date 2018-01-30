@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import { compose, withProps } from "recompose";
 import MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithLabel";
+import DevolverModal from './DevolverModal';
 
 class MyMapComponent extends Component {  
   markerOnDragEnd (e, self) {
@@ -11,8 +12,19 @@ class MyMapComponent extends Component {
     window.updateLocation(1, e.latLng.lat(), e.latLng.lng());
   }
 
-  getName(carId){
-    return window.getCarName(carId);
+  getName(cars, carId){
+    console.log(carId);
+    var name;
+    cars.forEach(car => {
+      if (car.id == carId){
+        name = car.name;
+      }
+      console.log(
+        car.id
+      );
+    });
+
+    return name;
   }
   
   render(props) {
@@ -30,7 +42,6 @@ class MyMapComponent extends Component {
       withScriptjs,
       withGoogleMap
     )(props => (
-
       <GoogleMap  zIndex={-1}
                   defaultZoom={17} 
                   defaultCenter={{ lat: -22.814470, lng: -47.044972 }} 
@@ -40,7 +51,7 @@ class MyMapComponent extends Component {
                          onDragEnd={(e) => this.markerOnDragEnd(e, self)}
                          labelAnchor={window.getAnchor()}
                          labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
-          <div><h2>{this.getName(1)}</h2></div>
+          <div><h2>{this.getName(this.props.cars, '/cars/'+1)}</h2></div>
         </MarkerWithLabel>
       </GoogleMap>
     ));
@@ -51,7 +62,7 @@ class MyMapComponent extends Component {
 class Map extends Component {
     render() {
       return (
-        <MyMapComponent location={{}} isMarkerShown/>
+        <MyMapComponent location={{}} cars={this.props.cars} isMarkerShown/>
       );
     }
   }
