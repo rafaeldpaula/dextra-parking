@@ -43,7 +43,7 @@ class MyMapComponent extends Component {
                   defaultOptions={{disableDefaultUI: true}}>
         {
           (() => {
-            var hue = this.props.cars.map( (car, i) => {
+            var hue = this.props.cars.map( (car) => {
 
             var locacione = car.location.split(",");
 
@@ -51,14 +51,14 @@ class MyMapComponent extends Component {
 
             return (
               <MarkerWithLabel
-              key={i}
-              position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
-              draggable={true}
-              onDragEnd={(e) => this.markerOnDragEnd(e, self)}
-              labelAnchor={window.getAnchor()}
-              labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
-      <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
-      </MarkerWithLabel>);
+                      key={car.id}
+                      position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
+                      draggable={false}
+                      onDragEnd={(e) => this.markerOnDragEnd(e, self)}
+                      labelAnchor={window.getAnchor()}
+                      labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
+                <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
+              </MarkerWithLabel>);
             }
           )
           /*<MarkerWithLabel position={{ lat: -22.814470, lng: -47.044972 }} 
