@@ -7,6 +7,8 @@ import {
     Route
 } from 'react-router-dom'
 
+import Map from './Map'
+
 class SelecionarModal extends Component {
     constructor (props) {
         super(props);
@@ -15,6 +17,15 @@ class SelecionarModal extends Component {
 
     handleCarClick(i) {
         this.setState({selectedCar: i});
+    }
+
+    handleConfirmClick() {
+        //console.log(this.props.onSelection(this.props.items[this.state.selectedCar]));
+        this.props.onSelection( 
+            this.props.items[this.state.selectedCar],
+            this.state.selectedCar);
+        
+        window.$('#selecionar-modal').modal('toggle');
     }
     
     render() {
@@ -25,7 +36,7 @@ class SelecionarModal extends Component {
                         <div className="modal-content">
                             <div className="modal-header">
                                 <h5 className="modal-title" id="selecionar-modal-label">Selecione o carro</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <button id="selecionarModalClose" type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -51,7 +62,10 @@ class SelecionarModal extends Component {
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="button" className="btn btn-primary">Confirmar</button>
+                                <button type="button" className="btn btn-primary" 
+                                        onClick={() => this.handleConfirmClick()}>
+                                        Confirmar
+                                </button>
                             </div>
                         </div>
                     </div>

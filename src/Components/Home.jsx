@@ -13,7 +13,8 @@ import yawp from 'yawp';
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {cars: []};
+    this.state = {cars: [],
+                  selectedCar: -1};
   }
 
   componentDidMount() {
@@ -24,14 +25,19 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Map cars={this.state.cars}/>
+        <Map cars={this.state.cars} selectedCar={this.state.selectedCar}/>
         <button type="button" 
                 className="btn btn-outline-primary floating-button top-floating-button"
                 data-toggle="modal" data-target="#selecionar-modal">
             Selecionar carro
         </button>
 
-        <SelecionarModal items={this.state.cars}/>
+        <SelecionarModal items={this.state.cars} 
+          onSelection={(car, i) => {
+            this.setState({selectedCar: i});
+            //console.log("Você selecionou " + car.name)
+          }}/>
+
         <button type="button" 
                 className="btn btn-outline-success floating-button bottom-floating-button"
                 data-toggle="modal" data-target="#devolver-modal">
@@ -40,7 +46,7 @@ class Home extends Component {
 
         <DevolverModal 
           items={this.state.cars}
-          onSelection={(car) => console.log("Você selecionou " + car.name)}/>
+          onSelection={(car, i) => /*console.log("Você selecionou " + car.name)*/}/>
       </div>
     );
   }

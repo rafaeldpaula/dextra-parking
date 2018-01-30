@@ -43,34 +43,41 @@ class MyMapComponent extends Component {
                   defaultOptions={{disableDefaultUI: true}}>
         {
           (() => {
-            var hue = this.props.cars.map( (car) => {
+            if (this.props.selectedCar === -1){
+             return this.props.cars.map((car, i) => {
 
-            var locacione = car.location.split(",");
+              var locacione = car.location.split(",");
 
-            // return locacione;
+              // return locacione;
 
-            return (
-              <MarkerWithLabel
-                      key={car.id}
-                      position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
-                      draggable={false}
-                      onDragEnd={(e) => this.markerOnDragEnd(e, self)}
-                      labelAnchor={window.getAnchor()}
-                      labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
-                <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
-              </MarkerWithLabel>);
+              return (
+                <MarkerWithLabel
+                        key={i}
+                        position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
+                        draggable={false}
+                        onDragEnd={(e) => this.markerOnDragEnd(e, self)}
+                        labelAnchor={window.getAnchor()}
+                        labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
+                  <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
+                </MarkerWithLabel>);
+              });
             }
-          )
-          /*<MarkerWithLabel position={{ lat: -22.814470, lng: -47.044972 }} 
-                          draggable={true}
-                          onDragEnd={(e) => this.markerOnDragEnd(e, self)}
-                          labelAnchor={window.getAnchor()}
-                          labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
-            <div><h2>{this.getName(this.props.cars, '/cars/'+1)}</h2></div>
-          </MarkerWithLabel>*/
-          console.log(hue);
-          return hue;
-        })()}
+            else{
+              var car = this.props.cars[this.props.selectedCar];
+              var locacione = car.location.split(",");
+              console.log("carro seleiconado: "+car.id);
+                  return (
+                    <MarkerWithLabel
+                            position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
+                            draggable={false}
+                            onDragEnd={(e) => this.markerOnDragEnd(e, self)}
+                            labelAnchor={window.getAnchor()}
+                            labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
+                      <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
+                    </MarkerWithLabel>);
+            }
+        })()
+        }
       </GoogleMap>
     ));
     return ret(props);
@@ -80,7 +87,7 @@ class MyMapComponent extends Component {
 class Map extends Component {
     render() {
       return (
-        <MyMapComponent location={{}} cars={this.props.cars} isMarkerShown/>
+        <MyMapComponent location={{}} cars={this.props.cars} selectedCar={this.props.selectedCar} isMarkerShown/>
       );
     }
   }
