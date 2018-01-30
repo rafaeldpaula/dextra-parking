@@ -2,21 +2,14 @@ import React, {
     Component
 } from 'react';
 
-import {
-    BrowserRouter as Router,
-    Route
-} from 'react-router-dom'
-
-import Map from './Map'
-
 class SelecionarModal extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
-        this.state = {selectedCar: 0};
+        this.state = { selectedCar: 0 };
     }
 
     handleCarClick(i) {
-        this.setState({selectedCar: i});
+        this.setState({ selectedCar: i });
     }
 
     handleConfirmClick() {
@@ -30,7 +23,6 @@ class SelecionarModal extends Component {
     
     render() {
         return (
-            <Router>
                 <div className="modal fade" id="selecionar-modal" tabIndex="-1" role="dialog" aria-labelledby="selecionar-modal-label" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
@@ -70,7 +62,6 @@ class SelecionarModal extends Component {
                         </div>
                     </div>
                 </div>
-            </Router>
         );
     }
 }

@@ -3,6 +3,7 @@ import {withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps"
 import { compose, withProps } from "recompose";
 import MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithLabel";
 import DevolverModal from './DevolverModal';
+import { DrawingManager } from 'react-google-maps';
 
 class MyMapComponent extends Component {  
   markerOnDragEnd (e, self) {
@@ -35,10 +36,11 @@ class MyMapComponent extends Component {
       }), 
 
       withScriptjs,
-      withGoogleMap
+      withGoogleMap,
     )(props => (
       <GoogleMap  zIndex={-1}
-                  defaultZoom={17} 
+                  defaultZoom={18}
+                  options={{maxZoom: 25,minZoom: 17}}
                   defaultCenter={{ lat: -22.814470, lng: -47.044972 }} 
                   defaultOptions={{disableDefaultUI: true}}>
         {
@@ -49,7 +51,6 @@ class MyMapComponent extends Component {
               var locacione = car.location.split(",");
 
               // return locacione;
-
               return (
                 <MarkerWithLabel
                         key={i}
@@ -78,6 +79,7 @@ class MyMapComponent extends Component {
             }
         })()
         }
+
       </GoogleMap>
     ));
     return ret(props);

@@ -5,6 +5,7 @@ import React, {
 import Map from './Map.jsx';
 import DevolverModal from './DevolverModal.jsx';
 import SelecionarModal from './SelecionarModal.jsx';
+import CadastrarModal from './CadastrarModal.jsx';
 
 import '../styles/FloatingButton.css';
 
@@ -46,7 +47,15 @@ class Home extends Component {
 
         <DevolverModal 
           items={this.state.cars}
-          onSelection={(car, i) => /*console.log("Você selecionou " + car.name)*/}/>
+          onSelection={(car, i) => console.log("Você selecionou " + car.name)}/>
+
+        <button type="button" 
+                className="btn btn-outline-info floating-button middle-floating-button"
+                data-toggle="modal" data-target="#cadastrar-modal">
+            Cadastrar carro
+        </button>
+
+        <CadastrarModal/>
       </div>
     );
   }
