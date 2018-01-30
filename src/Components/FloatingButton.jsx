@@ -19,7 +19,8 @@ export class BottomFloatingButton extends Component {
                 {mergeClassNames(
                     this.props, 
                     "btn floating-button bottom-floating-button"
-                )}>
+                )}
+                onClick={this.props.onClick}>
             {this.props.label}
         </button>
     );
@@ -34,7 +35,8 @@ export class TopFloatingButton extends Component {
           {mergeClassNames(
               this.props, 
               "btn floating-button top-floating-button"
-          )}>
+          )}
+          onClick={this.props.onClick}>
               {this.props.label}
           </button>
       );
