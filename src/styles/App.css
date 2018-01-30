@@ -14,7 +14,7 @@
   transform: translateX(-50%) translateY(-50%);
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 500px) {
   .App div h1 {
     font-size: 70px;
   }

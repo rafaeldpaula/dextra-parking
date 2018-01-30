@@ -22,15 +22,19 @@ class MyMapComponent extends Component {
       withProps({
         googleMapURL:
           "https://maps.googleapis.com/maps/api/js?key=AIzaSyAzqXIMAGTfkI1FriE3eQ75HsbeuQv1hE8&v=3.exp&libraries=geometry,drawing,places",
-        loadingElement: <div style={{ height: `88.5vh` }} />,
-        containerElement: <div style={{ height: `88.5vh` }} />,
+        loadingElement: <div style={{ height: `100vh` }} />,
+        containerElement: <div style={{ height: `100vh` }} />,
         mapElement: <div style={{ height: `100%` }} />
       }), 
 
       withScriptjs,
       withGoogleMap
     )(props => (
-      <GoogleMap defaultZoom={17} defaultCenter={{ lat: -22.814470, lng: -47.044972 }} mapTypeId='satellite'>
+
+      <GoogleMap  zIndex={-1}
+                  defaultZoom={17} 
+                  defaultCenter={{ lat: -22.814470, lng: -47.044972 }} 
+                  mapTypeId='satellite'>
         <MarkerWithLabel position={{ lat: -22.814470, lng: -47.044972 }} 
                          draggable={true}
                          onDragEnd={(e) => this.markerOnDragEnd(e, self)}
