@@ -40,7 +40,6 @@
         c.baseUrl('http://172.16.120.145:8080/api');
       });
 
-
       function updateLocation(carId, lat, long, then) {
         yawp(carId).patch({location: lat+','+long}).then(then);
       }
