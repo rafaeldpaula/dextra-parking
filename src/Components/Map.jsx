@@ -38,8 +38,8 @@ class MyMapComponent extends Component {
                 draggable={false}
                 onDragEnd={(e) => this.markerOnDragEnd(e)}
                 labelAnchor={window.getAnchor()}
-                labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
-          <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
+                labelStyle={{backgroundColor: "white", fontSize: "15px", padding: "10px"}}>
+          <div>{this.getName(this.props.cars, car.id)}</div>
         </MarkerWithLabel>);
       });
     }
@@ -53,8 +53,8 @@ class MyMapComponent extends Component {
                     draggable={false}
                     onDragEnd={(e) => this.markerOnDragEnd(e)}
                     labelAnchor={window.getAnchor()}
-                    labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
-              <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
+                    labelStyle={{backgroundColor: "white", fontSize: "15px", padding: "10px"}}>
+              <div>{this.getName(this.props.cars, car.id)}</div>
             </MarkerWithLabel>);
     }
   }

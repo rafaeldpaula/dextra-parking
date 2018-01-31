@@ -62,6 +62,7 @@
             console.log('User signed out.');
             document.getElementsByClassName('floating-button g-signin2 none').item(0).className = "floating-button g-signin2";
             document.getElementsByClassName('floating-button g-signout2').item(0).className = "floating-button g-signout2 none";
+            document.getElementsByClassName('user').item(0).className = "user none";
           });
       }
 
@@ -72,6 +73,9 @@
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
         
+        document.getElementsByClassName('user none').item(0).className = "user";
+        document.getElementsByClassName('rounded-circle').item(0).src = profile.getImageUrl();
+        document.getElementsByClassName('userName').item(0).innerHTML = profile.getName();
         document.getElementsByClassName('floating-button g-signin2').item(0).className = "floating-button g-signin2 none";
         document.getElementsByClassName('floating-button g-signout2 none').item(0).className = "floating-button g-signout2";
       }

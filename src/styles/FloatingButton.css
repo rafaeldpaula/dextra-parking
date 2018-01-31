@@ -22,15 +22,62 @@
   }
 
 .g-signin2 {
-  bottom: 150px;
   width: 120px;
 }
 
 .g-signout2 {
-  bottom: 100px;
   width: 120px;
 }
 
 .none{
   display: none;
+}
+
+.rounded-circle {
+  border-radius: 50%!important;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+  width: 40px;
+  height: 40px;
+}
+
+.navbar-brand {
+  display: inline;
+  padding-top: 100px;
+  font-size: 1.25rem;
+  top: 100px;
+  width: 1000px;
+}
+
+.userName{
+  font-size: 1.25rem;
+}
+
+.whitebkg{
+  background-color: white;
+}
+
+.navbar {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: left;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+}
+
+.fixed-top {
+  position: fixed;
+  top: -100px;
+  right: 0;
+  left: 0;
+  z-index: 1030;
 }
