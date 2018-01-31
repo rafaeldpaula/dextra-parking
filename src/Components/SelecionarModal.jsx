@@ -5,7 +5,7 @@ import React, {
 class SelecionarModal extends Component {
     constructor(props) {
         super(props);
-        this.state = { selectedCar: 0 };
+        this.state = { selectedCar: -1 };
     }
 
     handleCarClick(i) {
@@ -33,6 +33,21 @@ class SelecionarModal extends Component {
                                 </button>
                             </div>
                             <div className="modal-body">
+                                <button
+                                    type="button"
+                                    className={
+                                        (() => {
+                                            const classes = 
+                                            "btn btn-outline-primary btn-lg btn-block "
+                                            if (this.state.selectedCar === -1)
+                                                return classes + "active";
+                                            return classes;
+                                        }
+                                        )()
+                                    }
+                                    onClick={() => this.handleCarClick(-1)}>
+                                    "Todos os carros" <br />
+                                </button>
                             {this.props.items.map((car, i) =>{
                                     return <button  key={i}
                                                     type="button"
