@@ -40,15 +40,9 @@
         c.baseUrl('http://172.16.120.145:8080/api');
       });
 
-      yawp('/cars').list(function (cars) {
-        console.log(cars);
-      });
 
-      function updateLocation(carId, lat, long) {
-        yawp('/cars/'+carId).patch({location: lat+','+long}).then(
-          function(car){
-            console.log(car);
-          });
+      function updateLocation(carId, lat, long, then) {
+        yawp(carId).patch({location: lat+','+long}).then(then);
       }
 
       function getAnchor(){

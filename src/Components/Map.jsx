@@ -6,17 +6,11 @@ import DevolverModal from './DevolverModal';
 import { DrawingManager } from 'react-google-maps';
 
 class MyMapComponent extends Component {  
-  markerOnDragEnd (e, self) {
-    //console.log("Toaqui");
-    //console.log(e.latLng.lat() + "," + e.latLng.lng());
- 
-    window.updateLocation(1, e.latLng.lat(), e.latLng.lng());
-  }
 
   getName(cars, carId){
     var name;
     cars.forEach(car => {
-      if (car.id == carId){
+      if (car.id === carId){
         name = car.name;
       }
     });
@@ -35,8 +29,6 @@ class MyMapComponent extends Component {
         <MarkerWithLabel
                 key={i}
                 position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
-                draggable={false}
-                onDragEnd={(e) => this.markerOnDragEnd(e)}
                 labelAnchor={window.getAnchor()}
                 labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
           <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
@@ -50,8 +42,8 @@ class MyMapComponent extends Component {
           return (
             <MarkerWithLabel
                     position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
-                    draggable={false}
-                    onDragEnd={(e) => this.markerOnDragEnd(e)}
+                    draggable={this.props.onDrag !== undefined}
+                    onDragEnd={this.props.onDrag}    
                     labelAnchor={window.getAnchor()}
                     labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
               <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
@@ -92,7 +84,11 @@ class MyMapComponent extends Component {
 class Map extends Component {
     render() {
       return (
-        <MyMapComponent location={{}} cars={this.props.cars} selectedCar={this.props.selectedCar} isMarkerShown/>
+        <MyMapComponent markerLocation={{}} 
+                        cars={this.props.cars} 
+                        selectedCar={this.props.selectedCar} 
+                        onDrag={this.props.onDrag}
+                        isMarkerShown/>
       );
     }
   }
