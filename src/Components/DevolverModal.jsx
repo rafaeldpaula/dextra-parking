@@ -12,8 +12,7 @@ class DevolverModal extends Component {
         this.setState({selectedCar: i});
     }
 
-    handleConfirmClick() {
-        //console.log(this.props.onSelection(this.props.items[this.state.selectedCar]));
+    handleConfirmClick() {        
         this.props.onSelection( 
             this.props.items[this.state.selectedCar],
             this.state.selectedCar);

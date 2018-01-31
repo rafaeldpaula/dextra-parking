@@ -24,14 +24,25 @@ class CadastrarModal extends Component {
     }
 
     handleSubmit(e) {
-        alert(this.state.valueName + this.state.valueEmail);
-
-        yawp('/cars').create({name: this.state.valueName, email: this.state.valueEmail+'@dextra-sw.com', location: '-22.812926,-47.045779'}).then(function (car) {
-            console.log('Created: ' + car);
-        })
-
         e.preventDefault();
 
+        var carExists = false;
+        this.props.items.forEach(car => {
+            if (car.email == this.state.valueEmail+'@dextra-sw.com' || car.name == this.state.valueName) 
+                carExists = true;
+        });
+
+        if (this.state.valueEmail == '' || this.state.valueName == '')
+            carExists = true;
+    
+        if (carExists)
+            alert('e-mail ou nome já existe');
+        else {
+            yawp('/cars').create({name: this.state.valueName, email: this.state.valueEmail+'@dextra-sw.com', location: '-22.812926,-47.045779'}).then((newCar) => {
+                this.props.updateCars();
+            });
+        }
+        
         window.$('#cadastrar-modal').modal('toggle');
         
         this.setState({valueName: ''});
