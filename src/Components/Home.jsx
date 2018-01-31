@@ -115,7 +115,7 @@ class Home extends Component {
             });
           }}/>
           
-        <CadastrarModal/>
+        <CadastrarModal  items={this.state.cars} updateCars={() => this.updateCars()}/>
       </div>
     );
   }
