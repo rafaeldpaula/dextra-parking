@@ -117,12 +117,7 @@ class Home extends Component {
             <div className="floating-button g-signout2 none"> <a href="#" className="floating-button g-signout2" onClick={this.signOut}>Sign out</a> </div>
           </div>
         </nav>
-
-        <button type="button" 
-                className="btn btn-outline-info floating-button middle-floating-button"
-                data-toggle="modal" data-target="#cadastrar-modal">
-            Cadastrar carro
-        </button>
+        
         <CadastrarModal  items={this.state.cars} updateCars={() => this.updateCars()}/>
 
       </div>
