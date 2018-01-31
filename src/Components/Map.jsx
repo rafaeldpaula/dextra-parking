@@ -40,9 +40,12 @@ class MyMapComponent extends Component {
     )(props => (
       <GoogleMap  zIndex={-1}
                   defaultZoom={18}
-                  options={{maxZoom: 25,minZoom: 17}}
                   defaultCenter={{ lat: -22.814470, lng: -47.044972 }} 
-                  defaultOptions={{disableDefaultUI: true}}>
+                  defaultOptions={{
+                    disableDefaultUI: true,
+                    maxZoom: 25,
+                    minZoom: 17
+                  }}>
         {
           (() => {
             if (this.props.selectedCar === -1){
