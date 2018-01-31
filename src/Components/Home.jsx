@@ -49,6 +49,8 @@ class Home extends Component {
           items={this.state.cars}
           onSelection={(car, i) => console.log("Você selecionou " + car.name)}/>
 
+        <div className="floating-button g-signin2" data-onsuccess="onSignIn"></div>
+
         <button type="button" 
                 className="btn btn-outline-info floating-button middle-floating-button"
                 data-toggle="modal" data-target="#cadastrar-modal">
