@@ -18,6 +18,10 @@ class MyMapComponent extends Component {
     return name;
   }
 
+  icon(){
+    return window.icon();
+  }
+
   makeMarkers() {
     if (this.props.selectedCar === -1){
       return this.props.cars.map((car, i) => {
@@ -27,6 +31,7 @@ class MyMapComponent extends Component {
       // return locacione;
       return (
         <MarkerWithLabel
+                icon={this.icon()}
                 key={i}
                 position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
                 labelAnchor={window.getAnchor()}
@@ -41,6 +46,7 @@ class MyMapComponent extends Component {
       console.log("carro seleiconado: "+car.id);
           return (
             <MarkerWithLabel
+                    icon={this.icon()}
                     position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
                     draggable={this.props.onDrag !== undefined}
                     onDragEnd={this.props.onDrag}    
