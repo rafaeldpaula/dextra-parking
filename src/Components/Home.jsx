@@ -23,6 +23,10 @@ class Home extends Component {
       cars => this.setState({cars: cars}));
   }
 
+  signOut(){
+    window.signOut();
+  }
+
   render() {
     return (
       <div>
@@ -49,7 +53,9 @@ class Home extends Component {
           items={this.state.cars}
           onSelection={(car, i) => console.log("Você selecionou " + car.name)}/>
 
-        <div className="floating-button g-signin2" data-onsuccess="onSignIn"></div>
+        <div className="floating-button g-signin2" data-onsuccess="onSignIn" onClick={this.signIn}></div>
+        
+        <div className="floating-button g-signout2 none"> <a href="#" className="floating-button g-signout2" onClick={this.signOut}>Sign out</a> </div>
 
         <button type="button" 
                 className="btn btn-outline-info floating-button middle-floating-button"

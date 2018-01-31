@@ -54,6 +54,28 @@
       function getAnchor(){
         return new google.maps.Point(0, 0);
       }
+
+      function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        return auth2.signOut().then(
+          function () {
+            console.log('User signed out.');
+            document.getElementsByClassName('floating-button g-signin2 none').item(0).className = "floating-button g-signin2";
+            document.getElementsByClassName('floating-button g-signout2').item(0).className = "floating-button g-signout2 none";
+          });
+      }
+
+      function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        
+        document.getElementsByClassName('floating-button g-signin2').item(0).className = "floating-button g-signin2 none";
+        document.getElementsByClassName('floating-button g-signout2 none').item(0).className = "floating-button g-signout2";
+      }
+
     </script>
 
   </body>
