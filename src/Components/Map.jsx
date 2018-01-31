@@ -36,7 +36,7 @@ class MyMapComponent extends Component {
                 key={i}
                 position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
                 draggable={false}
-                onDragEnd={(e) => this.markerOnDragEnd(e, self)}
+                onDragEnd={(e) => this.markerOnDragEnd(e)}
                 labelAnchor={window.getAnchor()}
                 labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
           <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
@@ -51,7 +51,7 @@ class MyMapComponent extends Component {
             <MarkerWithLabel
                     position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
                     draggable={false}
-                    onDragEnd={(e) => this.markerOnDragEnd(e, self)}
+                    onDragEnd={(e) => this.markerOnDragEnd(e)}
                     labelAnchor={window.getAnchor()}
                     labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
               <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
@@ -81,7 +81,7 @@ class MyMapComponent extends Component {
                     maxZoom: 25,
                     minZoom: 17
                   }}>
-        {makeMarkers()}
+        {this.makeMarkers()}
 
       </GoogleMap>
     ));
