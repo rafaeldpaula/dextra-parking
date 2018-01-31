@@ -30,7 +30,7 @@ class MyMapComponent extends Component {
                 key={i}
                 position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
                 labelAnchor={window.getAnchor()}
-                labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
+                labelStyle={{backgroundColor: "yellow", fontSize: "20x", padding: "5px"}}>
           <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
         </MarkerWithLabel>);
       });
@@ -45,7 +45,7 @@ class MyMapComponent extends Component {
                     draggable={this.props.onDrag !== undefined}
                     onDragEnd={this.props.onDrag}    
                     labelAnchor={window.getAnchor()}
-                    labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
+                    labelStyle={{backgroundColor: "yellow", fontSize: "20px", padding: "5px"}}>
               <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
             </MarkerWithLabel>);
     }
