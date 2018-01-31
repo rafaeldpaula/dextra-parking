@@ -8,6 +8,7 @@ import SelecionarModal from './SelecionarModal.jsx';
 import CadastrarModal from './CadastrarModal.jsx';
 
 import '../styles/FloatingButton.css';
+import '../styles/Modal.css';
 
 import yawp from 'yawp';
 
@@ -114,7 +115,7 @@ class Home extends Component {
               onDrag: e => this.handleDrag(e)
             });
           }}/>
-          
+
         <CadastrarModal/>
       </div>
     );
