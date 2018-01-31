@@ -23,6 +23,41 @@ class MyMapComponent extends Component {
 
     return name;
   }
+
+  makeMarkers() {
+    if (this.props.selectedCar === -1){
+      return this.props.cars.map((car, i) => {
+
+      var locacione = car.location.split(",");
+
+      // return locacione;
+      return (
+        <MarkerWithLabel
+                key={i}
+                position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
+                draggable={false}
+                onDragEnd={(e) => this.markerOnDragEnd(e)}
+                labelAnchor={window.getAnchor()}
+                labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
+          <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
+        </MarkerWithLabel>);
+      });
+    }
+    else{
+      var car = this.props.cars[this.props.selectedCar];
+      var locacione = car.location.split(",");
+      console.log("carro seleiconado: "+car.id);
+          return (
+            <MarkerWithLabel
+                    position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
+                    draggable={false}
+                    onDragEnd={(e) => this.markerOnDragEnd(e)}
+                    labelAnchor={window.getAnchor()}
+                    labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
+              <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
+            </MarkerWithLabel>);
+    }
+  }
   
   render(props) {    
     var self = this;
@@ -40,45 +75,13 @@ class MyMapComponent extends Component {
     )(props => (
       <GoogleMap  zIndex={-1}
                   defaultZoom={18}
-                  options={{maxZoom: 25,minZoom: 17}}
                   defaultCenter={{ lat: -22.814470, lng: -47.044972 }} 
-                  defaultOptions={{disableDefaultUI: true}}>
-        {
-          (() => {
-            if (this.props.selectedCar === -1){
-             return this.props.cars.map((car, i) => {
-
-              var locacione = car.location.split(",");
-
-              // return locacione;
-              return (
-                <MarkerWithLabel
-                        key={i}
-                        position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
-                        draggable={false}
-                        onDragEnd={(e) => this.markerOnDragEnd(e, self)}
-                        labelAnchor={window.getAnchor()}
-                        labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
-                  <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
-                </MarkerWithLabel>);
-              });
-            }
-            else{
-              var car = this.props.cars[this.props.selectedCar];
-              var locacione = car.location.split(",");
-              console.log("carro seleiconado: "+car.id);
-                  return (
-                    <MarkerWithLabel
-                            position={{lat: eval(locacione[0]), lng: eval(locacione[1])}} 
-                            draggable={false}
-                            onDragEnd={(e) => this.markerOnDragEnd(e, self)}
-                            labelAnchor={window.getAnchor()}
-                            labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}>
-                      <div><h2>{this.getName(this.props.cars, car.id)}</h2></div>
-                    </MarkerWithLabel>);
-            }
-        })()
-        }
+                  defaultOptions={{
+                    disableDefaultUI: true,
+                    maxZoom: 25,
+                    minZoom: 17
+                  }}>
+        {this.makeMarkers()}
 
       </GoogleMap>
     ));
