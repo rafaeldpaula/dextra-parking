@@ -7,6 +7,11 @@ import { DrawingManager } from 'react-google-maps';
 
 class MyMapComponent extends Component {  
 
+  constructor(props) {
+    super(props);
+    this.center = {lat: -22.814470, lng: -47.044972};
+  }
+
   getName(cars, carId){
     var name;
     cars.forEach(car => {
@@ -50,6 +55,24 @@ class MyMapComponent extends Component {
             </MarkerWithLabel>);
     }
   }
+
+  handleMapDrag() {
+    const map = this.map.context.__SECRET_MAP_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+    const latlng = map.getCenter();
+    const lat = latlng.lat();
+    const lng = latlng.lng();
+
+    console.log(latlng)
+
+    console.log(map);
+
+    if( lat > this.center.lat + 0.004500 || 
+        lat < this.center.lat - 0.004500 || 
+        lng > this.center.lng + 0.004500 ||
+        lng < this.center.lng - 0.004500){
+          map.setCenter(this.center);
+        }
+  }
   
   render(props) {    
     var self = this;
@@ -65,9 +88,11 @@ class MyMapComponent extends Component {
       withScriptjs,
       withGoogleMap,
     )(props => (
-      <GoogleMap  zIndex={-1}
+      <GoogleMap ref = {map => this.map = map}
+                  onDragEnd={() => this.handleMapDrag()}
+                  zIndex={-1}
                   defaultZoom={18}
-                  defaultCenter={{ lat: -22.814470, lng: -47.044972 }} 
+                  defaultCenter={this.center} 
                   defaultOptions={{
                     disableDefaultUI: true,
                     maxZoom: 25,
