@@ -13,7 +13,6 @@ class SelecionarModal extends Component {
     }
 
     handleConfirmClick() {
-        //console.log(this.props.onSelection(this.props.items[this.state.selectedCar]));
         this.props.onSelection( 
             this.props.items[this.state.selectedCar],
             this.state.selectedCar);

@@ -48,7 +48,6 @@ class MyMapComponent extends Component {
     else{
       var car = this.props.cars[this.props.selectedCar];
       var locacione = car.location.split(",");
-      console.log("carro seleiconado: "+car.id);
           return (
             <MarkerWithLabel
                     icon={this.icon()}
@@ -67,10 +66,6 @@ class MyMapComponent extends Component {
     const latlng = map.getCenter();
     const lat = latlng.lat();
     const lng = latlng.lng();
-
-    console.log(latlng)
-
-    console.log(map);
 
     if( lat > this.center.lat + 0.004500 || 
         lat < this.center.lat - 0.004500 || 

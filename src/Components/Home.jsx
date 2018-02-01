@@ -39,11 +39,8 @@ class Home extends Component {
     const lat = this.state.pinPosition[0];
     const lng = this.state.pinPosition[1];
     const car = this.state.cars[this.state.selectedCar];
-    console.log("la vai " + lat + " " + lng);
-    console.log(car);
 
     window.updateLocation(car.id, lat, lng, (car) => {
-      console.log("será que foi???" + car);
       this.setState({
         selectedCar: -1,
         pinPosition: [null, null]
@@ -117,7 +114,7 @@ class Home extends Component {
             <div className="floating-button g-signout2 none"> <a href="#" className="floating-button g-signout2" onClick={this.signOut}>Sign out</a> </div>
           </div>
         </nav>
-        
+
         <CadastrarModal  items={this.state.cars} updateCars={() => this.updateCars()}/>
 
       </div>
