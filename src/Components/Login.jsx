@@ -5,12 +5,12 @@ import { Route, Redirect } from 'react-router-dom'
 import '../styles/App.css';
 
 var config = {
-   apiKey: "AIzaSyB0y9BaknjjPi9NyAHwz7Q1d6IVnQuULKo",
-   authDomain: "dextra-parking-dev.firebaseapp.com",
-   databaseURL: "https://dextra-parking-dev.firebaseio.com",
-   projectId: "dextra-parking-dev",
-   storageBucket: "dextra-parking-dev.appspot.com",
-   messagingSenderId: "144221729651"
+    apiKey: "AIzaSyDA9J3WFHlxSlX736FF82LfUkhlGroNC6E",
+    authDomain: "dextra-parking-dev.firebaseapp.com",
+    databaseURL: "https://dextra-parking-dev.firebaseio.com",
+    projectId: "dextra-parking-dev",
+    storageBucket: "dextra-parking-dev.appspot.com",
+    messagingSenderId: "144221729651"
 };
 
 const uiConfig = {
