@@ -39,18 +39,16 @@ class Home extends Component {
     var lat = this.state.pinPosition[0];
     var lng = this.state.pinPosition[1];
     const car = this.state.cars[this.state.selectedCar];
+    const latlng_old = car.location.split(",");
 
     if( lat > -22.814470 + 0.004500 || 
       lat < -22.814470 - 0.004500 || 
       lng > -47.044972 + 0.004500 ||
       lng < -47.044972 - 0.004500){
-        window.alert("Você estacionou fora da área do Polis, isso não é permitido, Seu carro voltou pro meio do Polis seu Noob!!");
-        lat = -22.814470;
-        lng = -47.044972;
-
-        window.updateLocation(car.id, lat, lng, (car) => {
+        window.alert("Você estacionou fora da área do Polis e isso não é permitido. \n  Seu carro voltou para onde estava antes");
+        window.updateLocation(car.id, latlng_old[0], latlng_old[1], (car) => {
           this.setState({
-            pinPosition: [lat, lng]
+            pinPosition: [latlng_old[0], latlng_old[1]]
           });
           this.updateCars();
         });
