@@ -69,7 +69,7 @@ export class Login extends Component {
                 <header className="App-header">
                     <h1 className="App-title"
                         style={{ textAlign: "center" }}>
-                        Dextra Park
+                        Dextra Parking
                     </h1>
                     <div className="App-intro">
                             <FirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
