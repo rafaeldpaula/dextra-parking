@@ -5,12 +5,12 @@ import { Route, Redirect } from 'react-router-dom'
 import '../styles/App.css';
 
 var config = {
-    apiKey: "AIzaSyDA9J3WFHlxSlX736FF82LfUkhlGroNC6E",
-    authDomain: "dextra-parking-dev.firebaseapp.com",
-    databaseURL: "https://dextra-parking-dev.firebaseio.com",
-    projectId: "dextra-parking-dev",
-    storageBucket: "dextra-parking-dev.appspot.com",
-    messagingSenderId: "144221729651"
+    apiKey: "AIzaSyBjP3oziR_ztTBkfgQFvXLBnp9w6n96mjE",
+    authDomain: "dextraparking.firebaseapp.com",
+    databaseURL: "https://dextraparking.firebaseio.com",
+    projectId: "dextraparking",
+    storageBucket: "dextraparking.appspot.com",
+    messagingSenderId: "799965557830"
 };
 
 const uiConfig = {
@@ -46,7 +46,7 @@ export class Login extends Component {
                     console.log('Logged in!', login);
                     localStorage.setItem('login_data', JSON.stringify(login));
                     this.setState({ login });
-                    fetch('https://dextra-parking-dev.appspot.com/api/cars', {
+                    fetch('https://dextraparking.appspot.com/api/cars', {
                         method: 'GET',
                         headers: {
                             'Authorization': 'Bearer ' + login.idToken
@@ -72,8 +72,8 @@ export class Login extends Component {
                         Dextra Parking!
                     </h1>
                     <div className="App-intro">
-                            <FirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-                        </div>
+                        <FirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+                    </div>
                 </header>
             </div>
         );

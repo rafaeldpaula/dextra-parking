@@ -17,7 +17,7 @@ class App extends Component {
 
   componentWillMount() {
     yawp.config(function (c) {
-      c.baseUrl('http://172.16.120.145:8080/api');
+      c.baseUrl('https://dextraparking.appspot.com/api');
     });
   }
 
