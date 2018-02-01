@@ -36,18 +36,38 @@ class Home extends Component {
   }
 
   sendLocationUpdate() {
-    const lat = this.state.pinPosition[0];
-    const lng = this.state.pinPosition[1];
+    var lat = this.state.pinPosition[0];
+    var lng = this.state.pinPosition[1];
     const car = this.state.cars[this.state.selectedCar];
 
-    window.updateLocation(car.id, lat, lng, (car) => {
-      this.setState({
-        selectedCar: -1,
-        pinPosition: [null, null]
-      });
-      window.alert("Yeay! Carro devolvido :)");
-      this.updateCars();
-    });
+    if( lat > -22.814470 + 0.004500 || 
+      lat < -22.814470 - 0.004500 || 
+      lng > -47.044972 + 0.004500 ||
+      lng < -47.044972 - 0.004500){
+        window.alert("Você estacionou fora da área do Polis, isso não é permitido, Seu carro voltou pro meio do Polis seu Noob!!");
+        lat = -22.814470;
+        lng = -47.044972;
+
+        window.updateLocation(car.id, lat, lng, (car) => {
+          this.setState({
+            pinPosition: [lat, lng]
+          });
+          this.updateCars();
+        });
+        
+      }else{
+        window.updateLocation(car.id, lat, lng, (car) => {
+          this.setState({
+            selectedCar: -1,
+            pinPosition: [null, null]
+          });
+          window.alert("Yeay! Carro devolvido :)");
+          this.updateCars();
+        });
+      }
+
+
+   
   }
 
   render() {
