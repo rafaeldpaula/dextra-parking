@@ -60,6 +60,9 @@ class Home extends Component {
       });
 
     } else {
+      this.setState({
+        onDrag: undefined
+      });
       window.updateLocation(car.id, lat, lng, (car) => {
         window.$('#aviso-posicionado-modal').modal('toggle');
         this.setState({
@@ -69,11 +72,6 @@ class Home extends Component {
         this.updateCars();
       });
     }
-
-    this.setState({
-      onDrag: undefined
-    });
-
   }
 
   render() {
