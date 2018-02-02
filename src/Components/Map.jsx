@@ -95,7 +95,11 @@ class MyMapComponent extends Component {
                   defaultZoom={18}
                   defaultCenter={this.center} 
                   defaultOptions={{
-                    disableDefaultUI: true,
+                    streetViewControl: false,
+                    mapTypeControl: false,
+                    panControl: false,
+                    rotateControl: false,
+                    fullscreenControl: false,
                     maxZoom: 25,
                     minZoom: 17
                   }}>

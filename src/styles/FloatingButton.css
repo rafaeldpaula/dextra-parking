@@ -1,9 +1,7 @@
 .floating-button {
     font-family: 'Open Sans', sans-serif;
     font-size: 80%;
-    color: #797d7e;
-    flex-wrap: wrap;
-    align-content: center;
+    color: #353835;
 
     border: none;
 
@@ -19,7 +17,7 @@
 
 .floating-button:hover {
   background-color: #a0c50c;
-  color: #797d7e; 
+  color: #353835; 
 }
 
 btn{
