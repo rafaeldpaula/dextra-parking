@@ -1,25 +1,26 @@
 import React, {
     Component
 } from 'react';
+import FontAwesome from 'react-fontawesome';
 
 class DevolverModal extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
-        this.state = {selectedCar: 0};
+        this.state = { selectedCar: 0 };
     }
 
     handleCarClick(i) {
-        this.setState({selectedCar: i});
+        this.setState({ selectedCar: i });
     }
 
-    handleConfirmClick() {        
-        this.props.onSelection( 
+    handleConfirmClick() {
+        this.props.onSelection(
             this.props.items[this.state.selectedCar],
             this.state.selectedCar);
 
         window.$('#devolver-modal').modal('toggle');
     }
-    
+
     render() {
         return (
             <div className="modal fade" id="devolver-modal" tabIndex="-1" role="dialog" aria-labelledby="devolver-modal-label" aria-hidden="true">
@@ -32,30 +33,32 @@ class DevolverModal extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            {this.props.items.map((car, i) =>{
-                                return <button  key={i}
-                                                type="button"
-                                                className={
-                                                    (() => {
-                                                        const classes = 
-                                                        "btn btn-outline-primary btn-lg btn-block "
-                                                        if (this.state.selectedCar === i)
-                                                            return classes + "active";
-                                                        return classes;
-                                                    }
-                                                    )()
-                                                }
-                                                onClick={() => this.handleCarClick(i)}>
-                                            {car.name} <br />
-                                            {car.email}
-                                        </button>
-                            })}  
+                            {this.props.items.map((car, i) => {
+                                return <button key={i}
+                                    type="button"
+                                    className="btn btn-outline-primary btn-lg btn-block "
+                                    onClick={() => this.handleCarClick(i)}>
+                                    <div className={
+                                        (() => {
+                                            const classes = "check-position "
+                                            if (this.state.selectedCar === i)
+                                                return classes + "fas fa-check-circle fa-2x";
+                                            return classes + "far fa-circle fa-2x";
+                                        }
+                                        )()
+                                    } />
+                                    <div>
+                                        <div>{car.name}</div>
+                                        <div className="car-name">{car.email}</div>
+                                    </div>
+                                </button>
+                            })}
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="button" 
-                                    className="btn btn-primary"
-                                    onClick={() => this.handleConfirmClick()}>
+                            <button type="button"
+                                className="btn btn-primary"
+                                onClick={() => this.handleConfirmClick()}>
                                 Confirmar
                             </button>
                         </div>
