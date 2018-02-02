@@ -47,7 +47,7 @@
     }
 }
 
-@media (max-width: 320px) { 
+@media (max-width: 300px) { 
     .modal-body > button{
         font-size:9px;
     }

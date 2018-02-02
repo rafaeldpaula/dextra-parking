@@ -11,7 +11,7 @@ class TopBar extends Component {
       <nav className="navbar navbar-light bg-faded">
         <img src={window.login.photoURL} alt={window.login.name}/>
         <div className="user-name">{window.login.name}</div>
-        <div className="btn search-thing" data-toggle="modal" data-target="#selecionar-modal">🔍</div>
+        <div className="fas fa-search fa-1g btn search-thing" data-toggle="modal" data-target="#selecionar-modal"></div>
       </nav>
     );
   }
