@@ -11,15 +11,14 @@
     left: 50%;
     transform: translateX(-50%);
 
-    width: 40%;
-    height: 5%;
+    width: 200px;
+    height: 30px;
 
     background-color: #afd70b;
   }
 
-.floating-button:hover {
-  background-color: #a0c50c;
-  color: #797d7e; 
+.floating-button:hover {  
+  color: #ffffff; 
 }
 
 btn{

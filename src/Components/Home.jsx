@@ -88,7 +88,7 @@ class Home extends Component {
               <div>
                 <TopBar/>                
                 <button type="button" 
-                  className="btn btn-outline-success floating-button bottom-floating-button"
+                  className="btn floating-button bottom-floating-button"
                   data-toggle="modal" data-target="#devolver-modal">
                     DEVOLVER CARRO
                 </button>
@@ -98,7 +98,7 @@ class Home extends Component {
           else
             return (
               <button type="button" 
-                className="btn btn-outline-success floating-button bottom-floating-button"
+                className="btn floating-button bottom-floating-button"
                 onClick={() => this.sendLocationUpdate()}>
                   SALVAR
               </button>
