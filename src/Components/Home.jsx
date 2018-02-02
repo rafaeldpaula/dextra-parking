@@ -3,11 +3,13 @@ import Map from './Map.jsx';
 import DevolverModal from './DevolverModal.jsx';
 import SelecionarModal from './SelecionarModal.jsx';
 import CadastrarModal from './CadastrarModal.jsx';
+import AvisoPosicionadoModal from './AvisoPosicionadoModal.jsx';
 
 import '../styles/FloatingButton.css';
 import '../styles/Modal.css';
 
 import yawp from 'yawp';
+import AvisoLimiteModal from './AvisoLimiteModal';
 
 class Home extends Component {
   constructor(props) {
@@ -45,7 +47,7 @@ class Home extends Component {
       lat < -22.814470 - 0.004500 || 
       lng > -47.044972 + 0.004500 ||
       lng < -47.044972 - 0.004500){
-        window.alert("Você estacionou fora da área do Polis e isso não é permitido. \n  Seu carro voltou para onde estava antes");
+        window.$('#aviso-limite-modal').modal('toggle');
         window.updateLocation(car.id, latlng_old[0], latlng_old[1], (car) => {
           this.setState({
             pinPosition: [latlng_old[0], latlng_old[1]]
@@ -59,7 +61,8 @@ class Home extends Component {
             selectedCar: -1,
             pinPosition: [null, null]
           });
-          window.alert("Yeay! Carro devolvido :)");
+          window.$('#aviso-posicionado-modal').modal('toggle');
+
           this.updateCars();
         });
       }
@@ -116,6 +119,9 @@ class Home extends Component {
           }}/>
 
         <CadastrarModal  items={this.state.cars} updateCars={() => this.updateCars()}/>
+
+        <AvisoPosicionadoModal/>
+        <AvisoLimiteModal />
 
       </div>
     );

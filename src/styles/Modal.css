@@ -59,6 +59,11 @@
     font-size: 8rem;
 }
 
+#error-icon {
+    color:#d70b0b;
+    font-size: 8rem;
+}
+
 #aviso-modal-content {
     margin: 1rem;
     text-align: center;
