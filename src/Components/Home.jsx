@@ -99,7 +99,7 @@ class Home extends Component {
               <button type="button" 
                 className="btn btn-outline-success floating-button bottom-floating-button"
                 onClick={() => this.sendLocationUpdate()}>
-                  CONFIRMAR
+                  SALVAR
               </button>
             )
         })()
