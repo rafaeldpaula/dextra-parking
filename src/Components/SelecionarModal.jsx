@@ -69,8 +69,7 @@ class SelecionarModal extends Component {
                                 </button>
                             })}
                         </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <div className="modal-footer">                            
                             <button type="button" className="btn btn-primary"
                                 onClick={() => this.handleConfirmClick()}>
                                 Confirmar

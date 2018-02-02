@@ -55,7 +55,6 @@ class DevolverModal extends Component {
                             })}
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                             <button type="button"
                                 className="btn btn-primary"
                                 onClick={() => this.handleConfirmClick()}>
