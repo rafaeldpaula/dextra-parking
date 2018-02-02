@@ -68,8 +68,7 @@ class CadastrarModal extends Component {
                                     <span className="input-group-addon" id="basic-addon2">@dextra-sw.com</span>
                                 </div>
                             </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <div className="modal-footer">                                
                                 <input type="submit" value="Cadastrar" className="btn btn-primary"/>
                             </div>
                         </form>

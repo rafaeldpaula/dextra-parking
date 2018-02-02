@@ -4,12 +4,14 @@ import DevolverModal from './DevolverModal.jsx';
 import SelecionarModal from './SelecionarModal.jsx';
 import CadastrarModal from './CadastrarModal.jsx';
 import AvisoPosicionadoModal from './AvisoPosicionadoModal.jsx';
+import AvisoLimiteModal from './AvisoLimiteModal';
+
+import TopBar from './TopBar.jsx';
 
 import '../styles/FloatingButton.css';
 import '../styles/Modal.css';
 
 import yawp from 'yawp';
-import AvisoLimiteModal from './AvisoLimiteModal';
 
 class Home extends Component {
   constructor(props) {
@@ -83,14 +85,14 @@ class Home extends Component {
           onSelection={(car, i) => {
             this.setState({selectedCar: i});
           }}/>
-
         {
         (() => {
           if (this.state.pinPosition[0] === null)
             return (
               <div>
+                <TopBar/>                
                 <button type="button" 
-                  className="btn btn-outline-success floating-button bottom-floating-button"
+                  className="btn floating-button bottom-floating-button"
                   data-toggle="modal" data-target="#devolver-modal">
                     DEVOLVER CARRO
                 </button>
@@ -100,7 +102,7 @@ class Home extends Component {
           else
             return (
               <button type="button" 
-                className="btn btn-outline-success floating-button bottom-floating-button"
+                className="btn floating-button bottom-floating-button"
                 onClick={() => this.sendLocationUpdate()}>
                   SALVAR
               </button>
