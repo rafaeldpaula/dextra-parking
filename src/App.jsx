@@ -25,8 +25,8 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route exact path="/" render={() => (
-            isLoggedIn() ? (<Home />) : (<Redirect to="/Login" />))} />
+          <Route exact path="/" render={(x) => (
+            isLoggedIn() ? (<Home/>) : (<Redirect to="/Login" />))} />
           <Route path="/Login" component={Login} />
         </div>
       </Router>

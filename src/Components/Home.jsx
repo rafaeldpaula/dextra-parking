@@ -106,7 +106,7 @@ class Home extends Component {
             if (this.state.pinPosition[0] === null)
               return (
                 <div>
-                  <TopBar />
+                  <TopBar></TopBar>
                   <button type="button"
                     className="btn floating-button bottom-floating-button"
                     data-toggle="modal" data-target="#devolver-modal">
