@@ -5,7 +5,7 @@
 }
 
 .modal-body > button > div {
-    margin-left: 30px;
+    margin-left: 20px;
     text-align: left;
 }
 
@@ -41,17 +41,15 @@
     pointer-events: all;
 }
 
-.modal {
-    width: 20%;
-    position: fixed;
-    left: 40%;
+@media (max-width: 575px) { 
+    .modal-body > button{
+        font-size:12px;
+    }
 }
 
-@media (max-width: 575px) { 
-    .modal {
-        width: 60%;
-        position: fixed;
-        left: 20%;
+@media (max-width: 320px) { 
+    .modal-body > button{
+        font-size:9px;
     }
 }
 
