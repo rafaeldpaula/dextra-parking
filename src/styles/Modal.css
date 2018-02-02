@@ -16,4 +16,16 @@
 .modal-body .check-position{
     width: auto;
     margin-left: 7px;
+    color: #afd70b;
 }
+
+.modal-footer > button {
+    background-color: #afd70b;
+    color: #797d7e; 
+    border: none;
+}
+
+.modal-footer > button:hover {
+    background-color: #a0c50c;
+    color: #797d7e; 
+  }

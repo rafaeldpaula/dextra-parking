@@ -35,7 +35,7 @@ class SelecionarModal extends Component {
                         <div className="modal-body">
                             <button
                                 type="button"
-                                className="btn btn-outline-primary btn-lg btn-block"
+                                className="btn btn-secondary btn-lg btn-block"
                                 onClick={() => this.handleCarClick(-1)}>
                                 <div className={
                                     (() => {
@@ -51,7 +51,7 @@ class SelecionarModal extends Component {
                             {this.props.items.map((car, i) => {
                                 return <button key={i}
                                     type="button"
-                                    className="btn btn-outline-primary btn-lg btn-block "
+                                    className="btn btn-secondary btn-lg btn-block "
                                     onClick={() => this.handleCarClick(i)}>
                                     <div className={
                                         (() => {
@@ -70,7 +70,6 @@ class SelecionarModal extends Component {
                             })}
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                             <button type="button" className="btn btn-primary"
                                 onClick={() => this.handleConfirmClick()}>
                                 Confirmar
