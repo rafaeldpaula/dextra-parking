@@ -1,3 +1,51 @@
 .modal-body > button {
+    display: flex;
+    align-content: center;
     font-size: 1rem;
+}
+
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+    pointer-events:none; /* This makes sure that we can still click outside of the modal to close it */
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    max-width:inherit; /* For Bootstrap 4 - to avoid the modal window stretching full width */
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events: all;
+}
+
+.modal {
+    width: 20%;
+    position: fixed;
+    left: 40%;
+}
+
+@media (max-width: 575px) { 
+    .modal {
+        width: 60%;
+        position: fixed;
+        left: 20%;
+    }
+}
+
+#check-icon {
+    color:#afd70b;
+    font-size: 8rem;
+}
+
+#aviso-modal-content {
+    margin: 1rem;
+    text-align: center;
 }
