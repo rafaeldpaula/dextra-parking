@@ -47,7 +47,7 @@
     }
 }
 
-@media (max-width: 320px) { 
+@media (max-width: 300px) { 
     .modal-body > button{
         font-size:9px;
     }
@@ -55,6 +55,11 @@
 
 #check-icon {
     color:#afd70b;
+    font-size: 8rem;
+}
+
+#error-icon {
+    color:#d70b0b;
     font-size: 8rem;
 }
 
