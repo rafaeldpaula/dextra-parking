@@ -25,5 +25,31 @@ btn{
 }
   
 .bottom-floating-button {
-    bottom: 5%;
-  }
+  bottom: 5%;
+}
+
+.top-floating-button {
+  top: 5%;
+}
+
+.info{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 80%;
+  color: #353835;
+
+  border: none;
+
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 250px;
+  height: 30px;
+
+  background-color: #f7f7f7;
+}
+
+.info:hover{
+  background-color: #f7f7f7;
+  color: #353835; 
+}

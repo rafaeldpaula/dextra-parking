@@ -58,7 +58,7 @@ class DevolverModal extends Component {
                             <button type="button"
                                 className="btn btn-success"
                                 onClick={() => this.handleConfirmClick()}>
-                                Confirmar
+                                CONFIRMAR
                             </button>
                         </div>
                     </div>

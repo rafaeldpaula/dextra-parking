@@ -86,22 +86,27 @@ class Home extends Component {
           if (this.state.pinPosition[0] === null)
             return (
               <div>
-                <TopBar/>                
+                <TopBar/>        
                 <button type="button" 
                   className="btn floating-button bottom-floating-button"
                   data-toggle="modal" data-target="#devolver-modal">
                     DEVOLVER CARRO
                 </button>
-
               </div>
             )
           else
             return (
+              <div>
+              <button type="button" 
+                  className="btn floating-button top-floating-button info">
+                    DEFINA A POSIÇÃO DO CARRO
+                </button>        
               <button type="button" 
                 className="btn floating-button bottom-floating-button"
                 onClick={() => this.sendLocationUpdate()}>
                   SALVAR
               </button>
+              </div>
             )
         })()
         }
