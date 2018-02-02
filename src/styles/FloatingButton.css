@@ -1,37 +1,25 @@
 .floating-button {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 80%;
+    color: #797d7e;
+    flex-wrap: wrap;
+    align-content: center;
+
+    border: none;
+
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
 
-    width: 200px;
+    width: 40%;
+    height: 5%;
 
-    background-color: aliceblue;
-    opacity: 0.95;
-  }
-
-.top-floating-button {
-    top: 100px;
+    background-color: #afd70b;
   }
   
 .bottom-floating-button {
-    bottom: 50px;
+    bottom: 5%;
   }
-
-.middle-floating-button {
-    bottom: 100px;
-  }
-
-.g-signin2 {
-  width: 120px;
-}
-
-.g-signout2 {
-  width: 120px;
-}
-
-.none{
-  display: none;
-}
 
 .rounded-circle {
   border-radius: 50%!important;

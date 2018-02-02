@@ -3,9 +3,9 @@
 }
 
 .App div h1 {
-  font-family: 'open sans';
-  font-size: 90px;
-  color: #f7f7f7;
+  font-family: 'Open Sans', sans-serif;
+  color: #797d7e;
+  font-size: 30px;
 
   box-shadow: 0px 25px 38px -24px #797d7e;
   background-color: #3184f5;
@@ -25,7 +25,7 @@
 
 @media screen and (max-width: 800px) {
   .App div h1 {
-    font-size: 70px;
+    font-size: 30px;
   }
 
   .App-header {
