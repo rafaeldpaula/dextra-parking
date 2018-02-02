@@ -96,8 +96,12 @@ class Home extends Component {
                     className="btn floating-button bottom-floating-button"
                     data-toggle="modal" data-target="#devolver-modal">
                     DEVOLVER CARRO
-                </button>
-
+                  </button>
+                  <button type="button"
+                    className="right-floating-button"
+                    data-toggle="modal" data-target="#cadastrar-modal">
+                    <i className="fas fa-plus-circle"></i>
+                  </button>
                 </div>
               )
             else

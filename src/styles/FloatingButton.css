@@ -32,6 +32,25 @@ btn{
   top: 5%;
 }
 
+.right-floating-button {
+  font-size: 200%;
+  color: #353835;
+  background-color: transparent;
+  border: none;
+
+  position: fixed;
+
+  width: 30px;
+  height: 30px;
+
+  bottom: 15%;
+  right: 5%;
+}
+
+.rounded-circle {
+  border-radius: 50%!important;
+}
+
 .info{
   font-family: 'Open Sans', sans-serif;
   font-size: 80%;
