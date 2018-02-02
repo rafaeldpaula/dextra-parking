@@ -5,6 +5,8 @@ import SelecionarModal from './SelecionarModal.jsx';
 import CadastrarModal from './CadastrarModal.jsx';
 import AvisoPosicionadoModal from './AvisoPosicionadoModal.jsx';
 import AvisoLimiteModal from './AvisoLimiteModal';
+import CadastradoModal from './CadastradoModal.jsx';
+import NaoCadastradoModal from './NaoCadastradoModal.jsx';
 
 import TopBar from './TopBar.jsx';
 
@@ -23,6 +25,19 @@ class Home extends Component {
       pinPosition: [null, null]
     };
   }
+
+  showCadastrado() {
+    //window.$('#cadastrado-modal').modal('toggle');
+    console.log('cadastrado');
+    window.$('#cadastrado-modal').modal('toggle');
+  }
+
+  showNaoCadastrado() {
+    //window.$('#nao-cadastrado-modal').modal('toggle');
+    console.log('nao cadastrado');
+    window.$('#nao-cadastrado-modal').modal('toggle');
+  }
+
 
   updateCars() {
     yawp('/cars').list(
@@ -91,7 +106,7 @@ class Home extends Component {
             if (this.state.pinPosition[0] === null)
               return (
                 <div>
-                  <TopBar />
+                  <TopBar></TopBar>
                   <button type="button"
                     className="btn floating-button bottom-floating-button"
                     data-toggle="modal" data-target="#devolver-modal">
@@ -131,10 +146,13 @@ class Home extends Component {
             });
           }} />
 
-        <CadastrarModal items={this.state.cars} updateCars={() => this.updateCars()} />
+        <CadastrarModal items={this.state.cars} updateCars={() => this.updateCars()} showCadastrado={() => this.showCadastrado()}
+        showNaoCadastrado={() => this.showNaoCadastrado()}/>
 
         <AvisoPosicionadoModal />
         <AvisoLimiteModal />
+        <CadastradoModal />
+        <NaoCadastradoModal />
 
       </div>
     );

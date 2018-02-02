@@ -43,8 +43,14 @@ btn{
   width: 30px;
   height: 30px;
 
-  bottom: 15%;
-  right: 5%;
+  bottom: 100px;
+  right: 18px;
+
+  transition: all 0.2s ease 0.02s;
+}
+
+.right-floating-button:hover{
+  color: rgb(19, 137, 216);
 }
 
 .rounded-circle {
