@@ -40,9 +40,9 @@ class CadastrarModal extends Component {
         }
 
         else {
-            /*yawp('/cars').create({name: this.state.valueName, email: this.state.valueEmail+'@dextra-sw.com', location: '-22.812926,-47.045779'}).then((newCar) => {
+            yawp('/cars').create({name: this.state.valueName, email: this.state.valueEmail+'@dextra-sw.com', location: '-22.812926,-47.045779'}).then((newCar) => {
                 this.props.updateCars();
-            });*/
+            });
             this.props.showCadastrado();
         }
         
