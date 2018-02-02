@@ -3,6 +3,7 @@ import Map from './Map.jsx';
 import DevolverModal from './DevolverModal.jsx';
 import SelecionarModal from './SelecionarModal.jsx';
 import CadastrarModal from './CadastrarModal.jsx';
+import TopBar from './TopBar.jsx';
 
 import '../styles/FloatingButton.css';
 import '../styles/Modal.css';
@@ -80,12 +81,12 @@ class Home extends Component {
           onSelection={(car, i) => {
             this.setState({selectedCar: i});
           }}/>
-
         {
         (() => {
           if (this.state.pinPosition[0] === null)
             return (
               <div>
+                <TopBar/>                
                 <button type="button" 
                   className="btn btn-outline-success floating-button bottom-floating-button"
                   data-toggle="modal" data-target="#devolver-modal">

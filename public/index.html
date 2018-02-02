@@ -37,6 +37,9 @@
     <div id="root"></div>
 
     <script>
+
+      var login = JSON.parse(localStorage.getItem('login_data'));
+
       yawp.config(function (c) {
         c.baseUrl('https://dextraparking.appspot.com/api');
       });
