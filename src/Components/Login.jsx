@@ -40,9 +40,10 @@ export class Login extends Component {
             if (user) {
                 const email = user.email;
                 const name = user.displayName || email;
+                const photoURL = user.photoURL;
 
                 user.getIdToken().then(idToken => {
-                    const login = { email, name, idToken };
+                    const login = { email, name, idToken, photoURL };
                     console.log('Logged in!', login);
                     localStorage.setItem('login_data', JSON.stringify(login));
                     this.setState({ login });
