@@ -4,6 +4,7 @@ import { compose, withProps } from "recompose";
 import MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithLabel";
 import DevolverModal from './DevolverModal';
 import { DrawingManager } from 'react-google-maps';
+import dextraparkingstyle from '../dextraParkingStyle.json';
 
 class MyMapComponent extends Component {
 
@@ -108,6 +109,7 @@ class MyMapComponent extends Component {
         defaultZoom={zoom}
         defaultCenter={center}
         defaultOptions={{
+          styles: dextraparkingstyle,
           streetViewControl: false,
           mapTypeControl: false,
           panControl: false,
