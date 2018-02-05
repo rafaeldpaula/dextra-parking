@@ -1,8 +1,15 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "start_url": "./index.html",
+  "short_name": "Dextra Parking",
+  "name": "Dextra Parking",
+  "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#4286f4",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "./images/icon.jpg",
+      "sizes": "4500x4500"
+      // "type": "image/webp"
+    }
+  ]
 }
