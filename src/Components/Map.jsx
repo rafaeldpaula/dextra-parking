@@ -91,7 +91,7 @@ class MyMapComponent extends Component {
     var ret = compose(
       withProps({
         googleMapURL:
-          "https://maps.googleapis.com/maps/api/js?key=AIzaSyAzqXIMAGTfkI1FriE3eQ75HsbeuQv1hE8&v=3.exp&libraries=geometry,drawing,places",
+          "https://maps.googleapis.com/maps/api/js?key=AIzaSyBjP3oziR_ztTBkfgQFvXLBnp9w6n96mjE&v=3.exp&libraries=geometry,drawing,places",
         loadingElement: <div style={{ height: `100vh` }} />,
         containerElement: <div style={{ height: `100vh` }} />,
         mapElement: <div style={{ height: `100%` }} />,
