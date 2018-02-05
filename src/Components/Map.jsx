@@ -13,9 +13,9 @@ class MyMapComponent extends Component {
   constructor(props) {
     super(props);
     this.center = { lat: -22.814470, lng: -47.044972 };
-    this.state = { 
+    this.state = {
       locationAuth: false,
-      you: { lat: 0, lng: 0 } 
+      you: { lat: 0, lng: 0 }
     };
 
 
@@ -54,22 +54,38 @@ class MyMapComponent extends Component {
   }
 
   makeMarkers() {
-    return this.props.cars.map((car, i) => {
+    if (this.props.onDrag === undefined)
+      return this.props.cars.map((car, i) => {
 
+        var locacione = car.location.split(",");
+
+        // return locacione;
+        return (
+          <MarkerWithLabel
+            icon={this.carIcon()}
+            key={i}
+            position={{ lat: eval(locacione[0]), lng: eval(locacione[1]) }}
+            labelAnchor={window.getAnchor()}
+            labelStyle={{ backgroundColor: "white", fontSize: "15px", padding: "10px" }}>
+            <div>{this.getName(this.props.cars, car.id)}</div>
+          </MarkerWithLabel>
+        );
+      });
+    else {
+      var car = this.props.cars[this.props.selectedCar];
       var locacione = car.location.split(",");
-
-      // return locacione;
       return (
         <MarkerWithLabel
           icon={this.carIcon()}
-          key={i}
           position={{ lat: eval(locacione[0]), lng: eval(locacione[1]) }}
+          draggable={this.props.onDrag !== undefined}
+          onDragEnd={this.props.onDrag}
           labelAnchor={window.getAnchor()}
           labelStyle={{ backgroundColor: "white", fontSize: "15px", padding: "10px" }}>
           <div>{this.getName(this.props.cars, car.id)}</div>
-        </MarkerWithLabel>
-      );
-    });
+        </MarkerWithLabel>);
+    }
+
   }
 
   handleMapDrag() {
@@ -95,8 +111,8 @@ class MyMapComponent extends Component {
   }
 
   yourLocationPin() {
-    return <Marker  position={{ lat: this.state.you.lat, lng: this.state.you.lng }}
-                    icon={this.locationIcon()}/>;
+    return <Marker position={{ lat: this.state.you.lat, lng: this.state.you.lng }}
+      icon={this.locationIcon()} />;
   }
 
   render(props) {
