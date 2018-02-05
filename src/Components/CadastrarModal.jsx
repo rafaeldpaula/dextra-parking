@@ -28,11 +28,11 @@ class CadastrarModal extends Component {
 
         var carExists = false;
         this.props.items.forEach(car => {
-            if (car.email == this.state.valueEmail+'@dextra-sw.com' || car.name == this.state.valueName) 
+            if (car.email === this.state.valueEmail+'@dextra-sw.com' || car.name === this.state.valueName) 
                 carExists = true;
         });
 
-        if (this.state.valueEmail == '' || this.state.valueName == '')
+        if (this.state.valueEmail === '' || this.state.valueName === '')
             carExists = true;
     
         if (carExists) {
