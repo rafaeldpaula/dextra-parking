@@ -16,7 +16,7 @@ class MyMapComponent extends Component {
     this.center = { lat: -22.814470, lng: -47.044972 };
   }
 
- 
+
 
   getName(cars, carId) {
     var name;
@@ -34,38 +34,22 @@ class MyMapComponent extends Component {
   }
 
   makeMarkers() {
-    if (this.props.selectedCar === -1) {
-      return this.props.cars.map((car, i) => {
+    return this.props.cars.map((car, i) => {
 
-        var locacione = car.location.split(",");
-
-        // return locacione;
-        return (
-          <MarkerWithLabel
-            icon={this.icon()}
-            key={i}
-            position={{ lat: eval(locacione[0]), lng: eval(locacione[1]) }}
-            labelAnchor={window.getAnchor()}
-            labelStyle={{ backgroundColor: "white", fontSize: "15px", padding: "10px" }}>
-            <div>{this.getName(this.props.cars, car.id)}</div>
-          </MarkerWithLabel>
-          );
-      });
-    }
-    else {
-      var car = this.props.cars[this.props.selectedCar];
       var locacione = car.location.split(",");
+
+      // return locacione;
       return (
         <MarkerWithLabel
           icon={this.icon()}
+          key={i}
           position={{ lat: eval(locacione[0]), lng: eval(locacione[1]) }}
-          draggable={this.props.onDrag !== undefined}
-          onDragEnd={this.props.onDrag}
           labelAnchor={window.getAnchor()}
           labelStyle={{ backgroundColor: "white", fontSize: "15px", padding: "10px" }}>
           <div>{this.getName(this.props.cars, car.id)}</div>
-        </MarkerWithLabel>);
-    }
+        </MarkerWithLabel>
+      );
+    });
   }
 
   handleMapDrag() {
@@ -82,15 +66,27 @@ class MyMapComponent extends Component {
     }
   }
 
-  drawOverlay(){
+  drawOverlay() {
     <GroundOverlay
-          defaultUrl="https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg"
-          defaultBounds={window.overlayBounds()}
-          defaultOpacity={.5}>
+      defaultUrl="https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg"
+      defaultBounds={window.overlayBounds()}
+      defaultOpacity={.5}>
     </GroundOverlay>
   }
 
   render(props) {
+
+    var center = this.center;
+    var zoom = 18;
+
+    if (this.props.selectedCar != -1) {
+      const i = this.props.selectedCar;
+      const car = this.props.cars[i];
+      const location = car.location.split(",");
+      center = { lat: parseFloat(location[0]), lng: parseFloat(location[1]) };
+      zoom = 21;
+    }
+
     var self = this;
     var ret = compose(
       withProps({
@@ -99,7 +95,7 @@ class MyMapComponent extends Component {
         loadingElement: <div style={{ height: `100vh` }} />,
         containerElement: <div style={{ height: `100vh` }} />,
         mapElement: <div style={{ height: `100%` }} />,
-        
+
       }),
 
       withScriptjs,
@@ -109,9 +105,10 @@ class MyMapComponent extends Component {
       <GoogleMap ref={map => this.map = map}
         onDragEnd={() => this.handleMapDrag()}
         zIndex={-1}
-        defaultZoom={18}
-        defaultCenter={this.center}
-        defaultOptions={{streetViewControl: false,
+        defaultZoom={zoom}
+        defaultCenter={center}
+        defaultOptions={{
+          streetViewControl: false,
           mapTypeControl: false,
           panControl: false,
           rotateControl: false,
@@ -119,13 +116,12 @@ class MyMapComponent extends Component {
           maxZoom: 25,
           minZoom: 17
         }}>
-
         <GroundOverlay
           defaultUrl={window.overlayUrl()}
           defaultBounds={window.overlayBounds()}
-   
+
           defaultOpacity={5} />
-          {this.makeMarkers()}
+        {this.makeMarkers()}
 
       </GoogleMap>
     ));
