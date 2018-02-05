@@ -49,6 +49,10 @@ class MyMapComponent extends Component {
     return window.carIcon();
   }
 
+  locationIcon() {
+    return window.locationIcon();
+  }
+
   makeMarkers() {
     return this.props.cars.map((car, i) => {
 
@@ -91,7 +95,8 @@ class MyMapComponent extends Component {
   }
 
   yourLocationPin() {
-    return <Marker position={{ lat: this.state.you.lat, lng: this.state.you.lng }}/>;
+    return <Marker  position={{ lat: this.state.you.lat, lng: this.state.you.lng }}
+                    icon={this.locationIcon()}/>;
   }
 
   render(props) {
