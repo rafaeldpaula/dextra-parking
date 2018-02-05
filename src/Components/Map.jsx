@@ -85,7 +85,7 @@ class MyMapComponent extends Component {
       const car = this.props.cars[i];
       const location = car.location.split(",");
       center = { lat: parseFloat(location[0]), lng: parseFloat(location[1]) };
-      zoom = 21;
+      zoom = 19;
     }
 
     var self = this;
