@@ -10,9 +10,6 @@ const navigator = window.navigator;
 
 class MyMapComponent extends Component {
 
-
-  static navigationOptions = { header: null }
-
   constructor(props) {
     super(props);
     this.center = { lat: -22.814470, lng: -47.044972 };
