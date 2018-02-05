@@ -124,7 +124,7 @@ class Home extends Component {
                 <div>
                 <button type="button" 
                   className="btn floating-button top-floating-button info">
-                    DEFINA A POSIÇÃO DO CARRO
+                    ARRASTE O PIN PARA DEFINIR A POSIÇÃO DO CARRO
                 </button>  
                 <button type="button"
                   className="btn floating-button bottom-floating-button"
