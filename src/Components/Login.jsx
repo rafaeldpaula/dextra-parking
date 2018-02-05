@@ -14,7 +14,7 @@ var config = {
 };
 
 const uiConfig = {
-    signInFlow: "popup",
+    // signInFlow: "popup",
     signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
     callbacks: {
         signInSuccess: () => false
