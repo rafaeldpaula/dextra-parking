@@ -18,6 +18,7 @@ class SelecionarModal extends Component {
             this.props.items[this.state.selectedCar],
             this.state.selectedCar);
 
+        this.setState({selectedCar: -1});
         window.$('#selecionar-modal').modal('toggle');
     }
 
@@ -33,21 +34,6 @@ class SelecionarModal extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <button
-                                type="button"
-                                className="btn btn-secondary btn-lg btn-block"
-                                onClick={() => this.handleCarClick(-1)}>
-                                <div className={
-                                    (() => {
-                                        const classes = "check-position "
-                                        if (this.state.selectedCar === -1)
-                                            return classes + "fas fa-check-circle fa-2x";
-                                        return classes + "far fa-circle fa-2x";
-                                    }
-                                    )()
-                                } />
-                                <div>Todos os carros</div>
-                            </button>
                             {this.props.items.map((car, i) => {
                                 return <button key={i}
                                     type="button"
@@ -74,7 +60,7 @@ class SelecionarModal extends Component {
                             <button type="button" className="btn btn-primary"
                                 onClick={() => this.handleConfirmClick()}>
                                 Confirmar
-                                </button>
+                            </button>
                         </div>
                     </div>
                 </div>
