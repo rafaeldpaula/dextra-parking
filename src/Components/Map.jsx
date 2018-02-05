@@ -118,15 +118,11 @@ class MyMapComponent extends Component {
           maxZoom: 25,
           minZoom: 17
         }}>
-        {/* <GroundOverlay
+        <GroundOverlay
           defaultUrl={window.overlayUrl()}
           defaultBounds={window.overlayBounds()}
 
-          defaultOpacity={5} /> 
-          
-          RODOLFO: descomenta isso quando estiver pronto
-
-          */}
+          defaultOpacity={5} />
         {this.makeMarkers()}
 
       </GoogleMap>
