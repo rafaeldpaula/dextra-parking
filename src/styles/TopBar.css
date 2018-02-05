@@ -1,0 +1,43 @@
+.App .navbar {
+    display: flex;
+    position: fixed;
+    top: 0px;
+    width: 100vw;
+    height: 64px;
+
+    padding-right: 0px;
+    
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.App .navbar > * {
+    border-radius: 100%;    
+}
+
+.App .navbar .user-name {
+    margin-left: 10px;
+    /* background-color: rgb(1, 145, 202); */
+}
+
+.App .navbar img {
+    width: 48px;
+    height: 48px;    
+    align-self: flex-start;
+    /* background-color: rgb(1, 145, 202); */
+}
+
+.App .navbar .search-thing {
+    position: absolute;
+
+    font-size: 20px;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    right: 20px;
+    padding: 0px;
+    align-self: flex-end;
+    font-size: 30px;
+}

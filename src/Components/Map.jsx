@@ -105,13 +105,17 @@ class MyMapComponent extends Component {
       withScriptjs,
       withGoogleMap,
     )(props => (
+
       <GoogleMap ref={map => this.map = map}
         onDragEnd={() => this.handleMapDrag()}
         zIndex={-1}
         defaultZoom={18}
         defaultCenter={this.center}
-        defaultOptions={{
-          disableDefaultUI: true,
+        defaultOptions={{streetViewControl: false,
+          mapTypeControl: false,
+          panControl: false,
+          rotateControl: false,
+          fullscreenControl: false,
           maxZoom: 25,
           minZoom: 17
         }}>
@@ -121,8 +125,7 @@ class MyMapComponent extends Component {
           defaultBounds={window.overlayBounds()}
    
           defaultOpacity={5} />
-        
-        {this.makeMarkers()}
+          {this.makeMarkers()}
 
       </GoogleMap>
     ));

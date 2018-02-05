@@ -35,12 +35,15 @@ class CadastrarModal extends Component {
         if (this.state.valueEmail == '' || this.state.valueName == '')
             carExists = true;
     
-        if (carExists)
-            alert('e-mail ou nome já existe');
+        if (carExists) {
+            this.props.showNaoCadastrado();
+        }
+
         else {
             yawp('/cars').create({name: this.state.valueName, email: this.state.valueEmail+'@dextra-sw.com', location: '-22.812926,-47.045779'}).then((newCar) => {
                 this.props.updateCars();
             });
+            this.props.showCadastrado();
         }
         
         window.$('#cadastrar-modal').modal('toggle');
@@ -68,8 +71,7 @@ class CadastrarModal extends Component {
                                     <span className="input-group-addon" id="basic-addon2">@dextra-sw.com</span>
                                 </div>
                             </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <div className="modal-footer">                                
                                 <input type="submit" value="Cadastrar" className="btn btn-primary"/>
                             </div>
                         </form>

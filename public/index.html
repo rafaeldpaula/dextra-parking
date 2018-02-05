@@ -12,6 +12,7 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:bold" rel="stylesheet">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -34,8 +35,10 @@
     <script src="https://rawgit.com/feroult/yawp/yawp-1.6.8/yawp-client/lib/web/yawp.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <div id="root"></div>
-
     <script>
+
+      var login = JSON.parse(localStorage.getItem('login_data'));
+
       yawp.config(function (c) {
         c.baseUrl('https://dextraparking.appspot.com/api');
       });
@@ -61,42 +64,17 @@
 
       function icon(){
         return {
-          url: 'http://galiciamotorsltdkensington.co.uk/communities/2/000/001/036/102//images/1920192.png',
+          url: 'https://i.imgur.com/FOfAi2M.png',
           size: new google.maps.Size(100, 100),
           origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(20, 40),
-          scaledSize: new google.maps.Size(40, 40)
-          
+          anchor: new google.maps.Point(0, -22),
+          scaledSize: new google.maps.Size(60, 60)
+
         };
       }
 
       function getAnchor(){
         return new google.maps.Point(0, 0);
-      }
-
-      function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        return auth2.signOut().then(
-          function () {
-            console.log('User signed out.');
-            document.getElementsByClassName('floating-button g-signin2 none').item(0).className = "floating-button g-signin2";
-            document.getElementsByClassName('floating-button g-signout2').item(0).className = "floating-button g-signout2 none";
-            document.getElementsByClassName('user').item(0).className = "user none";
-          });
-      }
-
-      function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-        
-        document.getElementsByClassName('user none').item(0).className = "user";
-        document.getElementsByClassName('rounded-circle').item(0).src = profile.getImageUrl();
-        document.getElementsByClassName('userName').item(0).innerHTML = profile.getName();
-        document.getElementsByClassName('floating-button g-signin2').item(0).className = "floating-button g-signin2 none";
-        document.getElementsByClassName('floating-button g-signout2 none').item(0).className = "floating-button g-signout2";
       }
 
     </script>

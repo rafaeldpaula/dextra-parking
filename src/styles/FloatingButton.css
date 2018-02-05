@@ -1,9 +1,7 @@
 .floating-button {
     font-family: 'Open Sans', sans-serif;
     font-size: 80%;
-    color: #797d7e;
-    flex-wrap: wrap;
-    align-content: center;
+    color: #353835;
 
     border: none;
 
@@ -11,15 +9,15 @@
     left: 50%;
     transform: translateX(-50%);
 
-    width: 40%;
-    height: 5%;
+    width: 200px;
+    height: 30px;
 
     background-color: #afd70b;
   }
 
 .floating-button:hover {
   background-color: #a0c50c;
-  color: #797d7e; 
+  color: #353835; 
 }
 
 btn{
@@ -27,5 +25,56 @@ btn{
 }
   
 .bottom-floating-button {
-    bottom: 5%;
-  }
+  bottom: 5%;
+}
+
+.top-floating-button {
+  top: 5%;
+}
+
+.right-floating-button {
+  font-size: 200%;
+  color: #353835;
+  background-color: transparent;
+  border: none;
+
+  position: fixed;
+
+  width: 30px;
+  height: 30px;
+
+  bottom: 100px;
+  right: 18px;
+
+  transition: all 0.2s ease 0.02s;
+}
+
+.right-floating-button:hover{
+  color: rgb(19, 137, 216);
+}
+
+.rounded-circle {
+  border-radius: 50%!important;
+}
+
+.info{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 80%;
+  color: #353835;
+
+  border: none;
+
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 250px;
+  height: 30px;
+
+  background-color: #f7f7f7;
+}
+
+.info:hover{
+  background-color: #f7f7f7;
+  color: #353835; 
+}

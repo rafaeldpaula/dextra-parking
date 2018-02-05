@@ -4,10 +4,10 @@
 
 .App div h1 {
   font-family: 'Open Sans', sans-serif;
-  color: #797d7e;
-  font-size: 30px;
+  color: #fafafa;
+  font-size: 60px;
 
-  box-shadow: 0px 25px 38px -24px #797d7e;
+  box-shadow: 0px 25px 38px -24px rgb(161, 165, 167);
   background-color: #3184f5;
 }
 
@@ -15,7 +15,8 @@
   position: absolute;
 
   padding: 0em 1em;
-  width: 60vw;
+  width:44vw;
+  height: 170px;
 
   top: 50%;
   left: 50%;
@@ -23,9 +24,10 @@
 
 }
 
-@media screen and (max-width: 800px) {
+
+@media screen and (max-width: 1200px) {
   .App div h1 {
-    font-size: 30px;
+    font-size: 50px;
   }
 
   .App-header {
