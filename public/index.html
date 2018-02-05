@@ -44,6 +44,21 @@
         yawp(carId).patch({location: lat+','+long}).then(then);
       }
 
+      function overlayBounds(){
+        var bound =  new google.maps.LatLngBounds(
+            new google.maps.LatLng(-22.817250, -47.048050),
+            new google.maps.LatLng(-22.811750, -47.039790)
+          
+          );
+          return bound;
+      }
+
+      function overlayUrl(){
+                return "./images/mapa02-02.png";
+      }
+
+
+
       function icon(){
         return {
           url: 'http://galiciamotorsltdkensington.co.uk/communities/2/000/001/036/102//images/1920192.png',
@@ -51,6 +66,7 @@
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(20, 40),
           scaledSize: new google.maps.Size(40, 40)
+          
         };
       }
 
