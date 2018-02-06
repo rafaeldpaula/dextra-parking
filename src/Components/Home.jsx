@@ -138,7 +138,7 @@ class Home extends Component {
                     onClick={() => this.sendLocationUpdate()}>
                     SALVAR
                   </button>
-                  <button type="button"
+                  {/* <button type="button"
                     className="location-button"
                     onClick={() => {
                       if (navigator.geolocation) {
@@ -168,7 +168,7 @@ class Home extends Component {
                       }
                     }}>
                     <i className="fas fa-crosshairs"></i>
-                  </button>
+                  </button>*/}
                 </div>
               )
           })()
