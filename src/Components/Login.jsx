@@ -32,6 +32,15 @@ export function isLoggedIn() {
     return loggedIn;
 }
 
+export function signOut() {
+    firebase.auth().signOut().then(function() {
+    loggedIn = false;
+    window.location.reload();
+    }).catch(function(error) {
+      // An error happened.
+    });
+}
+
 export class Login extends Component {
     constructor(props) {
         super(props);
