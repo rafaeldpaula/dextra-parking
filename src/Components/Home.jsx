@@ -152,6 +152,10 @@ class Home extends Component {
         <CadastrarModal items={this.state.cars} updateCars={() => this.updateCars()} showCadastrado={() => this.showCadastrado()}
         showNaoCadastrado={() => this.showNaoCadastrado()}/>
 
+        <button id="authorize-button" style="display: none;">Authorize</button>
+        <button id="signout-button" style="display: none;">Sign Out</button>
+        
+
         <AvisoPosicionadoModal />
         <AvisoLimiteModal />
         <CadastradoModal />
