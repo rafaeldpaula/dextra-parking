@@ -10,8 +10,10 @@ class TopBar extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {  name: "João José", 
-                    photo: "https://thearmitageeffect.files.wordpress.com/2012/04/funny-cat-pictures-with-captions-44.jpg?w=652"};
+    this.state = {
+      name: "João José",
+      photo: "https://thearmitageeffect.files.wordpress.com/2012/04/funny-cat-pictures-with-captions-44.jpg?w=652"
+    };
   }
 
   componentDidMount() {
@@ -27,11 +29,13 @@ class TopBar extends Component {
   render() {
 
     return (
-      <nav className="navbar navbar-light bg-faded">
-        <img src={this.state.photo}/>
-        <div className="user-name">{this.state.name}</div>
-        <div className="fas fa-search fa-1g btn search-thing" data-toggle="modal" data-target="#selecionar-modal"></div>
-      </nav>
+      <div>
+        <nav className="navbar navbar-light bg-faded">
+          <img src={this.state.photo} />
+          <div className="user-name">{this.state.name}</div>
+          <div className="fas fa-search fa-1g btn search-thing" data-toggle="modal" data-target="#selecionar-modal"></div>
+        </nav>
+      </div>
     );
   }
 }

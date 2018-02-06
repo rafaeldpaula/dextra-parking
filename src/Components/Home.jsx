@@ -16,6 +16,9 @@ import '../styles/Modal.css';
 import yawp from 'yawp';
 
 class Home extends Component {
+
+  static navigationOptions = {header: null}
+
   constructor(props) {
     super(props);
     this.state = {

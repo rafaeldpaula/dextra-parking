@@ -162,7 +162,7 @@
       var login = JSON.parse(localStorage.getItem('login_data'));
 
       yawp.config(function (c) {
-        c.baseUrl('https://dextraparking.appspot.com/api');
+        c.baseUrl('https://1-dot-dextraparking.appspot.com//api');
       });
 
       function updateLocation(carId, lat, long, then) {
@@ -182,9 +182,7 @@
                 return "./images/mapaFINAL-02.png";
       }
 
-
-
-      function icon(){
+      function carIcon(){
         return {
           url: 'https://i.imgur.com/FOfAi2M.png',
           size: new google.maps.Size(100, 100),
@@ -192,6 +190,16 @@
           anchor: new google.maps.Point(0, -22),
           scaledSize: new google.maps.Size(60, 60)
 
+        };
+      }
+
+      function locationIcon(){
+        return {
+          url: './images/location.png',
+          size: new google.maps.Size(901, 901),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(0, 0),
+          scaledSize: new google.maps.Size(34, 34)
         };
       }
 

@@ -1,20 +1,35 @@
 import React, { Component } from 'react';
-import { withScriptjs, withGoogleMap, GoogleMap, GroundOverlay } from "react-google-maps"
+import { withScriptjs, withGoogleMap, GoogleMap, GroundOverlay, Marker } from "react-google-maps"
 import { compose, withProps } from "recompose";
 import MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithLabel";
 import DevolverModal from './DevolverModal';
 import { DrawingManager } from 'react-google-maps';
 import dextraparkingstyle from '../dextraParkingStyle.json';
 
+const navigator = window.navigator;
+
 class MyMapComponent extends Component {
-
-
-  static navigationOptions = { header: null }
-
 
   constructor(props) {
     super(props);
     this.center = { lat: -22.814470, lng: -47.044972 };
+    this.state = {
+      locationAuth: false,
+      you: { lat: 0, lng: 0 }
+    };
+
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(pos => {
+        this.setState({
+          locationAuth: true,
+          you: {
+            lat: pos.coords.latitude,
+            lng: pos.coords.longitude
+          }
+        });
+      });
+    }
   }
 
 
@@ -30,27 +45,47 @@ class MyMapComponent extends Component {
     return name;
   }
 
-  icon() {
-    return window.icon();
+  carIcon() {
+    return window.carIcon();
+  }
+
+  locationIcon() {
+    return window.locationIcon();
   }
 
   makeMarkers() {
-    return this.props.cars.map((car, i) => {
+    if (this.props.onDrag === undefined)
+      return this.props.cars.map((car, i) => {
 
+        var locacione = car.location.split(",");
+
+        // return locacione;
+        return (
+          <MarkerWithLabel
+            icon={this.carIcon()}
+            key={i}
+            position={{ lat: eval(locacione[0]), lng: eval(locacione[1]) }}
+            labelAnchor={window.getAnchor()}
+            labelStyle={{ backgroundColor: "white", fontSize: "15px", padding: "10px" }}>
+            <div>{this.getName(this.props.cars, car.id)}</div>
+          </MarkerWithLabel>
+        );
+      });
+    else {
+      var car = this.props.cars[this.props.selectedCar];
       var locacione = car.location.split(",");
-
-      // return locacione;
       return (
         <MarkerWithLabel
-          icon={this.icon()}
-          key={i}
+          icon={this.carIcon()}
           position={{ lat: eval(locacione[0]), lng: eval(locacione[1]) }}
+          draggable={this.props.onDrag !== undefined}
+          onDragEnd={this.props.onDrag}
           labelAnchor={window.getAnchor()}
           labelStyle={{ backgroundColor: "white", fontSize: "15px", padding: "10px" }}>
           <div>{this.getName(this.props.cars, car.id)}</div>
-        </MarkerWithLabel>
-      );
-    });
+        </MarkerWithLabel>);
+    }
+
   }
 
   handleMapDrag() {
@@ -75,6 +110,11 @@ class MyMapComponent extends Component {
     </GroundOverlay>
   }
 
+  yourLocationPin() {
+    return <Marker position={{ lat: this.state.you.lat, lng: this.state.you.lng }}
+      icon={this.locationIcon()} />;
+  }
+
   render(props) {
 
     var center = this.center;
@@ -85,7 +125,7 @@ class MyMapComponent extends Component {
       const car = this.props.cars[i];
       const location = car.location.split(",");
       center = { lat: parseFloat(location[0]), lng: parseFloat(location[1]) };
-      zoom = 21;
+      zoom = 19;
     }
 
     var self = this;
@@ -123,7 +163,10 @@ class MyMapComponent extends Component {
           defaultBounds={window.overlayBounds()}
 
           defaultOpacity={5} />
+
         {this.makeMarkers()}
+
+        {this.yourLocationPin()}
 
       </GoogleMap>
     ));
