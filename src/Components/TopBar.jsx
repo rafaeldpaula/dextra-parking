@@ -22,8 +22,8 @@ class TopBar extends Component {
         name: window.login.name,
         photo: window.login.photoURL
       });
-    else
-      window.location.reload();
+    // else
+    //   window.location.reload();
   }
 
   render() {

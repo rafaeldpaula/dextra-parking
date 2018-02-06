@@ -33,6 +33,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="https://rawgit.com/feroult/yawp/yawp-1.6.8/yawp-client/lib/web/yawp.min.js"></script>
+    <script type='text/javascript' src='persist-min.js'></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad()"
@@ -157,9 +158,9 @@
       //----------------------------------------------------------------------------------------
 
 
+      var store = new Persist.Store('dextra-parking');
 
-
-      var login = JSON.parse(localStorage.getItem('login_data'));
+      var login = JSON.parse(store.get('login_data'));
 
       yawp.config(function (c) {
         c.baseUrl('https://1-dot-dextraparking.appspot.com/api');

@@ -21,6 +21,9 @@ const uiConfig = {
     }
 };
 
+var provider = new firebase.auth.GoogleAuthProvider();
+provider.addScope('https://www.googleapis.com/auth/calendar.readonly');
+
 firebase.initializeApp(config);
 
 var loggedIn = false;
@@ -33,11 +36,16 @@ export class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {};
-    }
 
-    componentDidMount() {
-        firebase.auth().onAuthStateChanged(user => {
-            if (user) {
+        firebase.auth().getRedirectResult().then(function (result) {
+            if (result.credential) {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                var token = result.credential.accessToken;
+                // ...
+
+                // The signed-in user info.
+                var user = result.user;
+
                 const email = user.email;
                 const name = user.displayName || email;
                 const photoURL = user.photoURL;
@@ -49,22 +57,40 @@ export class Login extends Component {
                     const login = { email, name, idToken, photoURL };
                     console.log('Logged in!', login);
                     localStorage.setItem('login_data', JSON.stringify(login));
-                    this.setState({ login });
-                    fetch('https://1-dot-dextraparking.appspot.com/api/cars', {
-                        method: 'GET',
-                        headers: {
-                            'Authorization': 'Bearer ' + login.idToken
-                        }
-                    }).then(c => {
-                        console.log(c);
-                        loggedIn = true;
-                        this.props.history.push("/");
-                    });
+
+                    loggedIn = true;
+                    window.login = login;
+
+                    if (email.split("@")[1] != "dextra-sw.com") {
+                        loggedIn = false
+                        alert("Só dextra aqui, otário");
+                        firebase.auth().signOut().then(function () {
+                            alert("yeah");
+                            window.login = null;
+                            localStorage.removeItem('login_data');
+                        }, function (error) {
+                        });
+                    }
+                    else
+                        props.history.push("/");
                 });
-            } else {
-                console.error('Couldn\'t login!');
+
             }
+
+        }).catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
         });
+    }
+
+    onclick() {
+        firebase.auth().signInWithRedirect(provider);
     }
 
     render() {
@@ -76,7 +102,7 @@ export class Login extends Component {
                         Dextra Parking!
                     </h1>
                     <div className="App-intro">
-                        <FirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+                        <input type="button" value='TEY' onClick={this.onclick} />
                     </div>
                 </header>
             </div>
