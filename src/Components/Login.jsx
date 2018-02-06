@@ -41,6 +41,9 @@ export class Login extends Component {
                 const email = user.email;
                 const name = user.displayName || email;
                 const photoURL = user.photoURL;
+                const access_token = user.access_token;
+
+                // console.log(user);
 
                 user.getIdToken().then(idToken => {
                     const login = { email, name, idToken, photoURL };

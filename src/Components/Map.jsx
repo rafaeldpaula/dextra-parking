@@ -73,7 +73,7 @@ class MyMapComponent extends Component {
       });
     else {
       var car = this.props.cars[this.props.selectedCar];
-      var locacione = car.location.split(",");
+      var locacione = this.props.pinPosition;
       return (
         <MarkerWithLabel
           icon={this.carIcon()}
@@ -118,6 +118,8 @@ class MyMapComponent extends Component {
   render(props) {
 
     var center = this.center;
+
+
     var zoom = 18;
 
     if (this.props.selectedCar != -1) {
@@ -125,6 +127,14 @@ class MyMapComponent extends Component {
       const car = this.props.cars[i];
       const location = car.location.split(",");
       center = { lat: parseFloat(location[0]), lng: parseFloat(location[1]) };
+
+      if (this.props.center != null){
+        center = {
+          lat: this.props.center[0],
+          lng: this.props.center[1]
+        };
+      }
+
       zoom = 19;
     }
 
@@ -180,7 +190,9 @@ class Map extends Component {
       <MyMapComponent markerLocation={{}}
         cars={this.props.cars}
         selectedCar={this.props.selectedCar}
+        pinPosition={this.props.pinPosition}
         onDrag={this.props.onDrag}
+        center={this.props.center}
         isMarkerShown />
     );
   }

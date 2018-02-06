@@ -17,7 +17,7 @@ import yawp from 'yawp';
 
 class Home extends Component {
 
-  static navigationOptions = {header: null}
+  static navigationOptions = { header: null }
 
   constructor(props) {
     super(props);
@@ -25,7 +25,8 @@ class Home extends Component {
       cars: [],
       selectedCar: -1,
       onDrag: undefined,
-      pinPosition: [null, null]
+      pinPosition: [null, null],
+      center: null
     };
   }
 
@@ -72,7 +73,8 @@ class Home extends Component {
       window.$('#aviso-limite-modal').modal('toggle');
       window.updateLocation(car.id, latlng_old[0], latlng_old[1], (car) => {
         this.setState({
-          pinPosition: [latlng_old[0], latlng_old[1]]
+          pinPosition: [latlng_old[0], latlng_old[1]],
+          center: null
         });
         this.updateCars();
       });
@@ -97,7 +99,9 @@ class Home extends Component {
       <div>
         <Map cars={this.state.cars}
           selectedCar={this.state.selectedCar}
+          pinPosition={this.state.pinPosition}
           onDrag={this.state.onDrag}
+          center={this.state.center}
         />
 
         <SelecionarModal items={this.state.cars}
@@ -118,22 +122,53 @@ class Home extends Component {
                   <button type="button"
                     className="right-floating-button"
                     data-toggle="modal" data-target="#cadastrar-modal">
-                    <i className="fas fa-plus-circle"></i>
+                    <i className="fa fa-plus-circle"></i>
                   </button>
                 </div>
               )
             else
               return (
                 <div>
-                <button type="button" 
-                  className="btn floating-button top-floating-button info">
+                  <button type="button"
+                    className="btn floating-button top-floating-button info">
                     ARRASTE O PIN PARA DEFINIR A POSIÇÃO DO CARRO
-                </button>  
-                <button type="button"
-                  className="btn floating-button bottom-floating-button"
-                  onClick={() => this.sendLocationUpdate()}>
-                  SALVAR
-                </button>
+                  </button>
+                  <button type="button"
+                    className="btn floating-button bottom-floating-button"
+                    onClick={() => this.sendLocationUpdate()}>
+                    SALVAR
+                  </button>
+                  <button type="button"
+                    className="location-button"
+                    onClick={() => {
+                      if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(pos => {
+                          const lat = pos.coords.latitude;
+                          const lng = pos.coords.longitude;
+                          this.setState({
+                            center: [lat, lng]
+                          });
+                        }, (e) => {
+                        switch (e.code) {
+                              case e.PERMISSION_DENIED:
+                                alert("Permissão de acesso à localização negado");
+                                break;
+                              case e.POSITION_UNAVAILABLE:
+                                alert("Acesso à localização indisponível.")
+                                break;
+                              case e.TIMEOUT:
+                                alert("Não foi possível obter a localização: TIMEOUT")
+                                break;
+                              case e.UNKNOWN_ERROR:
+                                alert("Não foi possível obter a localização")
+                                break;
+                            }
+                          }
+                        );
+                      }
+                    }}>
+                    <i className="fas fa-crosshairs"></i>
+                  </button>
                 </div>
               )
           })()
@@ -150,11 +185,11 @@ class Home extends Component {
           }} />
 
         <CadastrarModal items={this.state.cars} updateCars={() => this.updateCars()} showCadastrado={() => this.showCadastrado()}
-        showNaoCadastrado={() => this.showNaoCadastrado()}/>
+          showNaoCadastrado={() => this.showNaoCadastrado()} />
 
         <button id="authorize-button" className="none">Authorize</button>
         <button id="signout-button" className="none">Sign Out</button>
-        
+
 
         <AvisoPosicionadoModal />
         <AvisoLimiteModal />

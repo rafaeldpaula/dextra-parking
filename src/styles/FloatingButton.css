@@ -37,25 +37,56 @@ btn{
 } 
 
 .right-floating-button {
-  font-size: 200%;
+  font-size: 27px;
+  color: white;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0px;
+  position: fixed;
+
+  bottom: 100px;
+  right: 5px;
+
+  transition: all 0.2s ease 0.02s;
+}
+
+.right-floating-button .fa-plus-circle {
+  border: 0.6px solid #353835;
+  border-radius: 100%;  
+  padding: 3px;
+  background-color: #353835;
+}
+
+.location-button:focus{
+  outline: none;
+} 
+
+.location-button {
+  font-size: 25px;
   color: #353835;
   background-color: transparent;
   border: none;
   outline: none;
 
   position: fixed;
-
-  width: 30px;
-  height: 30px;
+  padding: 0px;
 
   bottom: 100px;
-  right: 18px;
+  right: 5px;
 
   transition: all 0.2s ease 0.02s;
 }
 
-.right-floating-button:hover{
-  color: rgb(19, 137, 216);
+.location-button .fa-crosshairs {
+  border: 3px solid #353835;
+  border-radius: 100%;  
+  padding: 3px;
+  background-color: white;
+
+  border-radius: 100%;  
+  padding: 3px;
+  background-color: white;
 }
 
 .rounded-circle {
