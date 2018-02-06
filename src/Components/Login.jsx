@@ -47,7 +47,7 @@ export class Login extends Component {
                     console.log('Logged in!', login);
                     localStorage.setItem('login_data', JSON.stringify(login));
                     this.setState({ login });
-                    fetch('https://1-dot-dextraparking.appspot.com//api/cars', {
+                    fetch('https://1-dot-dextraparking.appspot.com/api/cars', {
                         method: 'GET',
                         headers: {
                             'Authorization': 'Bearer ' + login.idToken
