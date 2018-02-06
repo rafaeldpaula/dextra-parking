@@ -66,6 +66,10 @@ class Home extends Component {
     const car = this.state.cars[this.state.selectedCar];
     const latlng_old = car.location.split(",");
 
+    console.log(car);
+    console.log(lat);
+    console.log(lng);
+
     if (lat > -22.814470 + 0.004500 ||
       lat < -22.814470 - 0.004500 ||
       lng > -47.044972 + 0.004500 ||
@@ -74,21 +78,19 @@ class Home extends Component {
       window.updateLocation(car.id, latlng_old[0], latlng_old[1], (car) => {
         this.setState({
           pinPosition: [latlng_old[0], latlng_old[1]],
-          center: null
         });
         this.updateCars();
       });
 
     } else {
       this.setState({
+        selectedCar: -1,
+        pinPosition: [null, null],
+        center: null,
         onDrag: undefined
       });
       window.updateLocation(car.id, lat, lng, (car) => {
         window.$('#aviso-posicionado-modal').modal('toggle');
-        this.setState({
-          selectedCar: -1,
-          pinPosition: [null, null]
-        });
         this.updateCars();
       });
     }
@@ -149,21 +151,21 @@ class Home extends Component {
                             center: [lat, lng]
                           });
                         }, (e) => {
-                        switch (e.code) {
-                              case e.PERMISSION_DENIED:
-                                alert("Permissão de acesso à localização negado");
-                                break;
-                              case e.POSITION_UNAVAILABLE:
-                                alert("Acesso à localização indisponível.")
-                                break;
-                              case e.TIMEOUT:
-                                alert("Não foi possível obter a localização: TIMEOUT")
-                                break;
-                              case e.UNKNOWN_ERROR:
-                                alert("Não foi possível obter a localização")
-                                break;
-                            }
+                          switch (e.code) {
+                            case e.PERMISSION_DENIED:
+                              alert("Permissão de acesso à localização negado");
+                              break;
+                            case e.POSITION_UNAVAILABLE:
+                              alert("Acesso à localização indisponível.")
+                              break;
+                            case e.TIMEOUT:
+                              alert("Não foi possível obter a localização: TIMEOUT")
+                              break;
+                            case e.UNKNOWN_ERROR:
+                              alert("Não foi possível obter a localização")
+                              break;
                           }
+                        }
                         );
                       }
                     }}>

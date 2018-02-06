@@ -71,8 +71,16 @@ export class Login extends Component {
                         }, function (error) {
                         });
                     }
-                    else
-                        props.history.push("/");
+                    else {
+                        fetch('https://1-dot-dextraparking.appspot.com/api/cars', {
+                            method: 'GET',
+                            headers: {
+                                'Authorization': 'Bearer ' + login.idToken
+                            }
+                        }).then(c => {
+                            props.history.push("/");
+                        });
+                    }
                 });
 
             }
