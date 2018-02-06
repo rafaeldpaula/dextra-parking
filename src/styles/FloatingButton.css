@@ -32,6 +32,10 @@ btn{
   top: 5%;
 }
 
+.right-floating-button:focus{
+  outline: none;
+} 
+
 .right-floating-button {
   font-size: 200%;
   color: #353835;
