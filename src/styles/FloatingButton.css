@@ -37,6 +37,7 @@ btn{
   color: #353835;
   background-color: transparent;
   border: none;
+  outline: none;
 
   position: fixed;
 
