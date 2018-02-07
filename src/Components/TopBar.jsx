@@ -4,6 +4,7 @@ import React, {
 import { withRouter } from 'react-router'
 
 import '../styles/TopBar.css';
+import '../styles/SidebarMenu.css';
 import { withReducer } from 'recompose';
 
 class TopBar extends Component {
@@ -26,15 +27,35 @@ class TopBar extends Component {
     //   window.location.reload();
   }
 
+  openSidebar() {
+    window.$("#mySidenav").css("left", "0px");
+  }
+
+  closeSidebar() {
+    window.$("#mySidenav").css("left", "-300px");
+  }
+
   render() {
 
     return (
       <div>
         <nav className="navbar navbar-light bg-faded">
-          <img src={this.state.photo} />
-          <div className="user-name">{this.state.name}</div>
+          <img src={this.state.photo} onClick={this.openSidebar} />
+          <div className="user-name" onClick={this.openSidebar}>{this.state.name}</div>
           <div className="fas fa-search fa-1g btn search-thing" data-toggle="modal" data-target="#selecionar-modal"></div>
         </nav>
+        <div id="mySidenav" className="sidenav">
+          <img src={this.state.photo} onClick={this.openSidebar} />
+          <div className="user-name" onClick={this.openSidebar}>{this.state.name}</div>
+          <a href="javascript:void(0)" className="closebtn" onClick={this.closeSidebar}>&times;</a>
+          {/* <a href="#">ÚLTIMAS RESERVAS</a>
+          <a href="#">ADICIONAR CARRO</a>
+          <a href="#">CONFIGURAÇÕES</a> */}
+          <a href="#">
+            <i class="fas fa-sign-out-alt"></i>
+            &nbsp; LOGOUT
+          </a>
+        </div>
       </div>
     );
   }

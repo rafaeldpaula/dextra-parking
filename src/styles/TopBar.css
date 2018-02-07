@@ -31,7 +31,8 @@
 
 
 .App .navbar > * {
-    border-radius: 100%;    
+    border-radius: 100%;
+    cursor: pointer;
 }
 
 .App .navbar .user-name {
