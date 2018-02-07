@@ -49,11 +49,11 @@ class TopBar extends Component {
           <img src={this.state.photo} />
           <div className="user-name">{this.state.name}</div>
           <div className="user-email">{this.state.email}</div>
-          <a href="javascript:void(0)" className="closebtn" onClick={this.closeSidebar}>&times;</a>
+          <a className="closebtn" onClick={this.closeSidebar}>&times;</a>
           {/* <a href="#">ÚLTIMAS RESERVAS</a>
           <a href="#">ADICIONAR CARRO</a>
           <a href="#">CONFIGURAÇÕES</a> */}
-          <a href="#" onClick={signOut}>
+          <a   onClick={signOut}>
             <i className="fas fa-sign-out-alt"></i>
             &nbsp; LOGOUT
           </a>
