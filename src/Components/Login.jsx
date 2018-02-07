@@ -121,7 +121,7 @@ export class Login extends Component {
             <div className="App">
                 <header className="App-header">
                     <center>
-                        <img src="./images/app-icon.png"/>
+                        <img src="./images/logo.png"/>
                     </center>
                     <div className="App-intro">
                     <div id="customBtn" class="customGPlusSignIn" onClick={this.onclick} >

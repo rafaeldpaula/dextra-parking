@@ -12,6 +12,9 @@
 }
 
 .App-header {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 
   padding: 0em 1em;
   width:100vw;
