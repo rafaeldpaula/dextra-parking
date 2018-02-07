@@ -3,10 +3,6 @@ import React, {
 } from 'react';
 
 class NaoCadastradoModal extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className="modal fade" id="nao-cadastrado-modal" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

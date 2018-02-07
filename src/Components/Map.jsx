@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, GroundOverlay, Marker } from "react-google-maps"
 import { compose, withProps } from "recompose";
 import MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithLabel";
-import DevolverModal from './DevolverModal';
-import { DrawingManager } from 'react-google-maps';
 import dextraparkingstyle from '../dextraParkingStyle.json';
 
 const navigator = window.navigator;
@@ -64,7 +62,7 @@ class MyMapComponent extends Component {
           <MarkerWithLabel
             icon={this.carIcon()}
             key={i}
-            position={{ lat: eval(locacione[0]), lng: eval(locacione[1]) }}
+            position={{ lat: parseFloat(locacione[0]), lng: parseFloat(locacione[1]) }}
             labelAnchor={window.getAnchor()}
             labelStyle={{ backgroundColor: "white", fontSize: "15px", padding: "10px" }}>
             <div>{this.getName(this.props.cars, car.id)}</div>
@@ -77,7 +75,7 @@ class MyMapComponent extends Component {
       return (
         <MarkerWithLabel
           icon={this.carIcon()}
-          position={{ lat: eval(locacione[0]), lng: eval(locacione[1]) }}
+          position={{ lat: parseFloat(locacione[0]), lng: parseFloat(locacione[1]) }}
           draggable={this.props.onDrag !== undefined}
           onDragEnd={this.props.onDrag}
           labelAnchor={window.getAnchor()}
@@ -102,14 +100,6 @@ class MyMapComponent extends Component {
     }
   }
 
-  drawOverlay() {
-    <GroundOverlay
-      defaultUrl="https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg"
-      defaultBounds={window.overlayBounds()}
-      defaultOpacity={.5}>
-    </GroundOverlay>
-  }
-
   yourLocationPin() {
     return <Marker position={{ lat: this.state.you.lat, lng: this.state.you.lng }}
       icon={this.locationIcon()} />;
@@ -122,7 +112,7 @@ class MyMapComponent extends Component {
 
     var zoom = 18;
 
-    if (this.props.selectedCar != -1) {
+    if (this.props.selectedCar !== -1) {
       const i = this.props.selectedCar;
       const car = this.props.cars[i];
       const location = car.location.split(",");
@@ -138,7 +128,6 @@ class MyMapComponent extends Component {
       zoom = 19;
     }
 
-    var self = this;
     var ret = compose(
       withProps({
         googleMapURL:

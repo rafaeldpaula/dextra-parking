@@ -3,10 +3,6 @@ import React, {
 } from 'react';
 
 class AvisoPosicionadoModal extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className="modal fade" id="aviso-posicionado-modal" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

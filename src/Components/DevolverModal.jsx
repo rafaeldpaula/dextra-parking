@@ -1,7 +1,6 @@
 import React, {
     Component
 } from 'react';
-import FontAwesome from 'react-fontawesome';
 
 class DevolverModal extends Component {
     constructor(props) {
@@ -14,7 +13,7 @@ class DevolverModal extends Component {
     }
 
     handleConfirmClick() {
-        if (this.state.selectedCar != -1){
+        if (this.state.selectedCar !== -1){
             this.props.onSelection(
             this.props.items[this.state.selectedCar],
             this.state.selectedCar);

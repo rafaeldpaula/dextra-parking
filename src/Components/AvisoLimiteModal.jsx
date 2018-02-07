@@ -3,10 +3,6 @@ import React, {
 } from 'react';
 
 class AvisoLimiteModal extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className="modal fade" id="aviso-limite-modal" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

@@ -1,7 +1,6 @@
 import React, {
     Component
 } from 'react';
-import FontAwesome from 'react-fontawesome';
 
 class SelecionarModal extends Component {
     constructor(props) {

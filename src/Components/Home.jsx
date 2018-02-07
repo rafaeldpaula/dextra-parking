@@ -59,6 +59,9 @@ class Home extends Component {
   handleDrag(e) {
     this.state.pinPosition[0] = e.latLng.lat();
     this.state.pinPosition[1] = e.latLng.lng();
+    /*this.setState({
+      pinPosition: [e.latLng.lat(), e.latLng.lng()],
+    });*/
   }
 
   sendLocationUpdate() {

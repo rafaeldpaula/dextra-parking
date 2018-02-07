@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import { FirebaseAuth } from 'react-firebaseui';
-import { Route, Redirect } from 'react-router-dom'
 import '../styles/App.css';
 import '../styles/Login.css';
 
@@ -12,14 +10,6 @@ var config = {
     projectId: "dextraparking",
     storageBucket: "dextraparking.appspot.com",
     messagingSenderId: "799965557830"
-};
-
-const uiConfig = {
-    // signInFlow: "popup",
-    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
-    callbacks: {
-        signInSuccess: () => false
-    }
 };
 
 var provider = new firebase.auth.GoogleAuthProvider();
@@ -57,7 +47,7 @@ export class Login extends Component {
             firebase.auth().getRedirectResult().then(function (result) {
                 if (result.credential) {
                     // This gives you a Google Access Token. You can use it to access the Google API.
-                    var token = result.credential.accessToken;
+                    //var token = result.credential.accessToken;
                     // ...
 
                     // The signed-in user info.
@@ -70,7 +60,7 @@ export class Login extends Component {
                         loggedIn = true;
                         window.login = user;
 
-                        if (user.email.split("@")[1] != "dextra-sw.com") {
+                        if (user.email.split("@")[1] !== "dextra-sw.com") {
                             loggedIn = false
                             alert("Só dextra aqui, otário");
                             firebase.auth().signOut().then(function () {
@@ -124,8 +114,8 @@ export class Login extends Component {
                         <img src="./images/logo.png"/>
                     </center>
                     <div className="App-intro">
-                    <div id="customBtn" class="customGPlusSignIn" onClick={this.onclick} >
-                        <span class="icon">
+                    <div id="customBtn" className="customGPlusSignIn" onClick={this.onclick} >
+                        <span className="icon">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 48 48">
                                 <g>
                                     <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
@@ -136,7 +126,7 @@ export class Login extends Component {
                                 </g>
                             </svg>
                         </span>
-                        <span class="buttonText">Entrar com Google</span>
+                        <span className="buttonText">Entrar com Google</span>
                     </div>
                         <input type="button" value='Login' onClick={this.onclick} />
                     </div>

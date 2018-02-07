@@ -1,11 +1,9 @@
 import React, {
   Component
 } from 'react';
-import { withRouter } from 'react-router'
 
 import '../styles/TopBar.css';
 import '../styles/SidebarMenu.css';
-import { withReducer } from 'recompose';
 import {signOut} from './Login.jsx';
 
 class TopBar extends Component {
