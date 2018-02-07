@@ -120,7 +120,7 @@ export class Login extends Component {
                         Dextra Parking!
                     </h1>
                     <div className="App-intro">
-                        <input type="button" value='TEY' onClick={this.onclick} />
+                        <input type="button" value='Login' onClick={this.onclick} />
                     </div>
                 </header>
             </div>
