@@ -14,12 +14,14 @@ class DevolverModal extends Component {
     }
 
     handleConfirmClick() {
-        this.props.onSelection(
+        if (this.state.selectedCar != -1){
+            this.props.onSelection(
             this.props.items[this.state.selectedCar],
             this.state.selectedCar);
 
-        this.setState({ selectedCar: -1 });
-        window.$('#devolver-modal').modal('toggle');
+            this.setState({ selectedCar: -1 });
+            window.$('#devolver-modal').modal('toggle');
+        }        
     }
 
     render() {
@@ -49,8 +51,9 @@ class DevolverModal extends Component {
                                         )()
                                     } />
                                     <div>
-                                        <div>{car.name}</div>
-                                        <div className="car-name">{car.email}</div>
+                                        <div className="car-name">{car.name}</div>
+                                        <div className="car-info">Modelo</div>
+                                        <div className="car-info">Placa</div>
                                     </div>
                                 </button>
                             })}

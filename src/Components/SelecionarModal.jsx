@@ -49,8 +49,9 @@ class SelecionarModal extends Component {
                                         )()
                                     } />
                                     <div>
-                                        <div>{car.name}</div>
-                                        <div className="car-name">{car.email}</div>
+                                        <div className="car-name">{car.name}</div>
+                                        <div className="car-info">Modelo</div>
+                                        <div className="car-info">Placa</div>
                                     </div>
                                 </button>
                             })}
