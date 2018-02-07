@@ -30,19 +30,32 @@
 
 
 .App .navbar > * {
-    border-radius: 100%;
     cursor: pointer;
 }
 
-.App .navbar .user-name {
-    margin-left: 10px;
-    /* background-color: rgb(1, 145, 202); */
-}
-
-.App .navbar img {
+.App .navbar .user-image {
+    border-radius: 100%;
     width: 48px;
     height: 48px;    
     align-self: flex-start;
+}
+
+@media screen and (max-width: 800px) {
+    .App .navbar .logo {
+        display: none;
+    }
+}
+
+.App .navbar .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50px;
+}
+
+
+.App .navbar .user-name {
+    margin-left: 10px;
     /* background-color: rgb(1, 145, 202); */
 }
 
