@@ -53,5 +53,16 @@
     width: 100%;
     text-align: center;
     margin-top: 24px;
+}
+
+.sidenav .user-email {
+    font-weight: 300;
+    font-size: 13px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    width: 100%;
+    text-align: center;
+    margin-top: 14px;
     margin-bottom: 30px;
 }
