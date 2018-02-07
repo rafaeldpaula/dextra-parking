@@ -52,8 +52,8 @@ class DevolverModal extends Component {
                                     } />
                                     <div>
                                         <div className="car-name">{car.name}</div>
-                                        <div className="car-info">Modelo</div>
-                                        <div className="car-info">Placa</div>
+                                        <div className="car-info">{car.model}</div>
+                                        <div className="car-info">{car.plate}</div>
                                     </div>
                                 </button>
                             })}

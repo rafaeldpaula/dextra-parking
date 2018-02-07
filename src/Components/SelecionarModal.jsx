@@ -50,8 +50,8 @@ class SelecionarModal extends Component {
                                     } />
                                     <div>
                                         <div className="car-name">{car.name}</div>
-                                        <div className="car-info">Modelo</div>
-                                        <div className="car-info">Placa</div>
+                                        <div className="car-info">{car.model}</div>
+                                        <div className="car-info">{car.plate}</div>
                                     </div>
                                 </button>
                             })}
@@ -60,7 +60,7 @@ class SelecionarModal extends Component {
                         <div className="modal-footer">
                             <button type="button" className="btn btn-primary"
                                 onClick={() => this.handleConfirmClick()}>
-                                Confirmar
+                                CONFIRMAR
                             </button>
                         </div>
                     </div>
