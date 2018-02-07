@@ -1,0 +1,68 @@
+.sidenav {
+    height: 100%;
+    width: 300px;
+    position: fixed;    
+    top: 0;
+    left: -300px;
+    background-color: rgb(247, 247, 247);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #838383;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav .fa-sign-out-alt {
+    transform: rotateY(180deg);
+}
+
+.sidenav a:hover {
+    color: #333333;
+    font-weight: 300;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    font-size: 36px;
+    
+}
+
+.sidenav img {
+
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    width: 150px;
+    height: 150px;  
+    border-radius: 100%;
+}
+
+.sidenav .user-name {
+
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    width: 100%;
+    text-align: center;
+    margin-top: 24px;
+}
+
+.sidenav .user-email {
+    font-weight: 300;
+    font-size: 13px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    width: 100%;
+    text-align: center;
+    margin-top: 14px;
+    margin-bottom: 30px;
+}

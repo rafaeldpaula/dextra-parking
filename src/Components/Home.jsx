@@ -7,7 +7,6 @@ import AvisoPosicionadoModal from './AvisoPosicionadoModal.jsx';
 import AvisoLimiteModal from './AvisoLimiteModal';
 import CadastradoModal from './CadastradoModal.jsx';
 import NaoCadastradoModal from './NaoCadastradoModal.jsx';
-import {signOut} from './Login.jsx';
 
 import TopBar from './TopBar.jsx';
 
@@ -53,9 +52,6 @@ class Home extends Component {
       cars => this.setState({ cars: cars }));
   }
 
-  signOut() {
-    window.signOut();
-  }
   componentDidMount() {
     this.updateCars();
   }
@@ -125,10 +121,6 @@ class Home extends Component {
                     className="btn floating-button bottom-floating-button"
                     data-toggle="modal" data-target="#devolver-modal">
                     DEVOLVER CARRO
-                  </button>
-                  <button type="button"
-                    className="right-floating-button" onClick={signOut}>
-                    <i className="fa fa-plus-circle"></i>
                   </button>
                 </div>
               )
