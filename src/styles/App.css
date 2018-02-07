@@ -12,20 +12,18 @@
 }
 
 .App-header {
-  position: absolute;
 
   padding: 0em 1em;
-  width:44vw;
+  width:100vw;
   height: 170px;
-
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-
 }
 
+.App-header img {
+  width: 500px;
+  margin-bottom: 30px;
+}
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 500px) {
   .App div h1 {
     font-size: 50px;
   }
@@ -38,8 +36,20 @@
   .App-title {
     padding: 0.1em 0em;    
   }
+
+  .App-header img { 
+    width: 200px;
+    margin-bottom: 30px;
+  }
 }
 
 .none{
   display: none;
+}
+
+.App-intro input{
+  font-size: 24px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
