@@ -31,6 +31,10 @@ class Home extends Component {
     };
   }
 
+  componentWillMount() {
+    window.$(".modal-backdrop").remove();
+  }
+
   showCadastrado() {
     //window.$('#cadastrado-modal').modal('toggle');
     console.log('cadastrado');
