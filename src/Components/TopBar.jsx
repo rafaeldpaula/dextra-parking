@@ -41,7 +41,8 @@ class TopBar extends Component {
     return (
       <div>
         <nav className="navbar navbar-light bg-faded">
-          <img src={this.state.photo} onClick={this.openSidebar} />
+          <img className="user-image" src={this.state.photo} onClick={this.openSidebar} />
+          <img className="logo" src="./images/logo.png" />
           <div className="user-name" onClick={this.openSidebar}>{this.state.name}</div>
           <div className="fas fa-search fa-1g btn search-thing" data-toggle="modal" data-target="#selecionar-modal"></div>
         </nav>
@@ -53,7 +54,7 @@ class TopBar extends Component {
           {/* <a href="#">ÚLTIMAS RESERVAS</a>
           <a href="#">ADICIONAR CARRO</a>
           <a href="#">CONFIGURAÇÕES</a> */}
-          <a   onClick={signOut}>
+          <a href="" onClick={signOut}>
             <i className="fas fa-sign-out-alt"></i>
             &nbsp; LOGOUT
           </a>
