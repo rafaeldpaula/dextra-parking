@@ -6,7 +6,7 @@ import FontAwesome from 'react-fontawesome';
 class DevolverModal extends Component {
     constructor(props) {
         super(props);
-        this.state = { selectedCar: 0 };
+        this.state = { selectedCar: -1 };
     }
 
     handleCarClick(i) {
@@ -18,6 +18,7 @@ class DevolverModal extends Component {
             this.props.items[this.state.selectedCar],
             this.state.selectedCar);
 
+        this.setState({ selectedCar: -1 });
         window.$('#devolver-modal').modal('toggle');
     }
 
