@@ -9,7 +9,11 @@
     text-align: left;
 }
 
-.modal-body > button > .car-name {
+.modal-body > button > div > .car-name {
+    font-weight: bold;
+}
+
+.modal-body > button > .car-info {
     margin-top: 2px;
 }
 
