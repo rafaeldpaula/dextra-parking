@@ -8,8 +8,8 @@
   "display": "standalone",
   "icons": [
     {
-      "src": "./images/icon.jpg",
-      "sizes": "4500x4500"
+      "src": "./images/app-icon.png",
+      "sizes": "1077x1077"
       // "type": "image/webp"
     }
   ]

@@ -115,10 +115,9 @@ export class Login extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <h1 className="App-title"
-                        style={{ textAlign: "center" }}>
-                        Dextra Parking!
-                    </h1>
+                    <center>
+                        <img src="./images/app-icon.png"/>
+                    </center>
                     <div className="App-intro">
                         <input type="button" value='Login' onClick={this.onclick} />
                     </div>
