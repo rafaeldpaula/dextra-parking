@@ -120,7 +120,7 @@ export class Login extends Component {
             <div className="App">
                 <header className="App-header">
                     <center>
-                        <img src="./images/app-icon.png"/>
+                        <img src="./images/logo.png"/>
                     </center>
                     <div className="App-intro">
                         <input type="button" value='Login' onClick={this.onclick} />
