@@ -23,6 +23,9 @@ const uiConfig = {
 
 var provider = new firebase.auth.GoogleAuthProvider();
 provider.addScope('https://www.googleapis.com/auth/calendar.readonly');
+provider.setCustomParameters({
+    prompt: 'select_account'
+});
 
 firebase.initializeApp(config);
 
@@ -58,7 +61,7 @@ export class Login extends Component {
 
                     // The signed-in user info.
                     var user = result.user;
-
+                    
                     user.getIdToken().then(idToken => {
                         console.log('Logged in!', user);
                         localStorage.setItem('login_data', JSON.stringify(user));
@@ -77,14 +80,15 @@ export class Login extends Component {
                             });
                         }
                         else {
-                            fetch('https://1-dot-dextraparking.appspot.com/api/cars', {
+                            props.history.push("/");
+                            /*fetch('https://1-dot-dextraparking.appspot.com/api/cars', {
                                 method: 'GET',
                                 headers: {
                                     'Authorization': 'Bearer ' + user.idToken
                                 }
                             }).then(c => {
                                 props.history.push("/");
-                            });
+                            });*/
                         }
                     });
 
