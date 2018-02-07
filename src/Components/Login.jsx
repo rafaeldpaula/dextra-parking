@@ -33,12 +33,12 @@ export function isLoggedIn() {
 }
 
 export function signOut() {
-    firebase.auth().signOut().then(function() {
-    loggedIn = false;
-    localStorage.removeItem('login_data');
-    window.location.reload();
-    }).catch(function(error) {
-      // An error happened.
+    firebase.auth().signOut().then(function () {
+        loggedIn = false;
+        localStorage.removeItem('login_data');
+        window.location.reload();
+    }).catch(function (error) {
+        // An error happened.
     });
 }
 
@@ -47,64 +47,64 @@ export class Login extends Component {
         super(props);
         this.state = {};
 
-        firebase.auth().getRedirectResult().then(function (result) {
-            if (result.credential) {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                var token = result.credential.accessToken;
+
+
+        if (window.login === null) {
+            firebase.auth().getRedirectResult().then(function (result) {
+                if (result.credential) {
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    var token = result.credential.accessToken;
+                    // ...
+
+                    // The signed-in user info.
+                    var user = result.user;
+
+                    user.getIdToken().then(idToken => {
+                        console.log('Logged in!', user);
+                        localStorage.setItem('login_data', JSON.stringify(user));
+
+                        loggedIn = true;
+                        window.login = user;
+
+                        if (user.email.split("@")[1] != "dextra-sw.com") {
+                            loggedIn = false
+                            alert("Só dextra aqui, otário");
+                            firebase.auth().signOut().then(function () {
+                                alert("yeah");
+                                window.login = null;
+                                localStorage.removeItem('login_data');
+                            }, function (error) {
+                            });
+                        }
+                        else {
+                            fetch('https://1-dot-dextraparking.appspot.com/api/cars', {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': 'Bearer ' + user.idToken
+                                }
+                            }).then(c => {
+                                props.history.push("/");
+                            });
+                        }
+                    });
+
+                }
+
+            }).catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
                 // ...
-
-                // The signed-in user info.
-                var user = result.user;
-
-                const email = user.email;
-                const name = user.displayName || email;
-                const photoURL = user.photoURL;
-                const access_token = user.access_token;
-
-                // console.log(user);
-
-                user.getIdToken().then(idToken => {
-                    const login = { email, name, idToken, photoURL };
-                    console.log('Logged in!', login);
-                    localStorage.setItem('login_data', JSON.stringify(login));
-
-                    loggedIn = true;
-                    window.login = login;
-
-                    if (email.split("@")[1] != "dextra-sw.com") {
-                        loggedIn = false
-                        alert("Só dextra aqui, otário");
-                        firebase.auth().signOut().then(function () {
-                            alert("yeah");
-                            window.login = null;
-                            localStorage.removeItem('login_data');
-                        }, function (error) {
-                        });
-                    }
-                    else {
-                        fetch('https://1-dot-dextraparking.appspot.com/api/cars', {
-                            method: 'GET',
-                            headers: {
-                                'Authorization': 'Bearer ' + login.idToken
-                            }
-                        }).then(c => {
-                            props.history.push("/");
-                        });
-                    }
-                });
-
-            }
-
-        }).catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
-        });
+            });
+        }
+        else {
+            loggedIn = true;
+            props.history.push("/");
+        }
     }
 
     onclick() {

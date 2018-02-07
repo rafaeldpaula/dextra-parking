@@ -19,7 +19,7 @@ class TopBar extends Component {
   componentDidMount() {
     if (window.login != null)
       this.setState({
-        name: window.login.name,
+        name: window.login.displayName || window.login.email,
         photo: window.login.photoURL
       });
     // else
