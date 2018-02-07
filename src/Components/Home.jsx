@@ -7,6 +7,7 @@ import AvisoPosicionadoModal from './AvisoPosicionadoModal.jsx';
 import AvisoLimiteModal from './AvisoLimiteModal';
 import CadastradoModal from './CadastradoModal.jsx';
 import NaoCadastradoModal from './NaoCadastradoModal.jsx';
+import {signOut} from './Login.jsx';
 
 import TopBar from './TopBar.jsx';
 
@@ -122,8 +123,7 @@ class Home extends Component {
                     DEVOLVER CARRO
                   </button>
                   <button type="button"
-                    className="right-floating-button"
-                    data-toggle="modal" data-target="#cadastrar-modal">
+                    className="right-floating-button" onClick={signOut}>
                     <i className="fa fa-plus-circle"></i>
                   </button>
                 </div>
