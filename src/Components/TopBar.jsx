@@ -6,6 +6,7 @@ import { withRouter } from 'react-router'
 import '../styles/TopBar.css';
 import '../styles/SidebarMenu.css';
 import { withReducer } from 'recompose';
+import {signOut} from './Login.jsx';
 
 class TopBar extends Component {
 
@@ -51,7 +52,7 @@ class TopBar extends Component {
           {/* <a href="#">ÚLTIMAS RESERVAS</a>
           <a href="#">ADICIONAR CARRO</a>
           <a href="#">CONFIGURAÇÕES</a> */}
-          <a href="#">
+          <a href="#" onClick={signOut}>
             <i class="fas fa-sign-out-alt"></i>
             &nbsp; LOGOUT
           </a>
