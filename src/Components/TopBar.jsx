@@ -56,7 +56,7 @@ class TopBar extends Component {
           <a href="#">ADICIONAR CARRO</a>
           <a href="#">CONFIGURAÇÕES</a> */}
           <a href="#" onClick={signOut}>
-            <i class="fas fa-sign-out-alt"></i>
+            <i className="fas fa-sign-out-alt"></i>
             &nbsp; LOGOUT
           </a>
         </div>
