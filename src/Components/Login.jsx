@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import { FirebaseAuth } from 'react-firebaseui';
 import { Route, Redirect } from 'react-router-dom'
 import '../styles/App.css';
+import { getEvents } from './gcal';
 
 var config = {
     apiKey: "AIzaSyBjP3oziR_ztTBkfgQFvXLBnp9w6n96mjE",
@@ -47,8 +48,6 @@ export class Login extends Component {
         super(props);
         this.state = {};
 
-
-
         if (window.login === null) {
             firebase.auth().getRedirectResult().then(function (result) {
                 if (result.credential) {
@@ -79,9 +78,9 @@ export class Login extends Component {
                         else {
                             fetch('https://1-dot-dextraparking.appspot.com/api/cars', {
                                 method: 'GET',
-                                headers: {
-                                    'Authorization': 'Bearer ' + user.idToken
-                                }
+                                //headers: {
+                               //     'Authorization': 'Bearer ' + user.idToken
+                               // }
                             }).then(c => {
                                 props.history.push("/");
                             });

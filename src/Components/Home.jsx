@@ -16,6 +16,13 @@ import '../styles/Modal.css';
 
 import yawp from 'yawp';
 
+import { getEvents } from './gcal';
+
+import moment from 'moment';
+import BigCalendar from 'react-big-calendar';
+// a localizer for BigCalendar
+BigCalendar.momentLocalizer(moment);
+
 class Home extends Component {
 
   static navigationOptions = { header: null }
@@ -27,7 +34,8 @@ class Home extends Component {
       selectedCar: -1,
       onDrag: undefined,
       pinPosition: [null, null],
-      center: null
+      center: null,
+      events: []
     };
   }
 
@@ -57,7 +65,10 @@ class Home extends Component {
     window.signOut();
   }
   componentDidMount() {
-    this.updateCars();
+    this.updateCars(); 
+    getEvents((events) => {
+      this.setState({events})
+    }, );   
   }
 
   handleDrag(e) {
@@ -193,10 +204,9 @@ class Home extends Component {
         <CadastrarModal items={this.state.cars} updateCars={() => this.updateCars()} showCadastrado={() => this.showCadastrado()}
           showNaoCadastrado={() => this.showNaoCadastrado()} />
 
-        <button id="authorize-button" className="none">Authorize</button>
-        <button id="signout-button" className="none">Sign Out</button>
-
-
+        <div className="eventos"></div>
+        {//console.log(this.state.events)
+        }
         <AvisoPosicionadoModal />
         <AvisoLimiteModal />
         <CadastradoModal />
