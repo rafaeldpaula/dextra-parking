@@ -62,9 +62,8 @@ export class Login extends Component {
 
                         if (user.email.split("@")[1] !== "dextra-sw.com") {
                             loggedIn = false
-                            alert("Só dextra aqui, otário");
+                            alert("Use email @dextra-sw");
                             firebase.auth().signOut().then(function () {
-                                alert("yeah");
                                 window.login = null;
                                 localStorage.removeItem('login_data');
                             }, function (error) {
