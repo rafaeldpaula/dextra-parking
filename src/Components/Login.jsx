@@ -54,7 +54,6 @@ export class Login extends Component {
                     var user = result.user;
                     
                     user.getIdToken().then(idToken => {
-                        console.log('Logged in!', user);
                         localStorage.setItem('login_data', JSON.stringify(user));
 
                         loggedIn = true;

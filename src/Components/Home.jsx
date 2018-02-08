@@ -36,13 +36,11 @@ class Home extends Component {
 
   showCadastrado() {
     //window.$('#cadastrado-modal').modal('toggle');
-    console.log('cadastrado');
     window.$('#cadastrado-modal').modal('toggle');
   }
 
   showNaoCadastrado() {
     //window.$('#nao-cadastrado-modal').modal('toggle');
-    console.log('nao cadastrado');
     window.$('#nao-cadastrado-modal').modal('toggle');
   }
 
@@ -69,10 +67,6 @@ class Home extends Component {
     var lng = this.state.pinPosition[1];
     const car = this.state.cars[this.state.selectedCar];
     const latlng_old = car.location.split(",");
-
-    console.log(car);
-    console.log(lat);
-    console.log(lng);
 
     if (lat > -22.814470 + 0.004500 ||
       lat < -22.814470 - 0.004500 ||
