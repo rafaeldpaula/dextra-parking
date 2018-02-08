@@ -72,7 +72,7 @@ export class Login extends Component {
                         }
                         else {
                             props.history.push("/");
-                            /*fetch('https://1-dot-dextraparking.appspot.com/api/cars', {
+                            /*fetch('https://dextraparking.appspot.com/api/cars', {
                                 method: 'GET',
                                 headers: {
                                     'Authorization': 'Bearer ' + user.idToken
