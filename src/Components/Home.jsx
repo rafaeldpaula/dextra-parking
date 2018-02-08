@@ -139,37 +139,6 @@ class Home extends Component {
                     onClick={() => this.sendLocationUpdate()}>
                     SALVAR
                   </button>
-                  {/* <button type="button"
-                    className="location-button"
-                    onClick={() => {
-                      if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(pos => {
-                          const lat = pos.coords.latitude;
-                          const lng = pos.coords.longitude;
-                          this.setState({
-                            center: [lat, lng]
-                          });
-                        }, (e) => {
-                          switch (e.code) {
-                            case e.PERMISSION_DENIED:
-                              alert("Permissão de acesso à localização negado");
-                              break;
-                            case e.POSITION_UNAVAILABLE:
-                              alert("Acesso à localização indisponível.")
-                              break;
-                            case e.TIMEOUT:
-                              alert("Não foi possível obter a localização: TIMEOUT")
-                              break;
-                            case e.UNKNOWN_ERROR:
-                              alert("Não foi possível obter a localização")
-                              break;
-                          }
-                        }
-                        );
-                      }
-                    }}>
-                    <i className="fas fa-crosshairs"></i>
-                  </button>*/}
                 </div>
               )
           })()
