@@ -15,7 +15,8 @@ var config = {
 var provider = new firebase.auth.GoogleAuthProvider();
 provider.addScope('https://www.googleapis.com/auth/calendar.readonly');
 provider.setCustomParameters({
-    prompt: 'select_account'
+    prompt: 'select_account',
+    hd: "dextra-sw.com"
 });
 
 firebase.initializeApp(config);
@@ -52,35 +53,15 @@ export class Login extends Component {
 
                     // The signed-in user info.
                     var user = result.user;
-                    
+
                     user.getIdToken().then(idToken => {
                         localStorage.setItem('login_data', JSON.stringify(user));
 
                         loggedIn = true;
                         window.login = user;
 
-                        if (user.email.split("@")[1] !== "dextra-sw.com") {
-                            loggedIn = false
-                            alert("Use email @dextra-sw");
-                            firebase.auth().signOut().then(function () {
-                                window.login = null;
-                                localStorage.removeItem('login_data');
-                            }, function (error) {
-                            });
-                        }
-                        else {
-                            props.history.push("/");
-                            /*fetch('https://dextraparking.appspot.com/api/cars', {
-                                method: 'GET',
-                                headers: {
-                                    'Authorization': 'Bearer ' + user.idToken
-                                }
-                            }).then(c => {
-                                props.history.push("/");
-                            });*/
-                        }
+                        props.history.push("/");
                     });
-
                 }
 
             }).catch(function (error) {
@@ -102,11 +83,11 @@ export class Login extends Component {
             <div className="App">
                 <header className="App-header">
                     <center>
-                        <img src="./images/logo.png"/>
+                        <img src="./images/logo.png" />
                     </center>
 
-                    <img className="signin" src="./images/signin.png" onClick={this.onclick}/>
-                    
+                    <img className="signin" src="./images/signin.png" onClick={this.onclick} />
+
                 </header>
             </div>
         );
