@@ -1,4 +1,4 @@
-# Dextra Parking
+# Dextra
 
 ![Dextra Parking](./public/images/logo.png)
 
