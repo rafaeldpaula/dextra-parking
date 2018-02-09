@@ -11,19 +11,25 @@ var config = {
     databaseURL: "https://dextraparking.firebaseio.com",
     projectId: "dextraparking",
     storageBucket: "dextraparking.appspot.com",
-    messagingSenderId: "799965557830"
+    messagingSenderId: "799965557830",
+
+    clientId: "799965557830-ted83n2lutr3uagsl89tc3npv4vkdrm5.apps.googleusercontent.com",
+    scopes: "https://www.googleapis.com/auth/calendar.readonly",
+    discoveryDocs: "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"
 };
 
 const uiConfig = {
     // signInFlow: "popup",
-    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+    signInOptions: [{
+        provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        scopes: config.scopes
+    }],
     callbacks: {
         signInSuccess: () => false
     }
 };
 
 var provider = new firebase.auth.GoogleAuthProvider();
-provider.addScope('https://www.googleapis.com/auth/calendar.readonly');
 
 firebase.initializeApp(config);
 
@@ -76,6 +82,31 @@ export class Login extends Component {
                             });
                         }
                         else {
+                            firebase.auth().onAuthStateChanged(function(user){
+                                console.log(user);
+                                if (user){
+                                    var script = document.createElement("script");
+                                    script.type = "text/javascript";
+                                    script.src = "https://apis.google.com/js/api.js";
+                                    script.onload = function(e){
+                                        gapi.client.init({
+                                            apiKey: config.apiKey,
+                                            clientId: config.clientId,
+                                            discoveryDocs: config.discoveryDocs,
+                                            scope: config.scopes
+                                        }).then(function() {
+                                            if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+                                                getEvents((events) => {
+                                                    this.setState({events})
+                                                  }, );  
+                                            } else {
+                                                firebase.auth().signOut();
+                                            }
+                                        });
+                                    };
+                                    document.getElementsByTagName("head")[0].appendChild(script);
+                                }
+                            });
                             fetch('https://1-dot-dextraparking.appspot.com/api/cars', {
                                 method: 'GET',
                                 //headers: {
