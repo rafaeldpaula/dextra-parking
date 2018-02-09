@@ -70,14 +70,14 @@ export class Login extends Component {
                         }
                         else {
                             props.history.push("/");
-                            /*fetch('https://dextraparking.appspot.com/api/cars', {
+                            fetch('http://localhost:8080/api/cars', {
                                 method: 'GET',
                                 headers: {
-                                    'Authorization': 'Bearer ' + user.idToken
+                                    'Authorization': 'Bearer ' + window.login.pa
                                 }
                             }).then(c => {
                                 props.history.push("/");
-                            });*/
+                            });
                         }
                     });
 

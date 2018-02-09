@@ -46,10 +46,18 @@
       }
 
       yawp.config(function (c) {
-        c.baseUrl('https://1-dot-dextraparking.appspot.com/api');
+        c.baseUrl('http://localhost:8080/api');
       });
 
       function updateLocation(carId, lat, long, then) {
+        fetch('http://localhost:8080/api/cars', {
+                                method: 'PATCH',
+                                headers: {
+                                    'Authorization': 'Bearer ' + window.login.pa
+                                }
+                            }).then(c => {
+                                props.history.push("/");
+                            });
         yawp(carId).patch({location: lat+','+long}).then(then);
       }
 
