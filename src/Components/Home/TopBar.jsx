@@ -2,9 +2,9 @@ import React, {
   Component
 } from 'react';
 
-import '../styles/TopBar.css';
-import '../styles/SidebarMenu.css';
-import {signOut} from './Login.jsx';
+import '../../styles/TopBar.css';
+import '../../styles/SidebarMenu.css';
+import {signOut} from '../Login/Login.jsx';
 
 class TopBar extends Component {
 

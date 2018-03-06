@@ -9,8 +9,8 @@ import {
 } from 'react-router-dom'
 
 import './styles/App.css';
-import Home from './Components/Home.jsx';
-import { isLoggedIn, Login } from './Components/Login';
+import Home from './Components/Home/Home.jsx';
+import { isLoggedIn, Login } from './Components/Login/Login';
 import yawp from 'yawp';
 
 class App extends Component {

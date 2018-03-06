@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import Map from './Map.jsx';
-import DevolverModal from './DevolverModal.jsx';
-import SelecionarModal from './SelecionarModal.jsx';
-import CadastrarModal from './CadastrarModal.jsx';
-import AvisoPosicionadoModal from './AvisoPosicionadoModal.jsx';
-import AvisoLimiteModal from './AvisoLimiteModal';
-import CadastradoModal from './CadastradoModal.jsx';
-import NaoCadastradoModal from './NaoCadastradoModal.jsx';
-
+import DevolverModal from '../DevolverCarro/DevolverModal.jsx';
+import SelecionarModal from '../FiltrarCarro/SelecionarModal.jsx';
+import CadastrarModal from '../CadastrarCarro/CadastrarModal.jsx';
+import AvisoPosicionadoModal from '../DevolverCarro/AvisoPosicionadoModal.jsx';
+import AvisoLimiteModal from '../DevolverCarro/AvisoLimiteModal';
+import CadastradoModal from '../CadastrarCarro/CadastradoModal.jsx';
+import NaoCadastradoModal from '../CadastrarCarro/NaoCadastradoModal.jsx';
 import TopBar from './TopBar.jsx';
-
-import '../styles/FloatingButton.css';
-import '../styles/Modal.css';
-
+import '../../styles/Modal.css';
+import '../../styles/FloatingButton.css';
 import yawp from 'yawp';
 
 class Home extends Component {

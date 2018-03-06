@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import '../styles/App.css';
-import '../styles/Login.css';
+import '../../styles/App.css';
+import '../../styles/Login.css';
 
 var config = {
     apiKey: "AIzaSyBjP3oziR_ztTBkfgQFvXLBnp9w6n96mjE",

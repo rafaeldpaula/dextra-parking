@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, GroundOverlay, Marker } from "react-google-maps"
 import { compose, withProps } from "recompose";
 import MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithLabel";
-import dextraparkingstyle from '../dextraParkingStyle.json';
+import dextraparkingstyle from './dextraParkingStyle.json';
 
 const navigator = window.navigator;
 
