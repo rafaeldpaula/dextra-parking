@@ -83,11 +83,9 @@ export class Login extends Component {
             <div className="App">
                 <header className="App-header">
                     <center>
-                        <img src="./images/logo.png" />
+                        <img alt="Logo" src="./images/logo.png" />
                     </center>
-
-                    <img className="signin" src="./images/signin.png" onClick={this.onclick} />
-
+                    <img alt="Google Sign In" className="signin" src="./images/signin.png" onClick={this.onclick} />
                 </header>
             </div>
         );

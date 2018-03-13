@@ -41,13 +41,13 @@ class TopBar extends Component {
     return (
       <div>
         <nav className="navbar navbar-light bg-faded">
-          <img className="user-image" src={this.state.photo} onClick={this.openSidebar} />
-          <img className="logo" src="./images/logo.png" />
+          <img className="user-image" alt="Profile" src={this.state.photo} onClick={this.openSidebar} />
+          <img className="logo" alt="Logo" src="./images/logo.png" />
           <div className="user-name" onClick={this.openSidebar}>{this.state.name}</div>
           <div className="fas fa-search fa-1g btn search-thing" data-toggle="modal" data-target="#selecionar-modal"></div>
         </nav>
         <div id="mySidenav" className="sidenav">
-          <img src={this.state.photo} />
+          <img alt="Profile" src={this.state.photo} />
           <div className="user-name">{this.state.name}</div>
           <div className="user-email">{this.state.email}</div>
           <a className="closebtn" onClick={this.closeSidebar}>&times;</a>
