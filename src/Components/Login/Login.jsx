@@ -26,6 +26,7 @@ firebase.initializeApp(config);
 var loggedIn = false;
 
 export function isLoggedIn() {
+    console.log(loggedIn);
     return loggedIn;
 }
 
@@ -53,12 +54,12 @@ export class Login extends Component {
                         loggedIn = true;
                         window.login = user;
                         yawp.config(function(c) {
-                            console.log('here');
+                            console.log(user);
                             // c.baseUrl("https://dextraparking.appspot.com/api");
-                            c.baseUrl("localhost:8080/api");
-                            c.defaultFetchOptions({ headers: new Headers({
-                                Authorization: `Beaerer ${idToken}`,
-                            })});
+                            c.baseUrl("http://localhost:8080/api");
+                            c.defaultFetchOptions({ headers: {
+                                Authorization: `Beaerer ${user.login.stsTokenManager.accessToken}`,
+                            }});
                         });
 
                         props.history.push("/");
