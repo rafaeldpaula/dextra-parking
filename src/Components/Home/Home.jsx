@@ -44,7 +44,6 @@ class Home extends Component {
     window.$('#nao-cadastrado-modal').modal('toggle');
   }
 
-
   updateCars() {
     yawp('/cars').list(
       cars => this.setState({ cars: cars }));

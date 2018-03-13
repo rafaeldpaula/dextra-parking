@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import yawp from 'yawp';
+
 import '../../styles/App.css';
 import '../../styles/Login.css';
 
@@ -32,9 +34,7 @@ export function signOut() {
         loggedIn = false;
         localStorage.removeItem('login_data');
         window.location.reload();
-    }).catch(function (error) {
-        // An error happened.
-    });
+    }).catch(console.error);
 }
 
 export class Login extends Component {
@@ -42,33 +42,30 @@ export class Login extends Component {
         super(props);
         this.state = {};
 
-
-
+        console.log("herea");
         if (window.login === null) {
             firebase.auth().getRedirectResult().then(function (result) {
+                console.log(result);
                 if (result.credential) {
-                    // This gives you a Google Access Token. You can use it to access the Google API.
-                    //var token = result.credential.accessToken;
-                    // ...
-
-                    // The signed-in user info.
                     var user = result.user;
-
                     user.getIdToken().then(idToken => {
                         localStorage.setItem('login_data', JSON.stringify(user));
-
                         loggedIn = true;
                         window.login = user;
+                        yawp.config(function(c) {
+                            console.log('here');
+                            // c.baseUrl("https://dextraparking.appspot.com/api");
+                            c.baseUrl("localhost:8080/api");
+                            c.defaultFetchOptions({ headers: new Headers({
+                                Authorization: `Beaerer ${idToken}`,
+                            })});
+                        });
 
                         props.history.push("/");
                     });
                 }
-
-            }).catch(function (error) {
-                //Errors
-            });
-        }
-        else {
+            }).catch(console.error);
+        } else {
             loggedIn = true;
             props.history.push("/");
         }
