@@ -11,15 +11,8 @@ import {
 import './styles/App.css';
 import Home from './Components/Home/Home.jsx';
 import { isLoggedIn, Login } from './Components/Login/Login';
-import yawp from 'yawp';
 
 class App extends Component {
-
-  componentWillMount() {
-    yawp.config(function (c) {
-      c.baseUrl('https://dextraparking.appspot.com/api');
-    });
-  }
 
   render() {
     return (
