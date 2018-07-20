@@ -32,11 +32,9 @@
     position: absolute;
     top: 0;
     font-size: 36px;
-    
 }
 
 .sidenav img {
-
     margin-left: 50%;
     transform: translateX(-50%);
 

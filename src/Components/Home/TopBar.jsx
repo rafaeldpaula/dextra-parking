@@ -2,9 +2,11 @@ import React, {
   Component
 } from 'react';
 
+import store from '../../store.js';
 import '../../styles/TopBar.css';
 import '../../styles/SidebarMenu.css';
-import {signOut} from '../Login/Login.jsx';
+import { signOut } from '../Login/Login.jsx';
+
 
 class TopBar extends Component {
 
@@ -18,14 +20,18 @@ class TopBar extends Component {
   }
 
   componentDidMount() {
-    if (window.login != null)
+    this.ids = [];
+    this.ids.push(store.on('login', data => {
       this.setState({
-        name: window.login.displayName || window.login.email,
-        email: window.login.email,
-        photo: window.login.photoURL
+        name: data.name || data.email,
+        email: data.email,
+        photo: data.photo
       });
-    // else
-    //   window.location.reload();
+    }));
+  }
+
+  componentWillUnmount() {
+    store.clearAll(this.ids);
   }
 
   openSidebar() {
@@ -37,7 +43,6 @@ class TopBar extends Component {
   }
 
   render() {
-
     return (
       <div>
         <nav className="navbar navbar-light bg-faded">
@@ -51,9 +56,6 @@ class TopBar extends Component {
           <div className="user-name">{this.state.name}</div>
           <div className="user-email">{this.state.email}</div>
           <a className="closebtn" onClick={this.closeSidebar}>&times;</a>
-          {/* <a href="#">ÚLTIMAS RESERVAS</a>
-          <a href="#">ADICIONAR CARRO</a>
-          <a href="#">CONFIGURAÇÕES</a> */}
           <a href="" onClick={signOut}>
             <i className="fas fa-sign-out-alt"></i>
             &nbsp; LOGOUT

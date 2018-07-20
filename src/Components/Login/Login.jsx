@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import yawp from 'yawp';
 
+import store from  '../../store';
 import '../../styles/App.css';
 import '../../styles/Login.css';
 
 var config = {
-    apiKey: "AIzaSyBjP3oziR_ztTBkfgQFvXLBnp9w6n96mjE",
-    authDomain: "dextraparking.firebaseapp.com",
-    databaseURL: "https://dextraparking.firebaseio.com",
-    projectId: "dextraparking",
-    storageBucket: "dextraparking.appspot.com",
-    messagingSenderId: "799965557830"
+    apiKey: "AIzaSyC3sWq8Efvd0k6ETKBUfY1BgARIpf5igtc",
+    authDomain: "dextra-parking.firebaseapp.com",
+    databaseURL: "https://dextra-parking.firebaseio.com",
+    projectId: "dextra-parking",
+    storageBucket: "dextra-parking.appspot.com",
+    messagingSenderId: "164824251074"
 };
 
 var provider = new firebase.auth.GoogleAuthProvider();
@@ -23,57 +23,31 @@ provider.setCustomParameters({
 
 firebase.initializeApp(config);
 
-var loggedIn = false;
-
-export function isLoggedIn() {
-    console.log(loggedIn);
-    return loggedIn;
-}
-
 export function signOut() {
     firebase.auth().signOut().then(function () {
-        loggedIn = false;
         localStorage.removeItem('login_data');
         window.location.reload();
-    }).catch(console.error);
+    });
 }
 
 export class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {};
-
-        console.log("herea");
-        if (window.login === null) {
-            firebase.auth().getRedirectResult().then(function (result) {
-                console.log(result);
-                if (result.credential) {
-                    var user = result.user;
-                    user.getIdToken().then(idToken => {
-                        localStorage.setItem('login_data', JSON.stringify(user));
-                        loggedIn = true;
-                        window.login = user;
-                        yawp.config(function(c) {
-                            console.log(user);
-                            // c.baseUrl("https://dextraparking.appspot.com/api");
-                            c.baseUrl("http://localhost:8080/api");
-                            c.defaultFetchOptions({ headers: {
-                                Authorization: `Beaerer ${user.login.stsTokenManager.accessToken}`,
-                            }});
-                        });
-
-                        props.history.push("/");
-                    });
-                }
-            }).catch(console.error);
-        } else {
-            loggedIn = true;
-            props.history.push("/");
-        }
     }
 
-    onclick() {
-        firebase.auth().signInWithRedirect(provider);
+    async loginButtonClick() {
+        const result = await firebase.auth().signInWithPopup(provider);
+        const token = await result.user.getIdToken();
+        const data = {
+            token,
+            name: result.user.displayName,
+            email: result.user.email,
+            photo: result.user.photoURL,
+        };
+        localStorage.setItem('login_data', JSON.stringify(data));
+        store.emit('login', data);
+        store.emit('route', '/');
     }
 
     render() {
@@ -83,7 +57,7 @@ export class Login extends Component {
                     <center>
                         <img alt="Logo" src="./images/logo.png" />
                     </center>
-                    <img alt="Google Sign In" className="signin" src="./images/signin.png" onClick={this.onclick} />
+                    <img alt="Google Sign In" className="signin" src="./images/signin.png" onClick={this.loginButtonClick} />
                 </header>
             </div>
         );

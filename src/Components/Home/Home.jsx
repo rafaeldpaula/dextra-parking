@@ -35,12 +35,10 @@ class Home extends Component {
   }
 
   showCadastrado() {
-    //window.$('#cadastrado-modal').modal('toggle');
     window.$('#cadastrado-modal').modal('toggle');
   }
 
   showNaoCadastrado() {
-    //window.$('#nao-cadastrado-modal').modal('toggle');
     window.$('#nao-cadastrado-modal').modal('toggle');
   }
 
@@ -58,10 +56,6 @@ class Home extends Component {
     
     pinPosition.lat = e.latLng.lat();
     pinPosition.lng = e.latLng.lng();
-
-    /*this.setState({
-      pinPosition: [e.latLng.lat(), e.latLng.lng()],
-    });*/
   }
  
   boundIsExceeded(location) {
@@ -120,33 +114,33 @@ class Home extends Component {
   }
 
   renderBottomButton(){
-     if (this.checkCarBeenGiveBack())
+     if (this.checkCarBeenGiveBack()) {
         return <div>
-            <TopBar></TopBar>
-            <button type="button"
-              className="btn floating-button bottom-floating-button"
-              data-toggle="modal" data-target="#devolver-modal">
-              DEVOLVER CARRO
-            </button>
-          </div>
-      else
+          <TopBar></TopBar>
+          <button type="button"
+            className="btn floating-button bottom-floating-button"
+            data-toggle="modal" data-target="#devolver-modal">
+            DEVOLVER CARRO
+          </button>
+        </div>;
+     } else {
         return <div>
-            <button type="button"
-              className="btn floating-button top-floating-button info">
-              ARRASTE O PIN PARA DEFINIR A POSIÇÃO DO CARRO
-            </button>
-            <button type="button"
-              className="btn floating-button bottom-floating-button"
-              onClick={() => this.sendLocationUpdate()}>
-              SALVAR
-            </button>
-          </div>
-      
+          <button type="button"
+            className="btn floating-button top-floating-button info">
+            ARRASTE O PIN PARA DEFINIR A POSIÇÃO DO CARRO
+          </button>
+          <button type="button"
+            className="btn floating-button bottom-floating-button"
+            onClick={() => this.sendLocationUpdate()}>
+            SALVAR
+          </button>
+        </div>;
+     }
   }
 
   render() {
     return (
-      <div>
+      <div className="App">
         <Map cars={this.state.cars}
           selectedCar={this.state.selectedCarIndex}
           pinPosition={this.state.pinPosition}
@@ -178,12 +172,10 @@ class Home extends Component {
         <button id="authorize-button" className="none">Authorize</button>
         <button id="signout-button" className="none">Sign Out</button>
 
-
         <AvisoPosicionadoModal />
         <AvisoLimiteModal />
         <CadastradoModal />
         <NaoCadastradoModal />
-
       </div>
     );
   }

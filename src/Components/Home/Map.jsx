@@ -16,7 +16,6 @@ class MyMapComponent extends Component {
       you: { lat: 0, lng: 0 }
     };
 
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(pos => {
         this.setState({
@@ -29,8 +28,6 @@ class MyMapComponent extends Component {
       });
     }
   }
-
-
 
   getName(cars, carId) {
     var name;
@@ -83,7 +80,6 @@ class MyMapComponent extends Component {
           <div>{this.getName(this.props.cars, car.id)}</div>
         </MarkerWithLabel>);
     }
-
   }
 
   handleMapDrag() {
@@ -106,11 +102,8 @@ class MyMapComponent extends Component {
   }
 
   render(props) {
-
-    var center = this.center;
-
-
-    var zoom = 18;
+    let center = this.center;
+    let zoom = 18;
 
     if (this.props.selectedCar !== -1) {
       const i = this.props.selectedCar;
