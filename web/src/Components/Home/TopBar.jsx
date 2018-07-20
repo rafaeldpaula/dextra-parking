@@ -31,7 +31,7 @@ class TopBar extends Component {
   }
 
   componentWillUnmount() {
-    store.clearAll(this.ids);
+    store.clear(this.ids);
   }
 
   openSidebar() {
