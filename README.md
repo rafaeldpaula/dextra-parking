@@ -1,6 +1,6 @@
 # Dextra
 
-![Dextra Parking](./public/images/logo.png)
+![Dextra Parking](./web/public/images/logo.png)
 
 Aquele super PWA para alugar carrinhos da Dextra
 
