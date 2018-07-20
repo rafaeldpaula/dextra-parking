@@ -10,7 +10,8 @@ import store from './store.js';
 import Home from './Components/Home/Home.jsx';
 import { Login } from './Components/Login/Login.jsx';
 
-const BASE_URL = 'http://localhost:8080'; // or 'https://dextra-parking.appspot.com'
+// TODO better way to handle this
+const BASE_URL = 'https://dextra-parking.appspot.com'; // or 'http://localhost:8080';
 
 class App extends Component {
 
