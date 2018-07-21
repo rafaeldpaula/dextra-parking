@@ -36,11 +36,8 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <div id="root"></div>
     <script>
-      function updateLocation(carId, lat, long, then) {
-        yawp(carId).patch({location: lat+','+long}).then(then);
-      }
-
-      function overlayBounds(){
+      // TODO move these functions inside their components and use NPM dep. instead of <script>
+      function overlayBounds() {
         var bound =  new google.maps.LatLngBounds(
             new google.maps.LatLng(-22.817419, -47.048527),
             new google.maps.LatLng(-22.811800, -47.039599)
@@ -49,11 +46,11 @@
           return bound;
       }
 
-      function overlayUrl(){
+      function overlayUrl() {
         return "./images/FINAL-02.png";
       }
 
-      function carIcon(){
+      function carIcon() {
         return {
           url: './images/pin_small.png',
           size: new google.maps.Size(72, 42),
@@ -64,7 +61,7 @@
         };
       }
 
-      function locationIcon(){
+      function locationIcon() {
         return {
           url: './images/location.png',
           size: new google.maps.Size(901, 901),
@@ -74,7 +71,7 @@
         };
       }
 
-      function getAnchor(){
+      function getAnchor() {
         return new google.maps.Point(25, 62);
       }
 

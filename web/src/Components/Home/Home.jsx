@@ -10,7 +10,7 @@ import NaoCadastradoModal from '../CadastrarCarro/NaoCadastradoModal.jsx';
 import TopBar from './TopBar.jsx';
 import '../../styles/Modal.css';
 import '../../styles/FloatingButton.css';
-import yawp from 'yawp';
+import Cars from '../../cars.js';
 
 class Home extends Component {
 
@@ -42,9 +42,9 @@ class Home extends Component {
     window.$('#nao-cadastrado-modal').modal('toggle');
   }
 
-  updateCars() {
-    yawp('/cars').list(
-      cars => this.setState({ cars: cars }));
+  async updateCars() {
+    const cars = await Cars.list();
+    this.setState({ cars });
   }
 
   componentDidMount() {
@@ -53,13 +53,13 @@ class Home extends Component {
 
   handleDrag(e) {
     let { pinPosition } = this.state;
-    
+
     pinPosition.lat = e.latLng.lat();
     pinPosition.lng = e.latLng.lng();
   }
  
   boundIsExceeded(location) {
-    let {lat, lng} = location;
+    let { lat, lng } = location;
     return lat > -22.814470 + 0.004500 ||
       lat < -22.814470 - 0.004500 ||
       lng > -47.044972 + 0.004500 ||
@@ -67,15 +67,14 @@ class Home extends Component {
   }
 
   resetToInitialLocation(car) {
-    const oldLocation = car.location.split(",");
-    window.updateLocation(car.id, oldLocation[0], oldLocation[1], (car) => {
+    const oldLocation = Cars.parseLocation(car.location);
+    Cars.updateLocation(car, oldLocation).then(() => {
       this.setState({
         pinPosition: {
-          lat: oldLocation[0], 
-          lng: oldLocation[1]
+          lat: oldLocation.lat,
+          lng: oldLocation.lng,
         },
       });
-      this.updateCars();
     });
   }
 
@@ -95,9 +94,8 @@ class Home extends Component {
       center: null,
       onDrag: undefined
     });
-    window.updateLocation(car.id, location.lat, location.lng, (car) => {
+    Cars.updateLocation(car, location).then(() => {
       window.$('#aviso-posicionado-modal').modal('toggle');
-      this.updateCars();
     });
   }
 
@@ -141,7 +139,8 @@ class Home extends Component {
   render() {
     return (
       <div className="App">
-        <Map cars={this.state.cars}
+        <Map
+          cars={this.state.cars}
           selectedCar={this.state.selectedCarIndex}
           pinPosition={this.state.pinPosition}
           onDrag={this.state.onDrag}
@@ -152,22 +151,29 @@ class Home extends Component {
           items={this.state.cars}
           onSelection={(car, i) => {
             this.setState({ selectedCarIndex: i });
-          }} />
+          }}
+        />
 
-          {this.renderBottomButton()}
-        
-          <DevolverModal
+        {this.renderBottomButton()}
+
+        <DevolverModal
           items={this.state.cars}
           onSelection={(car, i) => {
+            const pinPosition = Cars.parseLocation(car.location);
             this.setState({
               selectedCarIndex: i,
-              pinPosition: car.location.split(","),
+              pinPosition,
               onDrag: e => this.handleDrag(e)
             });
-          }} />
+          }}
+        />
 
-        <CadastrarModal items={this.state.cars} updateCars={() => this.updateCars()} showCadastrado={() => this.showCadastrado()}
-          showNaoCadastrado={() => this.showNaoCadastrado()} />
+        <CadastrarModal
+          items={this.state.cars}
+          updateCars={() => this.updateCars()}
+          showCadastrado={() => this.showCadastrado()}
+          showNaoCadastrado={() => this.showNaoCadastrado()}
+        />
 
         <button id="authorize-button" className="none">Authorize</button>
         <button id="signout-button" className="none">Sign Out</button>

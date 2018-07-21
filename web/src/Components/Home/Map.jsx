@@ -30,14 +30,7 @@ class MyMapComponent extends Component {
   }
 
   getName(cars, carId) {
-    var name;
-    cars.forEach(car => {
-      if (car.id === carId) {
-        name = car.name;
-      }
-    });
-
-    return name;
+    return cars.find(car => car.id === carId).name;
   }
 
   carIcon() {
@@ -49,34 +42,33 @@ class MyMapComponent extends Component {
   }
 
   makeMarkers() {
-    if (this.props.onDrag === undefined)
+    if (this.props.onDrag === undefined) {
       return this.props.cars.map((car, i) => {
-
-        var locacione = car.location.split(",");
-
-        // return locacione;
+        const locacione = car.location.split(",");
         return (
           <MarkerWithLabel
             icon={this.carIcon()}
             key={i}
             position={{ lat: parseFloat(locacione[0]), lng: parseFloat(locacione[1]) }}
             labelAnchor={window.getAnchor()}
-            labelStyle={{ backgroundColor: "white", fontSize: "15px", padding: "10px" }}>
+            labelStyle={{ backgroundColor: "white", fontSize: "15px", padding: "10px" }}
+          >
             <div>{this.getName(this.props.cars, car.id)}</div>
           </MarkerWithLabel>
         );
       });
-    else {
-      var car = this.props.cars[this.props.selectedCar];
-      var locacione = this.props.pinPosition;
+    } else {
+      const car = this.props.cars[this.props.selectedCar];
+      const locacione = this.props.pinPosition;
       return (
         <MarkerWithLabel
           icon={this.carIcon()}
-          position={{ lat: parseFloat(locacione[0]), lng: parseFloat(locacione[1]) }}
+          position={{ lat: parseFloat(locacione.lat), lng: parseFloat(locacione.lng) }}
           draggable={this.props.onDrag !== undefined}
           onDragEnd={this.props.onDrag}
           labelAnchor={window.getAnchor()}
-          labelStyle={{ backgroundColor: "white", fontSize: "15px", padding: "10px" }}>
+          labelStyle={{ backgroundColor: "white", fontSize: "15px", padding: "10px" }}
+        >
           <div>{this.getName(this.props.cars, car.id)}</div>
         </MarkerWithLabel>);
     }
@@ -97,8 +89,10 @@ class MyMapComponent extends Component {
   }
 
   yourLocationPin() {
-    return <Marker position={{ lat: this.state.you.lat, lng: this.state.you.lng }}
-      icon={this.locationIcon()} />;
+    return <Marker
+      position={{ lat: this.state.you.lat, lng: this.state.you.lng }}
+      icon={this.locationIcon()}
+    />;
   }
 
   render(props) {
@@ -121,62 +115,54 @@ class MyMapComponent extends Component {
       zoom = 19;
     }
 
-    var ret = compose(
+    const ret = compose(
       withProps({
-        googleMapURL:
-          "https://maps.googleapis.com/maps/api/js?key=AIzaSyBjP3oziR_ztTBkfgQFvXLBnp9w6n96mjE&v=3.exp&libraries=geometry,drawing,places",
-        loadingElement: <div style={{ height: `100vh` }} />,
-        containerElement: <div style={{ height: `100vh` }} />,
-        mapElement: <div style={{ height: `100%` }} />,
+        googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBjP3oziR_ztTBkfgQFvXLBnp9w6n96mjE&v=3.exp&libraries=geometry,drawing,places',
+        loadingElement: <div style={{ height: '100vh' }} />,
+        containerElement: <div style={{ height: '100vh' }} />,
+        mapElement: <div style={{ height: '100%' }} />,
 
       }),
-
       withScriptjs,
       withGoogleMap,
-    )(props => (
-
-      <GoogleMap ref={map => this.map = map}
-        onDragEnd={() => this.handleMapDrag()}
-        zIndex={-1}
-        defaultZoom={zoom}
-        defaultCenter={center}
-        defaultOptions={{
-          styles: dextraparkingstyle,
-          streetViewControl: false,
-          mapTypeControl: false,
-          panControl: false,
-          rotateControl: false,
-          fullscreenControl: false,
-          maxZoom: 25,
-          minZoom: 17
-        }}>
+    )(() => <GoogleMap ref={map => this.map = map}
+      onDragEnd={() => this.handleMapDrag()}
+      zIndex={-1}
+      defaultZoom={zoom}
+      defaultCenter={center}
+      defaultOptions={{
+        styles: dextraparkingstyle,
+        streetViewControl: false,
+        mapTypeControl: false,
+        panControl: false,
+        rotateControl: false,
+        fullscreenControl: false,
+        maxZoom: 25,
+        minZoom: 17
+      }}>
         <GroundOverlay
           defaultUrl={window.overlayUrl()}
           defaultBounds={window.overlayBounds()}
-
-          defaultOpacity={5} />
-
+          defaultOpacity={5}
+        />
         {this.makeMarkers()}
-
         {this.yourLocationPin()}
-
       </GoogleMap>
-    ));
+    );
     return ret(props);
   }
 }
 
 class Map extends Component {
   render() {
-    return (
-      <MyMapComponent markerLocation={{}}
-        cars={this.props.cars}
-        selectedCar={this.props.selectedCar}
-        pinPosition={this.props.pinPosition}
-        onDrag={this.props.onDrag}
-        center={this.props.center}
-        isMarkerShown />
-    );
+    return <MyMapComponent markerLocation={{}}
+      cars={this.props.cars}
+      selectedCar={this.props.selectedCar}
+      pinPosition={this.props.pinPosition}
+      onDrag={this.props.onDrag}
+      center={this.props.center}
+      isMarkerShown
+    />;
   }
 }
 
