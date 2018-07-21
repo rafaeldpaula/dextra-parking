@@ -12,11 +12,7 @@ class TopBar extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      name: "João José",
-      email: "jj@dextra-sw.com",
-      photo: "https://thearmitageeffect.files.wordpress.com/2012/04/funny-cat-pictures-with-captions-44.jpg?w=652"
-    };
+    this.state = {};
   }
 
   componentDidMount() {
@@ -43,6 +39,9 @@ class TopBar extends Component {
   }
 
   render() {
+    if (!this.state.name) {
+      return <div>Loaindg...</div>; // TODO proper loading
+    }
     return (
       <div>
         <nav className="navbar navbar-light bg-faded">
