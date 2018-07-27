@@ -24,6 +24,9 @@ class App extends Component {
   componentWillMount() {
     this.ids = [];
     this.ids.push(store.on('login', data => {
+      if (!data) {
+        return;
+      }
       yawp.config(function(c) {
           c.baseUrl(`${BASE_URL}/api`);
           c.defaultFetchOptions({ headers: {
@@ -38,6 +41,7 @@ class App extends Component {
       store.emit('login', JSON.parse(loginData))
       store.emit('route', '/');
     } else {
+      store.emit('login', null);
       store.emit('route', '/login');
     }
   }

@@ -12,13 +12,19 @@ class TopBar extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { hasData: false };
   }
 
   componentDidMount() {
     this.ids = [];
     this.ids.push(store.on('login', data => {
+      if (data == null) {
+        this.setState({
+          hasData: false,
+        });
+      }
       this.setState({
+        hasData: true,
         name: data.name || data.email,
         email: data.email,
         photo: data.photo
@@ -39,16 +45,14 @@ class TopBar extends Component {
   }
 
   render() {
-    if (!this.state.name) {
+    if (!this.state.hasData) {
       return <div>Loaindg...</div>; // TODO proper loading
     }
+
     return (
       <div>
         <nav className="navbar navbar-light bg-faded">
-          <img className="user-image" alt="Profile" src={this.state.photo} onClick={this.openSidebar} />
-          <img className="logo" alt="Logo" src="./images/logo.png" />
-          <div className="user-name" onClick={this.openSidebar}>{this.state.name}</div>
-          <div className="fas fa-search fa-1g btn search-thing" data-toggle="modal" data-target="#selecionar-modal"></div>
+          {[ ...this._avatar(), this._search() ]}
         </nav>
         <div id="mySidenav" className="sidenav">
           <img alt="Profile" src={this.state.photo} />
@@ -62,6 +66,21 @@ class TopBar extends Component {
         </div>
       </div>
     );
+  }
+
+  _search() {
+    return <div className="fas fa-search fa-1g btn search-thing" data-toggle="modal" data-target="#selecionar-modal" />;
+  }
+
+  _avatar() {
+    if (!this.state.name) {
+      return [];
+    }
+    return [
+      <img className="user-image" alt="Profile" src={this.state.photo} onClick={this.openSidebar} />,
+      <img className="logo" alt="Logo" src="./images/logo.png" />,
+      <div className="user-name" onClick={this.openSidebar}>{this.state.name}</div>,
+    ];
   }
 }
 

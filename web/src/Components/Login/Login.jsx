@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import store from  '../../store';
 import '../../styles/App.css';
 import '../../styles/Login.css';
+import { ModalServiceAccount } from './ModalServiceAccount';
 
 var config = {
     apiKey: "AIzaSyC3sWq8Efvd0k6ETKBUfY1BgARIpf5igtc",
@@ -33,7 +34,7 @@ export function signOut() {
 export class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = { modalServiceAccount: false };
     }
 
     async loginButtonClick() {
@@ -50,16 +51,33 @@ export class Login extends Component {
         store.emit('route', '/');
     }
 
+    serviceAccountLogin(user, pass) {
+        const plain = true;
+        const token = btoa(`${user}:${pass}`);
+        store.emit('login', { plain, token });
+        store.emit('route', '/');
+    }
+
     render() {
-        return (
-            <div className="App">
-                <header className="App-header">
-                    <center>
-                        <img alt="Logo" src="./images/logo.png" />
-                    </center>
-                    <img alt="Google Sign In" className="signin" src="./images/signin.png" onClick={this.loginButtonClick} />
-                </header>
-            </div>
-        );
+        return <div className="App">
+            <header className="App-header">
+                <center>
+                    <img alt="Logo" src="./images/logo.png" />
+                </center>
+                <img alt="Google Sign In" className="signin" src="./images/signin.png" onClick={this.loginButtonClick} />
+            </header>
+            <small className="serviceAccountLogin" onClick={() => this.setState({ modalServiceAccount: true })}>Login with Service Account</small>
+            {this._renderModalServiceAccount()}
+        </div>;
+    }
+
+    _renderModalServiceAccount() {
+        if (!this.state.modalServiceAccount) {
+            return '';
+        }
+        return <ModalServiceAccount
+            onSubmit={(user, pass) => this.serviceAccountLogin(user, pass)}
+            onCancel={() => this.setState({ modalServiceAccount: false })}
+        />;
     }
 }
