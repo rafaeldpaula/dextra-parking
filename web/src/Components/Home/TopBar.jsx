@@ -52,7 +52,7 @@ class TopBar extends Component {
     return (
       <div>
         <nav className="navbar navbar-light bg-faded">
-          {[ ...this._avatar(), this._search() ]}
+          {[ ...this._avatar(), ...this._search() ]}
         </nav>
         <div id="mySidenav" className="sidenav">
           <img alt="Profile" src={this.state.photo} />
@@ -69,7 +69,10 @@ class TopBar extends Component {
   }
 
   _search() {
-    return <div className="fas fa-search fa-1g btn search-thing" data-toggle="modal" data-target="#selecionar-modal" />;
+    return [
+      <div className="fas fa-search fa-1g btn search-thing" data-toggle="modal" data-target="#selecionar-modal" />,
+      <img className="logo" alt="Logo" src="./images/logo.png" />,
+    ];
   }
 
   _avatar() {
@@ -78,7 +81,6 @@ class TopBar extends Component {
     }
     return [
       <img className="user-image" alt="Profile" src={this.state.photo} onClick={this.openSidebar} />,
-      <img className="logo" alt="Logo" src="./images/logo.png" />,
       <div className="user-name" onClick={this.openSidebar}>{this.state.name}</div>,
     ];
   }
