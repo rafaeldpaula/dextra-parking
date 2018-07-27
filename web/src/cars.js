@@ -2,8 +2,9 @@ import yawp from 'yawp';
 import store from './store.js';
 
 class Cars {
-    static _handleError() {
-        localStorage.removeItem('login_data');
+    static _handleError(ex) {
+        console.log(ex);
+        store.emit('login', null);
         store.emit('route', '/login');
     }
 
@@ -11,7 +12,7 @@ class Cars {
         try {
             return await yawp('/cars').list();
           } catch (e) {
-            Cars._handleError();
+            Cars._handleError(e);
           }
     }
 
@@ -21,7 +22,7 @@ class Cars {
             car.location = latLong;
             return await yawp(car.id).patch({ id: car.id, location: latLong });
           } catch (e) {
-            Cars._handleError();
+            Cars._handleError(e);
           }
     }
 

@@ -26,8 +26,8 @@ firebase.initializeApp(config);
 
 export function signOut() {
     firebase.auth().signOut().then(function () {
-        localStorage.removeItem('login_data');
-        window.location.reload();
+        store.emit('login', null);
+        store.emit('route', '/login');
     });
 }
 
@@ -46,7 +46,6 @@ export class Login extends Component {
             email: result.user.email,
             photo: result.user.photoURL,
         };
-        localStorage.setItem('login_data', JSON.stringify(data));
         store.emit('login', data);
         store.emit('route', '/');
     }

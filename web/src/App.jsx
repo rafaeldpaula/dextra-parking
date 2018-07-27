@@ -25,8 +25,10 @@ class App extends Component {
     this.ids = [];
     this.ids.push(store.on('login', data => {
       if (!data) {
+        localStorage.removeItem('login_data');
         return;
       }
+      localStorage.setItem('login_data', JSON.stringify(data));
       yawp.config(function(c) {
           c.baseUrl(`${BASE_URL}/api`);
           c.defaultFetchOptions({ headers: {
