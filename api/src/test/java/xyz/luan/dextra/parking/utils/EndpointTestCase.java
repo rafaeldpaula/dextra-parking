@@ -8,5 +8,4 @@ public class EndpointTestCase extends EndpointTestCaseBase {
     protected String getAppPackage() {
         return "xyz.luan.dextra.parking";
     }
-
 }

@@ -4,7 +4,6 @@ import store from './store.js';
 class Cars {
     static _handleError() {
         localStorage.removeItem('login_data');
-        store.emit('login', null);
         store.emit('route', '/login');
     }
 

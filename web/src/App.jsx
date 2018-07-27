@@ -27,7 +27,7 @@ class App extends Component {
       yawp.config(function(c) {
           c.baseUrl(`${BASE_URL}/api`);
           c.defaultFetchOptions({ headers: {
-              Authorization: `Beaerer ${data.token}`,
+              Authorization: data.plain ? `Plain ${data.token}` : `Bearer ${data.token}`,
           }});
       });
     }));
