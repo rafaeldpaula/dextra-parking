@@ -60,7 +60,7 @@ public class AuthFilter extends HttpFilter {
 			throw new HttpException(403, "Plain token decoded, wrong password.");
 		}
 
-		String email = "@" + acc.getUser();
+		String email = acc.getUser() + "@dextra-sw.com";
 		LOGGER.info(String.format("Authenticated: Plain, [%s]", email));
 		AuthHolder.email.set(email);
 	}
