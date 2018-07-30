@@ -114,7 +114,7 @@ class Home extends Component {
   renderBottomButton(){
      if (this.checkCarBeenGiveBack()) {
         return <div>
-          <TopBar></TopBar>
+          <TopBar />
           <button type="button"
             className="btn floating-button bottom-floating-button"
             data-toggle="modal" data-target="#devolver-modal">
