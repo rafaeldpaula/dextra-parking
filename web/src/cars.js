@@ -10,10 +10,10 @@ class Cars {
 
     static async list() {
         try {
-            return await yawp('/cars').list();
-          } catch (e) {
-            Cars._handleError(e);
-          }
+          return (await yawp('/cars').list()).sort((c1, c2) => c1.name.localeCompare(c2.name));
+        } catch (e) {
+          Cars._handleError(e);
+        }
     }
 
     static async updateLocation(car, location) {

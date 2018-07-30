@@ -18,17 +18,18 @@ class TopBar extends Component {
   componentDidMount() {
     this.ids = [];
     this.ids.push(store.on('login', data => {
-      if (data == null) {
+      if (!data) {
         this.setState({
           hasData: false,
         });
+      } else {
+        this.setState({
+          hasData: true,
+          name: data.name || data.email,
+          email: data.email,
+          photo: data.photo
+        });
       }
-      this.setState({
-        hasData: true,
-        name: data.name || data.email,
-        email: data.email,
-        photo: data.photo
-      });
     }));
   }
 
