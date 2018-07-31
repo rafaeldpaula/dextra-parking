@@ -97,7 +97,7 @@ class MyMapComponent extends Component {
 
   render(props) {
     let center = this.center;
-    let zoom = 18;
+    const zoom = 18;
 
     if (this.props.selectedCar !== -1) {
       const i = this.props.selectedCar;
@@ -111,8 +111,6 @@ class MyMapComponent extends Component {
           lng: this.props.center[1]
         };
       }
-
-      zoom = 19;
     }
 
     const ret = compose(
