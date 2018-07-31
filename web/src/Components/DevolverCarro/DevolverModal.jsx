@@ -15,8 +15,9 @@ class DevolverModal extends Component {
     handleConfirmClick() {
         if (this.state.selectedCar !== -1){
             this.props.onSelection(
-            this.props.items[this.state.selectedCar],
-            this.state.selectedCar);
+                this.props.items[this.state.selectedCar],
+                this.state.selectedCar
+            );
 
             this.setState({ selectedCar: -1 });
             window.$('#devolver-modal').modal('toggle');

@@ -1,4 +1,5 @@
 const callbacks = {};
+const lasts = {};
 
 const store = {
     next: function (event, callback) {
@@ -9,8 +10,8 @@ const store = {
     },
     on: function (event, callback) {
         let id = store.next(event, callback);
-        if (callbacks[event].last) {
-            callback(callbacks[event].last);
+        if (lasts[event]) {
+            callback(lasts[event].data);
         }
         return id;
     },
@@ -26,7 +27,7 @@ const store = {
     emit: function (event, data) {
         callbacks[event] = callbacks[event] || [];
         callbacks[event].forEach(i => i.callback(data));
-        callbacks[event].last = data;
+        lasts[event] = { data };
     },
     get: function (event) {
         return callbacks[event].last;

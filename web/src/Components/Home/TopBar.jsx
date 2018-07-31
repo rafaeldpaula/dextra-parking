@@ -47,7 +47,7 @@ class TopBar extends Component {
 
   render() {
     if (!this.state.hasData) {
-      return <div>Loaindg...</div>; // TODO proper loading
+      return <div>Loading...</div>; // TODO proper loading
     }
 
     return (
@@ -71,8 +71,8 @@ class TopBar extends Component {
 
   _search() {
     return [
-      <div className="fas fa-search fa-1g btn search-thing" data-toggle="modal" data-target="#selecionar-modal" />,
-      <img className="logo" alt="Logo" src="./images/logo.png" />,
+      <div key="search" className="fas fa-search fa-1g btn search-thing" data-toggle="modal" data-target="#selecionar-modal" />,
+      <img key="logo" className="logo" alt="Logo" src="./images/logo.png" />,
     ];
   }
 
@@ -81,8 +81,8 @@ class TopBar extends Component {
       return [];
     }
     return [
-      <img className="user-image" alt="Profile" src={this.state.photo} onClick={this.openSidebar} />,
-      <div className="user-name" onClick={this.openSidebar}>{this.state.name}</div>,
+      <img key="user-image" className="user-image" alt="Profile" src={this.state.photo} onClick={this.openSidebar} />,
+      <div key="user-name" className="user-name" onClick={this.openSidebar}>{this.state.name}</div>,
     ];
   }
 }
