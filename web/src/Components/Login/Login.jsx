@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
+
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 import store from  '../../store';
 import '../../styles/App.css';
