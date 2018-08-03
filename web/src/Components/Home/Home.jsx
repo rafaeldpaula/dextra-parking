@@ -49,6 +49,11 @@ class Home extends Component {
 
   componentDidMount() {
     this.updateCars();
+    this.timer = setInterval(() => this.updateCars(), 5 * 60 * 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
 
   handleDrag(e) {
@@ -111,7 +116,7 @@ class Home extends Component {
     }
   }
 
-  renderBottomButton(){
+  renderBottomButton() {
      if (this.checkCarBeenGiveBack()) {
         return <div>
           <TopBar />
