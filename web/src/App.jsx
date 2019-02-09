@@ -29,7 +29,7 @@ class App extends Component {
         return;
       }
       localStorage.setItem('login_data', JSON.stringify(data));
-      yawp.config(function(c) {
+      yawp.config(c => {
           c.baseUrl(`${BASE_URL}/api`);
           c.defaultFetchOptions({ headers: {
               Authorization: data.plain ? `Plain ${data.token}` : `Bearer ${data.token}`,
